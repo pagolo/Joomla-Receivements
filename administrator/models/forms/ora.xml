@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+              <field name="id" type="text" default="0" label="COM_RECEIVEMENTS_FORM_LBL_ORA_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+
+                <field
+			name="id_docente"
+			type="usersingroup"
+			group_name="Docenti"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_ID_DOCENTE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_ID_DOCENTE" 
+                                                    filter="safehtml" /> 
+
+		<field
+		        name="cattedra"
+		        type="sql"
+		        query="SELECT id AS value, materie AS cattedra FROM #__receivements_cattedre ORDER BY materie"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_MATERIE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_MATERIE" 
+            /> 
+
+
+       <field name="classi" type="text"
+                
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_CLASSI"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_CLASSI" 
+                
+                
+                 /> 
+
+       <field name="giorno" type="list"
+                
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_GIORNO"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_GIORNO" 
+                
+                
+                
+            option_on="Yes"
+            option_off="Yes">
+                <option value="0">Lunedì</option>
+                <option value="1">Martedì</option>
+                <option value="2">Mercoledì</option>
+                <option value="3">Giovedì</option>
+                <option value="4">Venerdì</option>
+                <option value="5">Sabato</option>
+        </field> 
+
+       <field name="inizio" type="text" size="40" class="inputbox"
+                                                    
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_INIZIO"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_INIZIO" 
+                                                     default="00:00" 
+                                                    
+                                                     required="true" 
+                                                    filter="safehtml" /> 
+
+       <field name="fine" type="text" size="40" class="inputbox"
+                                                    
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_FINE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_FINE" 
+                                                     default="00:00" 
+                                                    
+                                                    
+                                                    filter="safehtml" /> 
+
+       <field name="max_app" type="list" class="inputbox"
+            default="6"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_MAX_APP"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_MAX_APP" 
+        
+                                                    filter="safehtml" 
+        
+        > 
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+        </field>
+
+		<field
+		        name="sede"
+		        type="sql"
+		        query="SELECT id AS value, sede FROM #__receivements_sedi ORDER BY id"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_SEDE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_SEDE" 
+                                                    filter="safehtml" /> 
+
+       <field name="attiva" type="checkbox"
+                
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_ATTIVA"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_ATTIVA" 
+                
+                
+                 />
+
+	</fieldset>
+
+</form>

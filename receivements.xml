@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5" method="upgrade">
+    <name>com_receivements</name>
+    <creationDate>2014-12-07</creationDate>
+    <copyright>Copyright (C) 2014. Tutti i diritti riservati.</copyright>
+    <license>GNU General Public License versione 2 o successiva; vedi LICENSE.txt</license>
+    <author>Paolo Bozzo</author>
+    <authorEmail>info@dbfweb.com</authorEmail>
+    <authorUrl>http://dbfweb.com</authorUrl>
+    <version>0.0.1</version>
+    <description></description>
+    
+    
+    
+    <install> <!-- Runs on install -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall> <!-- Runs on uninstall -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>receivements.php</filename>
+        <filename>controller.php</filename>
+        <filename>router.php</filename>
+        <folder>views</folder>
+        <folder>models</folder>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
+        <folder>assets</folder>
+    </files>
+    <languages folder="languages/site">
+        
+			<language tag="en-GB">en-GB/en-GB.com_receivements.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_receivements.ini</language>
+    </languages>
+    <administration>
+        <menu img="components/com_receivements/assets/images/s_com_receivements.png" >COM_RECEIVEMENTS</menu>
+        <submenu>
+            
+			<menu link="option=com_receivements&amp;view=ore" view="ore" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Ore">COM_RECEIVEMENTS_TITLE_ORE</menu>
+			<menu link="option=com_receivements&amp;view=sedi" view="sedi" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Sedi">COM_RECEIVEMENTS_TITLE_SEDI</menu>
+
+        </submenu>
+        <files folder="administrator">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>receivements.php</filename>
+            <folder>controllers</folder>
+            <folder>assets</folder>
+            <folder>helpers</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files>
+        <languages folder="languages/administrator">
+            
+			<language tag="en-GB">en-GB/en-GB.com_receivements.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_receivements.sys.ini</language>
+			<language tag="en-US">en-US/en-US.com_receivements.ini</language>
+			<language tag="en-US">en-US/en-US.com_receivements.sys.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_receivements.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_receivements.sys.ini</language>
+        </languages>
+    </administration>
+    <plugins>
+        <plugin group="search" plugin="receivements"/>
+    </plugins>
+    
+</extension>
+<!-- Component built by the Joomla Component Creator -->
+<!-- http://www.component-creator.com/ -->
