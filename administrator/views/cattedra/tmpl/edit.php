@@ -67,8 +67,8 @@ $document->addStyleSheet('components/com_receivements/assets/css/receivements.cs
             <ul class="adminformlist">
 
                 				<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
-				<li><?php echo $this->form->getLabel('cattedra'); ?>
-				<?php echo $this->form->getInput('cattedra'); ?></li>
+				<li><?php echo $this->form->getLabel('materie'); ?>
+				<?php echo $this->form->getInput('materie'); ?></li>
 
 
             </ul>

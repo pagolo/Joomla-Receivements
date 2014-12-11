@@ -24,7 +24,7 @@ $saveOrder = $listOrder == 'a.ordering';
 
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_receivements&view=sedi'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_receivements&view=cattedre'); ?>" method="post" name="adminForm" id="adminForm">
     <fieldset id="filter-bar">
         <!--TODO: keep filter working...-->
         <div class="filter-search fltlft">
