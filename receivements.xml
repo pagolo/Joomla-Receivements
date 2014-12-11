@@ -45,6 +45,7 @@
             
 			<menu link="option=com_receivements&amp;view=ore" view="ore" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Ore">COM_RECEIVEMENTS_TITLE_ORE</menu>
 			<menu link="option=com_receivements&amp;view=sedi" view="sedi" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Sedi">COM_RECEIVEMENTS_TITLE_SEDI</menu>
+			<menu link="option=com_receivements&amp;view=cattedre" view="cattedre" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Cattedre">COM_RECEIVEMENTS_TITLE_CATTEDRE</menu>
 
         </submenu>
         <files folder="administrator">
