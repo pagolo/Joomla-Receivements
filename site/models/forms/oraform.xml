@@ -19,8 +19,8 @@
                         type="createdby"
                         />
 
-       <field name="classi" type="text"
-
+       <field name="classi" type="classes"
+            readonly="true"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_CLASSI"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_CLASSI" 
                 

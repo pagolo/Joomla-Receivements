@@ -243,7 +243,7 @@ class ReceivementsModelOraForm extends JModelForm
             JError::raiseError(403, JText::_('JERROR_ALERTNOAUTHOR'));
             return false;
         }
-        
+
         $table = $this->getTable();
         if ($table->save($data) === true) {
             return $table->id;

@@ -9,6 +9,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
+JHTML::_('behavior.modal');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
@@ -64,8 +65,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 				<div class="ora-edit"><?php echo $this->form->getInput('attiva'); ?></div><br />
         
         <div class="button-div">
-            <button type="submit" class="validate"><span><?php echo JText::_('JSUBMIT'); ?></span></button>
-            <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=oraform.cancel'); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_('JCANCEL'); ?></a>            
+            <button type="submit" class="validate"><span><?php echo JText::_('JSAVE'); ?></span></button>
         </div>
 
         <input type="hidden" name="option" value="com_receivements" />

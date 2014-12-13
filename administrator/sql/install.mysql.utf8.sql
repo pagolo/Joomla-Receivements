@@ -39,3 +39,10 @@ INSERT INTO `#__receivements_cattedre` (`id`, `materie`) VALUES
 (8, 'Scienze'),
 (9, 'Scienze motorie');
 
+CREATE TABLE IF NOT EXISTS `#__receivements_classi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `classe` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `note` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `classe` (`classe`)
+) DEFAULT COLLATE=utf8_unicode_ci ;
