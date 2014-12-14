@@ -34,6 +34,11 @@ class ReceivementsHelper {
 			'index.php?option=com_receivements&view=cattedre',
 			$vName == 'cattedre'
 		);
+        		JSubMenuHelper::addEntry(
+			JText::_('COM_RECEIVEMENTS_TITLE_CLASSI'),
+			'index.php?option=com_receivements&view=classi',
+			$vName == 'classi'
+		);
     }
 
     /**

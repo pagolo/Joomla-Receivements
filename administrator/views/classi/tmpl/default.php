@@ -69,12 +69,12 @@ $saveOrder = $listOrder == 'a.ordering';
                 <?php endif; ?>
                 <?php if (isset($this->items[0]->classe)) : ?>
                     <th class="nowrap left">
-                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_NAME', 'a.classe', $listDirn, $listOrder); ?>
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_CLASS', 'a.classe', $listDirn, $listOrder); ?>
                     </th>
                 <?php endif; ?>
                 <?php if (isset($this->items[0]->note)) : ?>
                     <th class="nowrap left">
-                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_NAME', 'a.note', $listDirn, $listOrder); ?>
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_NOTE', 'a.note', $listDirn, $listOrder); ?>
                     </th>
                 <?php endif; ?>
             </tr>
@@ -141,7 +141,7 @@ $saveOrder = $listOrder == 'a.ordering';
                     <?php if (isset($this->items[0]->classe)) { ?>
                         <td class="left">
 			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=classe.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_HOUR', $this->escape($item->sede)); ?>">
-			     <?php echo $this->escape($item->sede); ?></a>
+			     <?php echo $this->escape($item->classe); ?></a>
                         </td>
                     <?php } ?>
                     <?php if (isset($this->items[0]->note)) { ?>
