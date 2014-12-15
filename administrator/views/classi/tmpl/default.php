@@ -140,7 +140,7 @@ $saveOrder = $listOrder == 'a.ordering';
                     <?php } ?>
                     <?php if (isset($this->items[0]->classe)) { ?>
                         <td class="left">
-			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=classe.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_HOUR', $this->escape($item->sede)); ?>">
+			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=classe.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_CLASS', $this->escape($item->classe)); ?>">
 			     <?php echo $this->escape($item->classe); ?></a>
                         </td>
                     <?php } ?>

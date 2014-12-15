@@ -17,7 +17,7 @@ JHTML::_('behavior.modal');
 /**
  * Supports an HTML select list of categories
  */
-class JFormFieldClasses extends JFormFieldText
+class JFormFieldSetTime extends JFormFieldText
 {
 	/**
 	 * The form field type.
@@ -25,7 +25,7 @@ class JFormFieldClasses extends JFormFieldText
 	 * @var		string
 	 * @since	1.6
 	 */
-	protected $type = 'Classes';
+	protected $type = 'SetTime';
 
 	/**
 	 * Method to get the field input markup.
@@ -39,9 +39,11 @@ class JFormFieldClasses extends JFormFieldText
 		$html = array();
         
         	$html[] = parent::getInput();
-        	$html[] = '<nobr /><a class="modal" rel="{handler: \'iframe\', size: {x: 200, y: 400}}" title="';
-        	$html[] = JText::_('COM_RECEIVEMENTS_SELECT_CLASSES');
-                $html[] = '" href="/index.php?option=com_receivements&view=classi&tmpl=component">';
+        	$html[] = '<nobr /><a class="modal" rel="{handler: \'iframe\', size: {x: 350, y: 200}}" title="';
+        	$html[] = JText::_('COM_RECEIVEMENTS_SELECT_TIME');
+                $html[] = '" href="/index.php?option=com_receivements&view=oraform&layout=settime&tmpl=component&parent=';
+                $html[] = $this->id;
+                $html[] = '">';
         	$html[] = "<strong>&lt;-</strong>";
         	$html[] = "</a>";
         
