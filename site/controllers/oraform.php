@@ -130,7 +130,7 @@ class ReceivementsControllerOraForm extends ReceivementsController {
         $this->setMessage(JText::_('COM_RECEIVEMENTS_ITEM_SAVED_SUCCESSFULLY'));
         $menu = JFactory::getApplication()->getMenu();
         $item = $menu->getActive();
-        $url = (empty($item->link) ? 'index.php?option=com_receivements&view=ore' : $item->link);
+        $url = (empty($item->link) ? 'index.php?option=com_receivements&view=oraform' : $item->link);
         $this->setRedirect(JRoute::_($url, false));
 
         // Flush the data from the session.
@@ -154,7 +154,7 @@ class ReceivementsControllerOraForm extends ReceivementsController {
         
         $menu = JFactory::getApplication()->getMenu();
         $item = $menu->getActive();
-        $url = (empty($item->link) ? 'index.php?option=com_receivements&view=ore' : $item->link);
+        $url = (empty($item->link) ? 'index.php?option=com_receivements&view=oraform' : $item->link);
         $this->setRedirect(JRoute::_($url, false));
     }
 
@@ -219,7 +219,7 @@ class ReceivementsControllerOraForm extends ReceivementsController {
         $this->setMessage(JText::_('COM_RECEIVEMENTS_ITEM_DELETED_SUCCESSFULLY'));
         $menu = JFactory::getApplication()->getMenu();
         $item = $menu->getActive();
-        $url = (empty($item->link) ? 'index.php?option=com_receivements&view=ore' : $item->link);
+        $url = (empty($item->link) ? 'index.php?option=com_receivements&view=oraform' : $item->link);
         $this->setRedirect(JRoute::_($url, false));
 
         // Flush the data from the session.

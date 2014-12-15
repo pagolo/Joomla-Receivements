@@ -39,7 +39,7 @@ class JFormFieldSetTime extends JFormFieldText
 		$html = array();
         
         	$html[] = parent::getInput();
-        	$html[] = '<nobr /><a class="modal" rel="{handler: \'iframe\', size: {x: 350, y: 200}}" title="';
+        	$html[] = '<nobr /><a class="modal" rel="{handler: \'iframe\', size: {x: 175, y: 110}}" title="';
         	$html[] = JText::_('COM_RECEIVEMENTS_SELECT_TIME');
                 $html[] = '" href="/index.php?option=com_receivements&view=oraform&layout=settime&tmpl=component&parent=';
                 $html[] = $this->id;
