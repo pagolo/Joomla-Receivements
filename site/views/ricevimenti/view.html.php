@@ -14,6 +14,7 @@ class ReceivementsViewRicevimenti extends JView
         function display($tpl = null) 
         {
                 $this->items = $this->get('Items');
+                $this->pagination = $this->get('Pagination');
  
                 // Display the view
                 parent::display($tpl);
