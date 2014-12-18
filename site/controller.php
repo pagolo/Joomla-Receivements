@@ -30,5 +30,4 @@ class ReceivementsController extends JController {
 
         return $this;
     }
-
 }

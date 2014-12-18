@@ -45,25 +45,25 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
     <?php endif; ?>
 
     <form id="form-ora" action="<?php echo JRoute::_('index.php?option=com_receivements&task=ora.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
-        <fieldset addfieldpath="/components/com_ricevimenti/models/fields" class='panelform' style='border-width:1px'>
+        <fieldset addfieldpath="/components/com_ricevimenti/models/fields" class='panelform' style='border-width:1px; width:500px; height:110%''>
                 <legend><?php echo JFactory::getUser()->name; ?></legend>
             			<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
                                 <?php echo $this->form->getInput('id_docente'); ?>
-				<div class="ora-edit-label"><?php echo $this->form->getLabel('classi'); ?></div>
-				<div class="ora-edit"><?php echo $this->form->getInput('classi'); ?></div><br />
-				<div class="ora-edit-label"><?php echo $this->form->getLabel('giorno'); ?></div>
-				<div class="ora-edit"><?php echo $this->form->getInput('giorno'); ?></div><br />
-				<div class="ora-edit-label"><?php echo $this->form->getLabel('inizio'); ?></div>
-				<div class="ora-edit"><?php echo $this->form->getInput('inizio'); ?></div><br />
-				<div class="ora-edit-label"><?php echo $this->form->getLabel('fine'); ?></div>
-				<div class="ora-edit"><?php echo $this->form->getInput('fine'); ?></div><br />
-				<div class="ora-edit-label"><?php echo $this->form->getLabel('max_app'); ?></div>
-				<div class="ora-edit"><?php echo $this->form->getInput('max_app'); ?></div><br />
-				<div class="ora-edit-label"><?php echo $this->form->getLabel('sede'); ?></div>
-				<div class="ora-edit"><?php echo $this->form->getInput('sede'); ?></div><br />
-				<div class="ora-edit-label"><?php echo $this->form->getLabel('attiva'); ?></div>
-				<div class="ora-edit"><?php echo $this->form->getInput('attiva'); ?></div><br />
-        
+				<div class="ora-edit-label" style="width:120px"><?php echo $this->form->getLabel('classi'); ?></div>
+				<div class="ora-edit" style="width:320px"><?php echo $this->form->getInput('classi'); ?></div><br />
+				<div class="ora-edit-label" style="width:120px"><?php echo $this->form->getLabel('giorno'); ?></div>
+				<div class="ora-edit" style="width:320px"><?php echo $this->form->getInput('giorno'); ?></div><br />
+				<div class="ora-edit-label" style="width:120px"><?php echo $this->form->getLabel('inizio'); ?></div>
+				<div class="ora-edit" style="width:320px"><?php echo $this->form->getInput('inizio'); ?></div><br />
+				<div class="ora-edit-label" style="width:120px"><?php echo $this->form->getLabel('fine'); ?></div>
+				<div class="ora-edit" style="width:320px"><?php echo $this->form->getInput('fine'); ?></div><br />
+				<div class="ora-edit-label" style="width:120px"><?php echo $this->form->getLabel('max_app'); ?></div>
+				<div class="ora-edit" style="width:320px"><?php echo $this->form->getInput('max_app'); ?></div><br />
+				<div class="ora-edit-label" style="width:120px"><?php echo $this->form->getLabel('sede'); ?></div>
+				<div class="ora-edit" style="width:320px"><?php echo $this->form->getInput('sede'); ?></div><br />
+				<div class="ora-edit-label" style="width:120px"><?php echo $this->form->getLabel('attiva'); ?></div>
+				<div class="ora-edit" style="width:320px"><?php echo $this->form->getInput('attiva'); ?></div><br />
+
         <div class="button-div">
             <button type="submit" class="validate"><span><?php echo JText::_('JSAVE'); ?></span></button>
         </div>

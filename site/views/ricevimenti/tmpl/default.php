@@ -1,11 +1,18 @@
 <?php
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+JHtml::_('behavior.tooltip');
+JHTML::_('script', 'system/multiselect.js', false, true);
+// Import CSS
+$document = JFactory::getDocument();
+$document->addStyleSheet('components/com_receivements/assets/css/list.css');
+
 ?>
 <h1><?=JText::_('COM_RECEIVEMENTS')?></h1>
 
-<form action="index.php" method="post" name="publicForm">
-	<table class='category front-end-list'>
+<form action="" method="post" name="publicForm">
+	<table class='front-end-list category'>
 		<thead>
 			<tr>
 				<th><input type="checkbox" name="toggle" value="" title="Seleziona/deseleziona tutti" onclick="checkAll(this)" /></th>
@@ -49,4 +56,9 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 		</tbody>
 	</table>
+        <div>
+        <input type="hidden" name="task" value=""/>
+        <input type="hidden" name="boxchecked" value="0"/>
+        <?php echo JHtml::_('form.token'); ?>
+        </div>
 </form>

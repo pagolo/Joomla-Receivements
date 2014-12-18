@@ -5,6 +5,19 @@ defined('_JEXEC') or die('Restricted access');
 jimport( 'joomla.application.component.modellist' );
 class ReceivementsModelRicevimenti extends JModelList
 {
+    protected function populateState($ordering = null, $direction = null)
+    {
+        // Initialise variables.
+        $app = JFactory::getApplication();
+
+        // List state information
+        $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'));
+        $this->setState('list.limit', $limit);
+
+        $limitstart = $app->input->getInt('limitstart', 0);
+        $this->setState('list.start', $limitstart);
+    }
+
     function getListQuery()
     {
         $db = JFactory::getDBO();

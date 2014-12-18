@@ -1,13 +1,14 @@
 
 .ora-edit div {
         float: left;
-        width: 16em;
+        width: 320px;
         height: 1em;
 }
 .ora-edit-label div {
         float: left;
-        width: 16em;
+        width: 120px;
         height: 1em;
+    margin-right: 10px !important;
 }
 
 
@@ -59,4 +60,3 @@ fieldset.radio label{
 form div.button-div{
     margin-left: 110px;
 }
-
