@@ -10,13 +10,13 @@ table.front-end-list{
     width: 100%;
     border-spacing: 1px;
     background-color: #f3f3f3;
-    color: #666;
+    color: #006;
 }
 
 table.front-end-list thead th{
     text-align: center;
-    background: #f7f7f7;
-    color: #666;
+    background: #002c74;
+    color: white;
     border-bottom: 1px solid #ccc;
     border-left: 1px solid #fff;
 }
@@ -55,6 +55,7 @@ div.list-footer ul{
 
 div.list-footer ul li{
     display: inline-block;
+    padding: 4px;
 }
 
 div.list-footer div.limit{
