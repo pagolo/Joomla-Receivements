@@ -40,6 +40,13 @@
 			<language tag="it-IT">it-IT/it-IT.com_receivements.ini</language>
     </languages>
     <administration>
+        <languages folder="languages/administrator">
+            
+			<language tag="en-GB">en-GB/en-GB.com_receivements.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_receivements.sys.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_receivements.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_receivements.sys.ini</language>
+        </languages>
         <menu img="components/com_receivements/assets/images/s_com_receivements.png" >COM_RECEIVEMENTS</menu>
         <submenu>
             
@@ -63,13 +70,6 @@
             <folder>tables</folder>
             <folder>views</folder>
         </files>
-        <languages folder="languages/administrator">
-            
-			<language tag="en-GB">en-GB/en-GB.com_receivements.ini</language>
-			<language tag="en-GB">en-GB/en-GB.com_receivements.sys.ini</language>
-			<language tag="it-IT">it-IT/it-IT.com_receivements.ini</language>
-			<language tag="it-IT">it-IT/it-IT.com_receivements.sys.ini</language>
-        </languages>
     </administration>
     <plugins>
         <plugin group="search" plugin="receivements"/>

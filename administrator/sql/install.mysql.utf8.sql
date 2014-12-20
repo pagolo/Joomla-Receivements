@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `#__receivements_ore` (
 `max_app` TINYINT(4)  NOT NULL ,
 `cattedra` INT(11)  NOT NULL ,
 `sede` INT(11)  NOT NULL ,
-`attiva` VARCHAR(255)  NOT NULL ,
+`attiva` VARCHAR(4) NOT NULL ,
 PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_general_ci;
 
@@ -46,3 +46,13 @@ CREATE TABLE IF NOT EXISTS `#__receivements_classi` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `classe` (`classe`)
 ) DEFAULT COLLATE=utf8_unicode_ci ;
+
+CREATE TABLE IF NOT EXISTS `#__receivements_calendario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `inizio` date NOT NULL,
+  `fine` date NOT NULL,
+  `finale` VARCHAR(4) NOT NULL,
+  `utente` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `descrizione` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

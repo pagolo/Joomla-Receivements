@@ -19,6 +19,14 @@
                         type="createdby"
                         />
 
+	<field
+	    name="cattedra"
+	    type="sql"
+	    query="SELECT id AS value, materie AS cattedra FROM #__receivements_cattedre ORDER BY materie"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_MATERIE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_MATERIE" 
+            /> 
+
        <field name="classi" type="classes"
             readonly="true"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_CLASSI"

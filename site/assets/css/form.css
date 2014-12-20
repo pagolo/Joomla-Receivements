@@ -1,14 +1,28 @@
-
-.ora-edit div {
-        float: left;
-        width: 320px;
-        height: 1em;
+.my_field {
+    display: inline-block;
+    height: 0.9em;
+    border: 1px solid #aaa;
 }
-.ora-edit-label div {
-        float: left;
-        width: 120px;
-        height: 1em;
-    margin-right: 10px !important;
+
+.my_field input {
+    border: none;
+    padding: 0px;
+}
+.my_field a {
+    border: none;
+    background: none;
+    text-decoration: none;
+    height:1em;
+}
+.ora-edit td {
+        background-color: white;
+        height: 1.2em;
+}
+.ora-edit-label td {
+        background-color: white;
+        border-color: white;
+        height: 1.2em;
+    margin-right: 0px !important;
 }
 
 

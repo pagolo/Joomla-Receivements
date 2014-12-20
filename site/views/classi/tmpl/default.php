@@ -6,6 +6,9 @@ defined('_JEXEC') or die('Restricted access');
 // Import CSS
 $document = JFactory::getDocument();
 $document->addStyleSheet('components/com_receivements/assets/css/list.css');
+//Load admin language file
+$lang = JFactory::getLanguage();
+$lang->load('', JPATH_ADMINISTRATOR);
 ?>
 <u>Selezione classi</u>
 
