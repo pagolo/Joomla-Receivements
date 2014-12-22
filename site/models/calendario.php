@@ -5,19 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 jimport( 'joomla.application.component.modellist' );
 class ReceivementsModelCalendario extends JModelList
 {
-    /*
-    public function __construct($config = array())
-    {
-        if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array(
-                'inizio', 'a.inizio',
-                'fine', 'a.fine',
-                'descrizione', 'a.descrizione',
-            );
-        }
-        parent::__construct($config);
-    }
-    */
     function getListQuery()
     {
         $db = JFactory::getDBO();

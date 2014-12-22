@@ -14,7 +14,7 @@ class ReceivementsViewCalendario extends JView
         function display($tpl = null) 
         {
                 $this->items = $this->get('Items');
-		$this->state		= $this->get('State');
+		$this->state = $this->get('State');
  
                 // Display the view
                 parent::display($tpl);
