@@ -63,6 +63,7 @@ class JFormFieldUsersInGroup extends JFormFieldList
 		// Build the field options.
 		if (!empty($items))
 		{
+		        $options[] = JHtml::_('select.option', 0, JText::_('COM_RECEIVEMENTS_ALL'));
 			foreach ($items as $item)
 			{
 				$options[] = JHtml::_('select.option', $item->id, $item->name);

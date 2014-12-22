@@ -93,7 +93,7 @@
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_SEDE" 
             /> 
 
-       <field name="attiva" type="checkbox"
+       <field name="attiva" type="checkbox" value="1"
                 
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_ATTIVA"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_ATTIVA" 

@@ -39,6 +39,11 @@ class ReceivementsHelper {
 			'index.php?option=com_receivements&view=classi',
 			$vName == 'classi'
 		);
+        		JSubMenuHelper::addEntry(
+			JText::_('COM_RECEIVEMENTS_TITLE_VACANZE'),
+			'index.php?option=com_receivements&view=vacanze',
+			$vName == 'vacanze'
+		);
     }
 
     /**

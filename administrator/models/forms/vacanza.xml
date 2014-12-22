@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+              <field name="id" type="text" default="0" label="COM_RECEIVEMENTS_FORM_LBL_ORA_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+
+                <field
+			name="utente"
+			type="usersingroup"
+			group_name="Docenti"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_ID_DOCENTE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_ID_DOCENTE" 
+                                                    filter="safehtml" /> 
+
+
+       <field name="inizio" type="calendar" class="inputbox" format="%d-%m-%Y" default="NOW"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_INIZIO"
+            description="COM_RECEIVEMENTS_FORM_DESC_FRAZ_INIZIO" 
+                                                     required="true" 
+                                                    filter="safehtml" /> 
+
+       <field name="fine" type="calendar" class="inputbox"  format="%d-%m-%Y" default="NOW"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_FINE"
+            description="COM_RECEIVEMENTS_FORM_DESC_FRAZ_FINE" 
+                                                    filter="safehtml" /> 
+
+       <field name="festivo" type="checkbox" value="1" default="1"
+            label="COM_RECEIVEMENTS_FORM_LBL_FESTIVO"
+            description="COM_RECEIVEMENTS_FORM_DESC_FESTIVO" 
+            />
+            
+       <field name="finale" type="checkbox" value="1" default="0"
+            label="COM_RECEIVEMENTS_FORM_LBL_FRAZ_FINALE"
+            description="COM_RECEIVEMENTS_FORM_DESC_FRAZ_FINALE" 
+            />
+            
+       <field name="descrizione" type="textarea" class="inputbox"
+            label="COM_RECEIVEMENTS_FORM_LBL_FRAZ_DESC"
+            description="COM_RECEIVEMENTS_FORM_DESC_FRAZ_DESC" 
+                                                    filter="safehtml" /> 
+
+	</fieldset>
+
+</form>
