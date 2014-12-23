@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+		<field 
+			name="id"
+                        default="0" 
+			type="hidden" />
+
+		<field 
+			name="festivo"
+                        default="0" 
+			type="hidden" />
+
+		<field 
+			name="finale"
+                        default="0" 
+			type="hidden" />
+
+                <field
+                        name="utente"
+                        type="createdby"
+                        />
+
+       <field name="inizio" type="calendar" class="inputbox"
+            label="COM_RECEIVEMENTS_FORM_LBL_ASSENZA_INIZIO"
+            description="COM_RECEIVEMENTS_FORM_DESC_ASSENZA_INIZIO" 
+         default="NOW" 
+         required="true" 
+        filter="safehtml" /> 
+
+       <field name="fine" type="calendar" class="inputbox"
+            label="COM_RECEIVEMENTS_FORM_LBL_ASSENZA_FINE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ASSENZA_FINE" 
+         default="NOW" 
+        filter="safehtml" /> 
+
+        <field name="descrizione" type="text"
+            label="COM_RECEIVEMENTS_FORM_LBL_ASSENZA_DESCRIZIONE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ASSENZA_DESCRIZIONE" 
+        filter="safehtml" /> 
+
+	</fieldset>
+
+</form>
