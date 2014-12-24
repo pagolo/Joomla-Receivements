@@ -18,9 +18,9 @@ $lang->load('', JPATH_ADMINISTRATOR);
 	<table class='front-end-list'>
 		<thead>
 			<tr>
-				<th>INIZIO</th>
-				<th>FINE</th>
-				<th>DESCRIZIONE</th>
+				<th><?=JText::_('COM_RECEIVEMENTS_START')?></th>
+				<th><?=JText::_('COM_RECEIVEMENTS_FINISH')?></th>
+				<th><?=JText::_('COM_RECEIVEMENTS_DESCRIPTION')?></th>
 			</tr>
 		</thead>
 		<tbody>

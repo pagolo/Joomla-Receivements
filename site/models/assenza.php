@@ -13,6 +13,8 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.modelform');
 jimport('joomla.event.dispatcher');
 
+require_once JPATH_COMPONENT . '/helpers/receivements.php';
+
 /**
  * Receivements model.
  */
@@ -61,7 +63,6 @@ class ReceivementsModelAssenza extends JModelForm
 	 */
 	public function &getData($id = null)
 	{
-	        $id = JFactory::getUser()->id;
 		if ($this->_item === null)
 		{
 			$this->_item = false;
@@ -74,7 +75,7 @@ class ReceivementsModelAssenza extends JModelForm
 			$table = $this->getTable();
 
 			// Attempt to load the row.
-			if ($table->load($id, true, 'id_docente'))
+			if ($table->load($id, true, 'id'))
 			{
                 
                 $user = JFactory::getUser();
@@ -103,11 +104,18 @@ class ReceivementsModelAssenza extends JModelForm
 				$this->setError($error);
 			}
 		}
-
+/*
+                if (!empty($this->_item)) {
+                        print_r ($this->_item);
+                        $this->_item->inizio = ReceivementsFrontendHelper::convertdate($this->_item->inizio); 
+                        //$this->_item['fine'] = ReceivementsFrontendHelper::convertdate($this->_item['fine']); 
+                        print_r ($this->_item);
+                }
+*/                
 		return $this->_item;
 	}
     
-	public function getTable($type = 'Ora', $prefix = 'ReceivementsTable', $config = array())
+	public function getTable($type = 'Assenza', $prefix = 'ReceivementsTable', $config = array())
 	{   
         $this->addTablePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
         return JTable::getInstance($type, $prefix, $config);
@@ -245,6 +253,9 @@ class ReceivementsModelAssenza extends JModelForm
         }
 
         $table = $this->getTable();
+        $data['inizio'] = ReceivementsFrontendHelper::convertdate($data['inizio']);
+        $data['fine'] = ReceivementsFrontendHelper::convertdate($data['fine']);
+
         if ($table->save($data) === true) {
             return $table->id;
         } else {

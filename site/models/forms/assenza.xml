@@ -22,14 +22,14 @@
                         type="createdby"
                         />
 
-       <field name="inizio" type="calendar" class="inputbox"
+       <field name="inizio" type="calendar" format="%d-%m-%Y" class="inputbox"
             label="COM_RECEIVEMENTS_FORM_LBL_ASSENZA_INIZIO"
             description="COM_RECEIVEMENTS_FORM_DESC_ASSENZA_INIZIO" 
          default="NOW" 
          required="true" 
         filter="safehtml" /> 
 
-       <field name="fine" type="calendar" class="inputbox"
+       <field name="fine" type="calendar" format="%d-%m-%Y" class="inputbox"
             label="COM_RECEIVEMENTS_FORM_LBL_ASSENZA_FINE"
             description="COM_RECEIVEMENTS_FORM_DESC_ASSENZA_FINE" 
          default="NOW" 

@@ -40,7 +40,12 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 
 <div class="front-end-edit">
     <?php if (!empty($this->item->id)): ?>
-        <h1><?=JText::_('COM_RECEIVEMENTS_EDIT_ASSENZA')?></h1>
+        <h1><?php
+                echo JText::_('COM_RECEIVEMENTS_EDIT_ASSENZA');
+                //$this->item->inizio = ReceivementsFrontendHelper::convertdate($this->item->inizio);
+                //echo $this->item->inizio;
+                //$this->item->fine = ReceivementsFrontendHelper::convertdate($this->item->fine);
+        ?></h1>
     <?php else: ?>
         <h1><?=JText::_('COM_RECEIVEMENTS_CREATE_ASSENZA')?></h1>
     <?php endif; ?>
@@ -69,8 +74,9 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 				<td colspan = '2' style='text-align:center'><hr />
                                 <button type="submit" class="validate"><span><?php echo JText::_('JSAVE'); ?></span></button>
     <?php if (!empty($this->item->id)): ?>
-                                <button type="submit" class="validate"><span><?php echo JText::_('JDELETE'); ?></span></button>
+                                <button data-item-id="<?php echo $this->item->id; ?>" class="delete-button" type="button"><?php echo JText::_('COM_RECEIVEMENTS_ORE_DELETE'); ?></button>
     <?php endif; ?>
+                                <button class="cancel-button" onclick="window.location.href = '<?php echo JRoute::_('index.php?option=com_receivements&task=assenze', false, 2); ?>';" type="button"><?php echo JText::_('JCANCEL'); ?></button>
 				</td>
 				</tr>
 			</table>
@@ -81,3 +87,25 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         </fieldset>
     </form>
 </div>
+<script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        var headTag = document.getElementsByTagName("head")[0];
+        var jqTag = document.createElement('script');
+        jqTag.type = 'text/javascript';
+        jqTag.src = '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js';
+        jqTag.onload = jQueryCode;
+        headTag.appendChild(jqTag);
+    } else {
+        jQueryCode();
+    }
+
+    function jQueryCode() {
+        jQuery('.delete-button').click(function () {
+            var item_id = jQuery(this).attr('data-item-id');
+            if (confirm("<?php echo JText::_('COM_RECEIVEMENTS_DELETE_MESSAGE'); ?>")) {
+                window.location.href = '<?php echo JRoute::_('index.php?option=com_receivements&task=assenza.remove&id=', false, 2) ?>' + item_id;
+            }
+        });
+    }
+
+</script>

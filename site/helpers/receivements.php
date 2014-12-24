@@ -57,4 +57,10 @@ class ReceivementsFrontendHelper {
 
 		return $options;
 	}
+        public function convertdate($date) {
+                $t = explode('-', $date);
+                $a = $t[2]; $c = $t[0];
+                $t[0] = $a; $t[2] = $c;
+                return implode('-', $t);
+        }
 }

@@ -19,10 +19,4 @@ class ReceivementsViewAssenze extends JView
                 // Display the view
                 parent::display($tpl);
         }
-        protected function convertdate($date) {
-                $t = explode('-', $date);
-                $a = $t[2]; $c = $t[0];
-                $t[0] = $a; $t[2] = $c;
-                return implode('-', $t);
-        }
 }

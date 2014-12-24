@@ -33,12 +33,12 @@ $lang->load('', JPATH_ADMINISTRATOR);
 	<table class='front-end-list'>
 		<thead>
 			<tr>
-				<th><input type="checkbox" name="toggle" value="" title="Seleziona/deseleziona tutti" onclick="checkAll(this)" /></th>
-				<th>DOCENTE</th>
-				<th>MATERIE</th>
-				<th>CLASSI</th>
-				<th>SEDE</th>
-				<th>GIORNO/ORA</th>
+				<th><input type="checkbox" name="toggle" value="" title="<?=JText::_('COM_RECEIVEMENTS_SELECT_ALL')?>" onclick="checkAll(this)" /></th>
+				<th><?=JText::_('COM_RECEIVEMENTS_TEACHER')?></th>
+				<th><?=JText::_('COM_RECEIVEMENTS_MATTERS')?></th>
+				<th><?=JText::_('COM_RECEIVEMENTS_CLASSES')?></th>
+				<th><?=JText::_('COM_RECEIVEMENTS_SITE')?></th>
+				<th><?=JText::_('COM_RECEIVEMENTS_DAY_TIME')?></th>
 			</tr>
 		</thead>
                 <tfoot>
