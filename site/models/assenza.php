@@ -104,14 +104,6 @@ class ReceivementsModelAssenza extends JModelForm
 				$this->setError($error);
 			}
 		}
-/*
-                if (!empty($this->_item)) {
-                        print_r ($this->_item);
-                        $this->_item->inizio = ReceivementsFrontendHelper::convertdate($this->_item->inizio); 
-                        //$this->_item['fine'] = ReceivementsFrontendHelper::convertdate($this->_item['fine']); 
-                        print_r ($this->_item);
-                }
-*/                
 		return $this->_item;
 	}
     
@@ -253,8 +245,8 @@ class ReceivementsModelAssenza extends JModelForm
         }
 
         $table = $this->getTable();
-        $data['inizio'] = ReceivementsFrontendHelper::convertdate($data['inizio']);
-        $data['fine'] = ReceivementsFrontendHelper::convertdate($data['fine']);
+        $data['inizio'] = ReceivementsFrontendHelper::convertDateTo($data['inizio']);
+        $data['fine'] = ReceivementsFrontendHelper::convertDateTo($data['fine']);
 
         if ($table->save($data) === true) {
             return $table->id;

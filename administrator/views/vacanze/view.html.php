@@ -104,11 +104,10 @@ class ReceivementsViewVacanze extends JView {
             JToolBarHelper::preferences('com_receivements');
         }
     }
-    protected function convertdate($date) {
-        $t = explode('-', $date);
-        $a = $t[2]; $c = $t[0];
-        $t[0] = $a; $t[2] = $c;
-        return implode('-', $t);
+    protected function convertDateFrom($date) {
+        $myDate = JFactory::getDate($date);
+        $format = JText::_('DATE_FORMAT_LC3');
+        return JHTML::_('date', $myDate, $format);;
     }
 
 }

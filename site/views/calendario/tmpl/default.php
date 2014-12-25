@@ -30,8 +30,8 @@ $lang->load('', JPATH_ADMINISTRATOR);
 		{
 ?>
 			<tr class="row">
-				<td><?=$this->convertdate($row->inizio)?></td>
-				<td><?=$this->convertdate($row->fine)?></td>
+				<td><?=ReceivementsFrontendHelper::convertDateFrom($row->inizio)?></td>
+				<td><?=ReceivementsFrontendHelper::convertDateFrom($row->fine)?></td>
 				<td><em><?=$row->descrizione?></em></td>
 			</tr>
 <?php

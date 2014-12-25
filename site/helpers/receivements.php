@@ -57,10 +57,14 @@ class ReceivementsFrontendHelper {
 
 		return $options;
 	}
-        public function convertdate($date) {
-                $t = explode('-', $date);
-                $a = $t[2]; $c = $t[0];
-                $t[0] = $a; $t[2] = $c;
-                return implode('-', $t);
-        }
+    static function convertDateFrom($date, $fmt_str = 'DATE_FORMAT_LC3') {
+        $myDate = JFactory::getDate($date);
+        $format = JText::_($fmt_str);
+        return JHTML::_('date', $myDate, $format);
+    }
+    static function convertDateTo($date) {
+        $myDate = JFactory::getDate($date);
+        $format = JText::_('Y-m-d');
+        return JHTML::_('date', $myDate, $format);;
+    }
 }

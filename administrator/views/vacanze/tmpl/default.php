@@ -141,7 +141,7 @@ $saveOrder = $listOrder == 'a.ordering';
                     <?php if (isset($this->items[0]->inizio)) { ?>
                         <td class="left">
 			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=vacanza.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_VACATION', $this->escape($item->inizio)); ?>">
-			     <?php echo $this->convertdate($item->inizio); ?></a>
+			     <?php echo $this->convertDateFrom($item->inizio); ?></a>
                         </td>
                     <?php } ?>
                     <?php if (isset($this->items[0]->utente)) { ?>

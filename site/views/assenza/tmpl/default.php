@@ -42,9 +42,6 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
     <?php if (!empty($this->item->id)): ?>
         <h1><?php
                 echo JText::_('COM_RECEIVEMENTS_EDIT_ASSENZA');
-                //$this->item->inizio = ReceivementsFrontendHelper::convertdate($this->item->inizio);
-                //echo $this->item->inizio;
-                //$this->item->fine = ReceivementsFrontendHelper::convertdate($this->item->fine);
         ?></h1>
     <?php else: ?>
         <h1><?=JText::_('COM_RECEIVEMENTS_CREATE_ASSENZA')?></h1>

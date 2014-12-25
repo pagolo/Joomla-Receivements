@@ -33,8 +33,8 @@ $lang->load('', JPATH_ADMINISTRATOR);
 		{
 ?>
 			<tr class="row">
-				<td><?=ReceivementsFrontendHelper::convertdate($row->inizio)?></td>
-				<td><?=ReceivementsFrontendHelper::convertdate($row->fine)?></td>
+				<td><?=ReceivementsFrontendHelper::convertDateFrom($row->inizio)?></td>
+				<td><?=ReceivementsFrontendHelper::convertDateFrom($row->fine)?></td>
 				<td><em><?=$row->descrizione?></em></td>
 				<td><button onclick="window.location.href = '<?php echo JRoute::_('index.php?option=com_receivements&task=assenza&id=' . $row->id, false, 2); ?>';" class="btn btn-mini" type="button"><?php echo JText::_('COM_RECEIVEMENTS_ORE_EDIT'); ?></button></td>
 			</tr>

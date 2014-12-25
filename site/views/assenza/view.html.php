@@ -32,8 +32,8 @@ class ReceivementsViewAssenza extends JView {
 
         $this->state = $this->get('State');
         $this->item = $this->get('Data');
-        $this->item->inizio = ReceivementsFrontendHelper::convertdate($this->item->inizio);
-        $this->item->fine = ReceivementsFrontendHelper::convertdate($this->item->fine);
+        $this->item->inizio = ReceivementsFrontendHelper::convertDateFrom($this->item->inizio, 'd-m-Y');
+        $this->item->fine = ReceivementsFrontendHelper::convertDateFrom($this->item->fine, 'd-m-Y');
         
         $this->params = $app->getParams('com_receivements');
         $this->form		= $this->get('Form');
