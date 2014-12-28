@@ -1,3 +1,18 @@
+body.white fieldset {
+/*modifica pasw: border da 2 a 0px*/
+  border: solid 1px #dddddd !important; 
+}
+.select_rcv fieldset {
+    display: inline-block;
+    border: solid 1px #dddddd !important;
+}
+.select_rcv ul {
+    padding: 0 !important;
+}
+.select_rcv li {
+    height: 1.8em;
+    list-style: none;
+}
 .my_field {
     display: inline-block;
     height: 0.9em;

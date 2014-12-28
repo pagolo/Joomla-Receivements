@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="Receivements">
+       <field name="ricevimenti" type="receivements" class="inputbox"
+            label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_RECV"
+            description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_RECV" 
+        /> 
+	</fieldset>
+	<fieldset name="Personal data">
+                <field
+                        name="utente"
+                        type="createdby"
+                        />
+
+       <field name="nome" type="text" class="inputbox"
+            label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_NOME"
+            description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_NOME" 
+         required="true" 
+        /> 
+
+	</fieldset>
+
+</form>

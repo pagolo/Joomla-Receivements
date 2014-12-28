@@ -16,4 +16,6 @@ function getScript(url, success) {
     };
     head.appendChild(script);
 }
-
+function setTask(task) {
+    document.getElementById('task').value=task;
+}
