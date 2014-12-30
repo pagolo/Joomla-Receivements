@@ -13,6 +13,7 @@ class ReceivementsModelCalendario extends JModelList
         $query->from('#__receivements_calendario AS a');
         $query->where('a.festivo <> ' . $db->Quote('0'));
         $query->where('a.utente = ' . $db->Quote('0'));
+        $query->order('a.inizio ASC');
         
         return $query;
     }

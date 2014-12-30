@@ -13,6 +13,9 @@ body.white fieldset {
     height: 1.8em;
     list-style: none;
 }
+.ul_rcv {
+    margin-left: 60px !important;
+}
 .my_field {
     display: inline-block;
     height: 0.9em;

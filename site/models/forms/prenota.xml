@@ -18,6 +18,39 @@
          required="true" 
         /> 
 
-	</fieldset>
+        <field
+		        name="classe"
+		        type="sql" class="inputbox"
+		        query="SELECT a.id AS text, a.classe AS value FROM #__receivements_classi AS a ORDER BY a.classe ASC"
+            label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_CLASSE"
+            description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_CLASSE" 
+            /> 
 
+        <field name="email" type="email" class="inputbox"
+            label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_EMAIL"
+            description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_EMAIL" 
+         required="true" 
+        />
+       <field name="parentela" type="list"
+            label="COM_RECEIVEMENTS_FORM_LBL_PARENTELA"
+            description="COM_RECEIVEMENTS_FORM_DESC_PARENTELA" 
+            option_on="Yes"
+            option_off="Yes">
+            <option value="*">COM_RECEIVEMENTS_PARENT</option>
+            <option value="COM_RECEIVEMENTS_GRANDPARENT">COM_RECEIVEMENTS_GRANDPARENT</option>
+            <option value="COM_RECEIVEMENTS_UNCLE">COM_RECEIVEMENTS_UNCLE</option>
+            <option value="COM_RECEIVEMENTS_BROTHER">COM_RECEIVEMENTS_BROTHER</option>
+            <option value="COM_RECEIVEMENTS_TUTOR">COM_RECEIVEMENTS_TUTOR</option>
+            <option value="COM_RECEIVEMENTS_OTHER">COM_RECEIVEMENTS_OTHER</option>
+        </field> 
+	</fieldset>
+        <fieldset name="Control">
+    <field
+        name="captcha"
+        type="captcha"
+        label="COM_RECEIVEMENTS_CAPTCHA_LABEL"
+        description="COM_RECEIVEMENTS_CAPTCHA_DESC"
+        validate="captcha"
+    />        
+    </fieldset>
 </form>

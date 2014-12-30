@@ -17,6 +17,38 @@
 			<option value="6">6</option>
 			<option value="7">7</option>
 		</field>
+		<field
+			name="show_total_days"
+			type="list"
+			label="COM_RECEIVEMENTS_TOTAL_DAYS_LBL"
+			description="COM_RECEIVEMENTS_TOTAL_DAYS_DESC"
+			default="7"
+		>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="15">15</option>
+		</field>
+		<field
+			name="captcha"
+			type="plugins"
+			folder="captcha"
+			default=""
+			label="COM_RECEIVEMENTS_CONFIG_CAPTCHA_LBL"
+			description="COM_RECEIVEMENTS_CONFIG_CAPTCHA_DESC"
+			filter="cmd" >
+			<option
+				value="">JOPTION_USE_DEFAULT</option>
+			<option
+				value="0">JOPTION_DO_NOT_USE</option>
+		</field>
+
     </fieldset>
     <fieldset 
         name="permissions"

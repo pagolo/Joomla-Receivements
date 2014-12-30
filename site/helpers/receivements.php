@@ -106,12 +106,20 @@ class ReceivementsFrontendHelper
                 return (isset($params_array['show_total_days'])? $params_array['show_total_days'] : 7); 
         }
         
+	static
+	function getCaptcha()
+	{
+                $params = JFactory::getApplication()->getParams();
+                $params_array = $params->toArray();
+                return (isset($params_array['captcha'])? $params_array['captcha'] : ''); 
+        }
+        
         static
         function isDateAvailable($date, $utente, $ore) {
 		$db = JFactory::getDbo();
 		$qdate = $db->Quote($date);
                 // controlliamo che non siano le vacanze estive di fine anno, se sì disabilitiamo e restituiamo -1
-		$db->setQuery('SELECT COUNT(*) FROM #__receivements_calendario WHERE inizio <= DATE('.$qdate.') AND finale = TRUE');
+		$db->setQuery('SELECT COUNT(*) FROM #__receivements_calendario WHERE inizio <= DATE('.$qdate.') AND fine > DATE('.$qdate.') AND finale = TRUE');
                 $found = $db->loadResult();
                 if ($found > 0) {
                         return -1;

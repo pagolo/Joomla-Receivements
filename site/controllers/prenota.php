@@ -18,14 +18,16 @@ require_once JPATH_COMPONENT . '/controller.php';
 class ReceivementsControllerPrenota extends ReceivementsController {
 
         public function save() {
-        echo "1";
-        //$model = $this->getModel('Prenota', 'ReceivementsModel');
-        echo "2";
-        //$form = $model->getForm();
-        echo "3";
-        $data = JFactory::getApplication()->input->get('jform', array(), 'array');
-        echo "4";
-        print_r($data);
-        exit;
+		// Check for request forgeries.
+		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+                $model = $this->getModel('Prenota', 'ReceivementsModel');
+                $form = $model->getForm();
+		// Get the user data.
+		$requestData = JRequest::getVar('jform', array(), 'post', 'array');
+                print_r($requestData);
+		$data	= $model->validate($form, $requestData);
+                echo "******";
+                print_r($data);
+                exit;
         }
 }
