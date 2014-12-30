@@ -3,7 +3,8 @@
 	<fieldset name="Receivements">
        <field name="ricevimenti" type="receivements" class="inputbox"
             label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_RECV"
-            description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_RECV" 
+            description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_RECV"
+            validate="ricevimenti" 
         /> 
 	</fieldset>
 	<fieldset name="Personal data">
