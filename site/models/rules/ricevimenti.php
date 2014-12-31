@@ -19,15 +19,6 @@ defined('JPATH_PLATFORM') or die;
 class JFormRuleRicevimenti extends JFormRule
 {
 	/**
-	 * The regular expression to use in testing a form field value.
-	 *
-	 * @var    string
-	 * @since  11.1
-	 */
-	protected $regex = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
-	
-
-	/**
 	 * Method to test the email address and optionally check for uniqueness.
 	 *
 	 * @param   SimpleXMLElement  &$element  The SimpleXMLElement object representing the <field /> tag for the form field object.
@@ -51,15 +42,15 @@ class JFormRuleRicevimenti extends JFormRule
 		{
 			return true;
 		}
-
-		// Test the value against the regular expression.
-		//if (!parent::test($element, $value, $group, $input, $form))
-		//{
-		//	return false;
-		//}
-                echo "value=$value<br>";
-                print_r($input);
-
-		return true;
+		if (empty($value))
+		{
+			return false;
+		}
+		$count = 0;
+		foreach($value as $i => $item) {
+		      if (!empty($item) && !empty($item['datetime']) && !empty($item['teacher']))
+                        $count++;
+                }
+		return ($count > 0);
 	}
 }

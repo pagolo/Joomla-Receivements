@@ -92,7 +92,7 @@ class JFormFieldReceivements extends JFormField
 		for ($i = 0; $i < ReceivementsFrontendHelper::getShowTotalDays(); $i++) {
 		      $avail = ReceivementsFrontendHelper::isDateAvailable($start, $this->item->id_docente, $this->item->id);
 		      if ($avail == -1) break; // if final holidays then exit
-                      $text = ReceivementsFrontendHelper::convertDateFrom($start);
+                      $text = ReceivementsFrontendHelper::convertDateFrom($start, DATE_FORMAT_LC);
         	      $options[] = JHtml::_('select.option', $start, $text, 'value', 'text', !$avail);
 		      $start = JFactory::getDate($start . ' +7 day');
                 }

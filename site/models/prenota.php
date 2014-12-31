@@ -61,4 +61,13 @@ class ReceivementsModelPrenota extends JModelForm
 
 		return $form;
 	}
+	public function validate($form, $data)
+	{
+	       $ric = array();
+	       for ($i = 0; $i < $data['ricevimenti_count']; $i++) {
+	               $ric[] = array('datetime' => $data['ricevimenti_'.$i],'teacher' => $data['ricevimenti_user_'.$i]); 
+               }
+               $data['ricevimenti'] = $ric;
+	       return parent::validate($form, $data);
+        }
 }

@@ -24,6 +24,8 @@ class ReceivementsViewPrenota extends JView {
     public function display($tpl = null) {
         $app = JFactory::getApplication();
         $user = JFactory::getUser();
+        $pathway = $app->getPathway();
+        $pathway->addItem(JText::_('COM_RECEIVEMENTS_DO_BOOKING'));
 
         $this->state = $this->get('State');
         //echo($this->state->prenota.id);

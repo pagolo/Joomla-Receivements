@@ -24,9 +24,7 @@ class ReceivementsControllerPrenota extends ReceivementsController {
                 $form = $model->getForm();
 		// Get the user data.
 		$requestData = JRequest::getVar('jform', array(), 'post', 'array');
-                print_r($requestData);
 		$data	= $model->validate($form, $requestData);
-                echo "******";
                 print_r($data);
                 exit;
         }
