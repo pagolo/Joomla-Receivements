@@ -92,13 +92,15 @@
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_SEDE" 
                                                     filter="safehtml" /> 
 
-       <field name="attiva" type="checkbox" value="1"
-                
+       <field name="email" type="checkbox" value="1" default="1"                
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_EMAIL"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_EMAIL" 
+            />
+
+       <field name="attiva" type="checkbox" value="1" default="1"                
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_ATTIVA"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_ATTIVA" 
-                
-                
-                 />
+            />
 
 	</fieldset>
 

@@ -48,7 +48,7 @@ class JFormRuleRicevimenti extends JFormRule
 		}
 		$count = 0;
 		foreach($value as $i => $item) {
-		      if (!empty($item) && !empty($item['datetime']) && !empty($item['teacher']))
+		      if (!empty($item) && !empty($item['datetime']) && !empty($item['teacher_id']))
                         $count++;
                 }
 		return ($count > 0);

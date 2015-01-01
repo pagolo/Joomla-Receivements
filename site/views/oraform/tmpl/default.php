@@ -80,6 +80,10 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 				<td class="ora-edit"><?php echo $this->form->getInput('sede'); ?></td>
 				</tr>
                                 <tr>
+				<td class="ora-edit-label"><?php echo $this->form->getLabel('email'); ?></td>
+				<td class="ora-edit"><?php echo $this->form->getInput('email'); ?></td>
+				</tr>
+                                <tr>
 				<td class="ora-edit-label"><?php echo $this->form->getLabel('attiva'); ?></td>
 				<td class="ora-edit"><?php echo $this->form->getInput('attiva'); ?></td>
 				</tr>

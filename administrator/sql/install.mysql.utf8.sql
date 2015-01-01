@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS `#__receivements_ore` (
 `max_app` TINYINT(4)  NOT NULL ,
 `cattedra` INT(11)  NOT NULL ,
 `sede` INT(11)  NOT NULL ,
+`email` VARCHAR(4) NOT NULL ,
 `attiva` VARCHAR(4) NOT NULL ,
 PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_general_ci;

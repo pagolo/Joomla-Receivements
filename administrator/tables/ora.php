@@ -45,6 +45,10 @@ class ReceivementsTableora extends JTable
 			$array['attiva'] = 0;
 		}
 
+		if (!isset($array['email'])){
+			$array['email'] = 0;
+		}
+
 		if (isset($array['params']) && is_array($array['params']))
 		{
 			$registry = new JRegistry();

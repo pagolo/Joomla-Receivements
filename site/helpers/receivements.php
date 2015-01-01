@@ -139,3 +139,16 @@ class ReceivementsFrontendHelper
                 return 1;
         }       
 }
+
+/*        
+class DateTeacher
+{
+        private string guid;
+        private string teacher;
+        private string teachername;
+        private string teacher_email;
+        private string fulldate;
+        private string inizio;
+        private string id_ore;
+}
+*/

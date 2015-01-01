@@ -83,6 +83,8 @@ $document->addStyleSheet('components/com_receivements/assets/css/receivements.cs
 				<?php echo $this->form->getInput('max_app'); ?></li>
 				<li><?php echo $this->form->getLabel('sede'); ?>
 				<?php echo $this->form->getInput('sede'); ?></li>
+				<li><?php echo $this->form->getLabel('email'); ?>
+				<?php echo $this->form->getInput('email'); ?></li>
 				<li><?php echo $this->form->getLabel('attiva'); ?>
 				<?php echo $this->form->getInput('attiva'); ?></li>
 

@@ -45,7 +45,7 @@ class JFormFieldReceivements extends JFormField
 		$ids = JFactory::getApplication()->getUserState('com_receivements.init.prenota.id');
 		$re = '^(' . str_replace('.', '|', $ids) . ')$';
 		$db = JFactory::getDBO();
-        	$query = 'SELECT o.id, o.id_docente, o.inizio, o.fine, o.giorno, u.name FROM #__receivements_ore AS o LEFT JOIN #__users AS u ON ( u.id = o.id_docente ) WHERE (o.id REGEXP '.$db->Quote($re).')';
+        	$query = 'SELECT o.id, o.id_docente, o.email AS use_email, o.inizio, o.fine, o.giorno, u.name, u.email FROM #__receivements_ore AS o LEFT JOIN #__users AS u ON ( u.id = o.id_docente ) WHERE (o.id REGEXP '.$db->Quote($re).')';
 	
 		// Set the query and get the result list.
 		$db->setQuery($query);
@@ -61,6 +61,9 @@ class JFormFieldReceivements extends JFormField
 		        $html[] = '<li><div style="float:left;width:60%">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_' . $_item->giorno) . ' ' . substr($_item->inizio,0,5) . '/' . substr($_item->fine,0,5) . '</div><div>';
 			$html[] = JHtml::_('select.genericlist', $options, 'jform[ricevimenti_'.$i.']', '', 'value', 'text', 'jform_ricevimenti_'.$i);
 			$html[] = '<input type="hidden" name="jform[ricevimenti_user_'.$i.']" value="'.$_item->id_docente.'" id="jform_ricevimenti_user_'.$i.'" />';
+			$html[] = '<input type="hidden" name="jform[ricevimenti_name_'.$i.']" value="'.$_item->name.'" id="jform_ricevimenti_name_'.$i.'" />';
+			$html[] = '<input type="hidden" name="jform[ricevimenti_email_'.$i.']" value="'.($_item->use_email? $_item->email : '').'" id="jform_ricevimenti_email_'.$i.'" />';
+			$html[] = '<input type="hidden" name="jform[ricevimenti_ora_'.$i.']" value="'.$_item->id.'" id="jform_ricevimenti_ora_'.$i.'" />';
 			$html[] = '</div></li>';
 		}
 		$html[] = '</ul>';

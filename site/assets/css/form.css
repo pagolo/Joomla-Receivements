@@ -2,6 +2,9 @@ body.white fieldset {
 /*modifica pasw: border da 2 a 0px*/
   border: solid 1px #dddddd !important; 
 }
+.center {
+    text-align: center;
+}
 .select_rcv fieldset {
     display: inline-block;
     border: solid 1px #dddddd !important;
