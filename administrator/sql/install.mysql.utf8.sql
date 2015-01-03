@@ -61,7 +61,8 @@ CREATE TABLE IF NOT EXISTS `#__receivements_calendario` (
 
 CREATE TABLE IF NOT EXISTS `#__receivements_prenotazioni` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `guid` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `guid` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `guid_expire` datetime DEFAULT NULL,
   `id_agenda` int(11) NOT NULL,
   `id_classe` int(11) NOT NULL,
   `parentela` enum('COM_RECEIVEMENTS_PARENT','COM_RECEIVEMENTS_GRANDPARENT','COM_RECEIVEMENTS_UNCLE','COM_RECEIVEMENTS_BROTHER','COM_RECEIVEMENTS_TUTOR','COM_RECEIVEMENTS_OTHER') COLLATE utf8_unicode_ci DEFAULT NULL,

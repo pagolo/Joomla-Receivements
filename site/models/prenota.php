@@ -70,6 +70,10 @@ class ReceivementsModelPrenota extends JModelForm
 
 			// Override the base user data with any data in the session.
 			$temp = (array)$app->getUserState('com_receivements.booking.data', array());
+			if (empty($temp)) {
+                                $cookie = $app->input->cookie;
+                                $temp = (array)unserialize(base64_decode($cookie->get('receivements_cookie')));
+                        }
 			foreach ($temp as $k => $v) {
 				$this->data->$k = $v;
 			}
@@ -129,7 +133,7 @@ class ReceivementsModelPrenota extends JModelForm
         }
         private function CreateBookingRecord($db, $dt, $agenda_id, $data)
         {
-                $guid = $dt['guid'] = $db->Quote(ReceivementsFrontendHelper::getGUID());
+                //$guid = $dt['guid'] = $db->Quote(ReceivementsFrontendHelper::getGUID());
                 $id_agenda = $db->Quote($agenda_id);
                 $id_classe = $db->Quote($data['classe']);
                 if ($data['parentela'] === '*') $data['parentela'] = 'COM_RECEIVEMENTS_PARENT';
@@ -138,7 +142,7 @@ class ReceivementsModelPrenota extends JModelForm
                 $nome = $db->Quote($data['nome']);
                 $user = JFactory::getUser();
                 $utente = $db->Quote($user->get('id'));
-                $db->setQuery('INSERT INTO #__receivements_prenotazioni (guid, id_agenda, id_classe, parentela, email, nome, utente) VALUES ('.$guid.', '.$id_agenda.', '.$id_classe.', '.$parentela.', '.$email.', '.$nome.', '.$utente.')');
+                $db->setQuery('INSERT INTO #__receivements_prenotazioni (id_agenda, id_classe, parentela, email, nome, utente) VALUES ('.$id_agenda.', '.$id_classe.', '.$parentela.', '.$email.', '.$nome.', '.$utente.')');
                 $result = $db->execute();
                 return $result;
         }
@@ -150,10 +154,11 @@ class ReceivementsModelPrenota extends JModelForm
             {
                 $totale_ric = 0;
                 $agenda_id = null;
-                if ($this->ExistAgendaRecord($db, $dt, $totale_ric, $agenda_id))
+                if ($this->ExistAgendaRecord($db, $dt, $totale_ric, $agenda_id)) {
                     $this->UpdateAgendaRecord($db, $dt, ++$totale_ric, $agenda_id);
-                else
+                } else {
                     $agenda_id = $this->CreateAgendaRecord($db, $dt, ++$totale_ric);
+                }
                 //echo $totale_ric;
                 if ($agenda_id == false)
                 {
@@ -174,8 +179,9 @@ class ReceivementsModelPrenota extends JModelForm
                     SendSmsToTeacher(dt);
                 */
                 // inviare email
-                //else if (String.IsNullOrEmpty(dt.TeacherEmail) == false)
-                //SendEmailToTeacher($dt);
+                if (!empty($dt['teacher_email'])) {
+                        ReceivementsEmailHelper::sendEmailToTeacher($dt, $data['nome'], $data['classe'], $data['email']);
+                }
             }
             return true;
         }

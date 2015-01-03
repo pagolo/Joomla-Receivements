@@ -77,17 +77,7 @@ class ReceivementsFrontendHelper
 	static
 	function getGUID()
 	{
-		if (function_exists('com_create_guid')) {
-			return com_create_guid();
-		}
-		else {
-			mt_srand((double)microtime() * 10000); //optional for php 4.2.0 and up.
-			$charid = strtoupper(md5(uniqid(rand() , true)));
-			$hyphen = chr(45); // "-"
-			$uuid = chr(123) // "{"
-			 . substr($charid, 0, 8) . $hyphen . substr($charid, 8, 4) . $hyphen . substr($charid, 12, 4) . $hyphen . substr($charid, 16, 4) . $hyphen . substr($charid, 20, 12) . chr(125); // "}"
-			return $uuid;
-		}
+	       return uniqid('', true);
 	}
 	
 	static
@@ -140,6 +130,64 @@ class ReceivementsFrontendHelper
         }       
 }
 
+class ReceivementsEmailHelper
+{
+	static
+	function sendEmailToTeacher($dt, $nome, $classe, $email)
+	{
+	        $config	= JFactory::getConfig();
+	        $emailSubject	= JText::sprintf(
+				'COM_RECEIVEMENTS_EMAIL_BOOKING_SUBJECT',
+				$config->get('sitename')
+			);
+
+	        $emailBody = JText::sprintf(
+				'COM_RECEIVEMENTS_EMAIL_TO_TEACHER_BODY',
+				$dt['teacher_name'],
+				$nome,
+				$classe,
+				ReceivementsFrontendHelper::convertDateFrom($dt['datetime'], 'l, d/m/Y H:i')
+			);
+	        $mailer = JFactory::getMailer();
+                $mailer->setSender( array( $config->get('mailfrom'), $config->get('fromname') ) );
+                $mailer->addRecipient( $dt['teacher_email'] );
+                $mailer->addReplyTo( array( $email ) );
+                $mailer->setSubject( $emailSubject );
+                $mailer->setBody( $emailBody );
+
+		$return = $mailer->Send();
+                return $return;		
+        }
+	static
+	function sendConfirmatioEmail($data)
+	{
+	        $config	= JFactory::getConfig();
+	        $emailSubject	= JText::sprintf(
+				'COM_RECEIVEMENTS_EMAIL_BOOKING_SUBJECT',
+				$config->get('sitename')
+			);
+                $html = array();
+                $html[] = JText::_('COM_RECEIVEMENTS_CONFIRMATION_BODY_1');
+                foreach ($data['ricevimenti'] as $datum) {
+                        $html[] = JText::sprintf('COM_RECEIVEMENTS_CONFIRMATION_BODY_2',
+                                $datum['teacher_name'],
+                                ReceivementsFrontendHelper::convertDateFrom($datum['datetime'], 'l, d/m/Y H:i')
+                                );
+                }
+                $html[] = JText::_('COM_RECEIVEMENTS_CONFIRMATION_BODY_3');
+	        $emailBody = implode($html);
+
+	        $mailer = JFactory::getMailer();
+	        $mailer->isHTML(true);
+                $mailer->setSender( array( $config->get('mailfrom'), $config->get('fromname') ) );
+                $mailer->addRecipient( $data['email'] );
+                $mailer->setSubject( $emailSubject );
+                $mailer->setBody( $emailBody );
+
+		$return = $mailer->Send();
+                return $return;		
+        }
+}
 /*        
 class DateTeacher
 {

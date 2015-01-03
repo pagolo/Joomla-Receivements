@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 
 require_once JPATH_COMPONENT . '/controller.php';
+require_once JPATH_COMPONENT . '/helpers/receivements.php';
 
 /**
  * Prenota controller class.
@@ -25,13 +26,13 @@ class ReceivementsControllerPrenota extends ReceivementsController {
                 $form = $model->getForm();
 		// Get the user data.
 		$requestData = JRequest::getVar('jform', array(), 'post', 'array');
-		// Save the data in the session.
-		$app->setUserState('com_receivements.booking.data', $requestData);
 		// validate data...
 		$data	= $model->validate($form, $requestData);
 
 		// Check for validation errors.
 		if ($data === false) {
+        		// Save the data in the session.
+	               	$app->setUserState('com_receivements.booking.data', $requestData);
 			// Get the validation messages.
 			$errors	= $model->getErrors();
 			// Push up to three validation messages out to the user.
@@ -48,6 +49,12 @@ class ReceivementsControllerPrenota extends ReceivementsController {
 		}
 
                 $model->SaveData($data);
+                
+                // send long-time cookie
+                $cookie = $app->input->cookie;
+                $cookie->set('receivements_cookie', base64_encode(serialize($data)), strtotime( '+90 days' ));
+
+                ReceivementsEmailHelper::sendConfirmatioEmail($data);
                 echo "XXX";
                 exit;
         }
