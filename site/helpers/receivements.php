@@ -128,6 +128,11 @@ class ReceivementsFrontendHelper
                 }
                 return 1;
         }       
+        
+        static
+        function createUndoAddress($guid) {
+                return JUri::base() . 'index?option=com_receivements&view=disdetta&guid=' . $guid;
+        }
 }
 
 class ReceivementsEmailHelper
@@ -158,8 +163,35 @@ class ReceivementsEmailHelper
 		$return = $mailer->Send();
                 return $return;		
         }
+        
 	static
-	function sendConfirmatioEmail($data)
+	function sendDeletionEmailToTeacher($data)
+	{
+	        $config	= JFactory::getConfig();
+	        $emailSubject	= JText::sprintf(
+				'COM_RECEIVEMENTS_EMAIL_REMOVAL_SUBJECT',
+				$config->get('sitename')
+			);
+
+	        $emailBody = JText::sprintf(
+				'COM_RECEIVEMENTS_EMAIL_REMOVAL_BODY',
+				$data['name'],
+				ReceivementsFrontendHelper::convertDateFrom($data['data'], 'l, d/m/Y H:i'),
+				$data['student'],
+				$data['classe']
+			);
+	        $mailer = JFactory::getMailer();
+                $mailer->setSender( array( $config->get('mailfrom'), $config->get('fromname') ) );
+                $mailer->addRecipient( $data['email'] );
+                $mailer->setSubject( $emailSubject );
+                $mailer->setBody( $emailBody );
+
+		$return = $mailer->Send();
+                return $return;		
+        }
+        
+	static
+	function sendConfirmationEmail($data)
 	{
 	        $config	= JFactory::getConfig();
 	        $emailSubject	= JText::sprintf(
@@ -171,7 +203,8 @@ class ReceivementsEmailHelper
                 foreach ($data['ricevimenti'] as $datum) {
                         $html[] = JText::sprintf('COM_RECEIVEMENTS_CONFIRMATION_BODY_2',
                                 $datum['teacher_name'],
-                                ReceivementsFrontendHelper::convertDateFrom($datum['datetime'], 'l, d/m/Y H:i')
+                                ReceivementsFrontendHelper::convertDateFrom($datum['datetime'], 'l, d/m/Y H:i'),
+                                ReceivementsFrontendHelper::createUndoAddress($datum['guid'])
                                 );
                 }
                 $html[] = JText::_('COM_RECEIVEMENTS_CONFIRMATION_BODY_3');

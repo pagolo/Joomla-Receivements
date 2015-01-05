@@ -70,7 +70,7 @@ class ReceivementsModelPrenota extends JModelForm
 
 			// Override the base user data with any data in the session.
 			$temp = (array)$app->getUserState('com_receivements.booking.data', array());
-			if (empty($temp)) {
+			if (empty($temp) || (!isset($temp['ricevimenti_count'])) || $temp['ricevimenti_count'] == 0) {
                                 $cookie = $app->input->cookie;
                                 $temp = (array)unserialize(base64_decode($cookie->get('receivements_cookie')));
                         }
@@ -131,9 +131,11 @@ class ReceivementsModelPrenota extends JModelForm
                 $this->ExistAgendaRecord($db, $dt, $totale_ric, $agenda_id);
                 return $agenda_id;
         }
-        private function CreateBookingRecord($db, $dt, $agenda_id, $data)
+        private function CreateBookingRecord($db, $dt, $agenda_id, &$data, $i)
         {
-                //$guid = $dt['guid'] = $db->Quote(ReceivementsFrontendHelper::getGUID());
+                $dt['guid'] = $data['ricevimenti'][$i]['guid'] = ReceivementsFrontendHelper::getGUID();
+                $guid = $db->Quote($dt['guid']);
+                //$guid_expire = JFactory::getDate('+1 days');
                 $id_agenda = $db->Quote($agenda_id);
                 $id_classe = $db->Quote($data['classe']);
                 if ($data['parentela'] === '*') $data['parentela'] = 'COM_RECEIVEMENTS_PARENT';
@@ -142,11 +144,13 @@ class ReceivementsModelPrenota extends JModelForm
                 $nome = $db->Quote($data['nome']);
                 $user = JFactory::getUser();
                 $utente = $db->Quote($user->get('id'));
-                $db->setQuery('INSERT INTO #__receivements_prenotazioni (id_agenda, id_classe, parentela, email, nome, utente) VALUES ('.$id_agenda.', '.$id_classe.', '.$parentela.', '.$email.', '.$nome.', '.$utente.')');
+                $db->setQuery('INSERT INTO #__receivements_prenotazioni (guid, id_agenda, id_classe, parentela, email, nome, utente) VALUES ('.$guid.', '.$id_agenda.', '.$id_classe.', '.$parentela.', '.$email.', '.$nome.', '.$utente.')');
                 $result = $db->execute();
+                //$db->setQuery('SELECT LAST_INSERT_ID()');
+                //$data['ricevimenti'][$i]['insert_id'] = $db->loadResult();
                 return $result;
         }
-        public function SaveData($data)
+        public function SaveData(&$data)
         {
             $db		= $this->getDbo();
             
@@ -166,7 +170,7 @@ class ReceivementsModelPrenota extends JModelForm
                     return false;
                 }
                 //echo $totale_ric;
-                if (!($this->CreateBookingRecord($db, $dt, $agenda_id, $data)))
+                if (!($this->CreateBookingRecord($db, $dt, $agenda_id, $data, $i)))
                 {
                     $this->UpdateAgendaRecord($db, $dt, --$totale_ric, $agenda_id);
                     //Label1.Text = "Errore nel salvataggio dei dati (tabella Prenotazioni)";

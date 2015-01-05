@@ -28,10 +28,12 @@ class ReceivementsViewPrenota extends JView {
         $pathway->addItem(JText::_('COM_RECEIVEMENTS_DO_BOOKING'));
 
         $this->state = $this->get('State');
-        //echo($this->state->prenota.id);
-        //echo "2";return;
         $this->form  = $this->get('Form');
-
+        if (JRequest::getVar('layout', '', 'get', 'string') == 'confirmation') {
+                $cookie = $app->input->cookie;
+                $this->data = (array)unserialize(base64_decode($cookie->get('receivements_cookie')));
+        }
+        
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
             throw new Exception(implode("\n", $errors));

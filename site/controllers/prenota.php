@@ -54,8 +54,8 @@ class ReceivementsControllerPrenota extends ReceivementsController {
                 $cookie = $app->input->cookie;
                 $cookie->set('receivements_cookie', base64_encode(serialize($data)), strtotime( '+90 days' ));
 
-                ReceivementsEmailHelper::sendConfirmatioEmail($data);
-                echo "XXX";
-                exit;
+                ReceivementsEmailHelper::sendConfirmationEmail($data);
+                
+                $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=prenota&layout=confirmation', false));
         }
 }
