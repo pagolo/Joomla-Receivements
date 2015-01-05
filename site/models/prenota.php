@@ -84,6 +84,20 @@ class ReceivementsModelPrenota extends JModelForm
 	{
 		return $this->getData();
 	}
+	protected function myTest($data)
+	{
+                $db	= $this->getDbo();
+                foreach ($data['ricevimenti'] as $i => $dt) {
+                        $query = 'SELECT COUNT(*) FROM #__receivements_prenotazioni p LEFT JOIN #__receivements_agenda a ON (p.id_agenda = a.id)  LEFT JOIN #__receivements_ore o ON (a.id_ore = o.id) WHERE (o.id = '.$dt['ora_id'].') AND (a.data = '.$db->Quote($dt['datetime']).') AND (p.nome = '.$db->Quote($data['nome']).') AND (p.email = '.$db->Quote($data['email']).')';
+                        $db->setQuery($query);
+                        $result = $db->loadResult();
+                        if ($result > 0) {
+                                $this->setError(JText::sprintf('COM_RECEIVEMENTS_ALREADY_ONE_BOOKING',ReceivementsFrontendHelper::convertDateFrom($dt['datetime'], 'd/m/Y H:i')));
+                                return false;
+                        }
+                }
+                return true;
+        }
 	public function validate($form, $data)
 	{
 	       $ric = array();
@@ -97,7 +111,10 @@ class ReceivementsModelPrenota extends JModelForm
                        ); 
                }
                $data['ricevimenti'] = $ric;
-	       return parent::validate($form, $data);
+	       $return = parent::validate($form, $data);
+	       $mytest = $this->myTest($data);
+	       if ($mytest === false) return false;
+	       return $return;
         }
         private function ExistAgendaRecord($db, $dt, &$totale_ric, &$id)
         {
