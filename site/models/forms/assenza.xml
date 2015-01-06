@@ -23,14 +23,14 @@
                         />
 
        <field name="inizio" type="calendar" format="%d-%m-%Y" class="inputbox"
-            label="COM_RECEIVEMENTS_FORM_LBL_ASSENZA_INIZIO"
+            label="COM_RECEIVEMENTS_START"
             description="COM_RECEIVEMENTS_FORM_DESC_ASSENZA_INIZIO" 
          default="NOW" 
          required="true" 
         filter="safehtml" /> 
 
        <field name="fine" type="calendar" format="%d-%m-%Y" class="inputbox"
-            label="COM_RECEIVEMENTS_FORM_LBL_ASSENZA_FINE"
+            label="COM_RECEIVEMENTS_FINISH"
             description="COM_RECEIVEMENTS_FORM_DESC_ASSENZA_FINE" 
          default="NOW" 
         filter="safehtml" /> 

@@ -54,7 +54,7 @@
 
        <field name="inizio" type="settime" class="inputbox"
             readonly="true"
-            label="COM_RECEIVEMENTS_FORM_LBL_ORA_INIZIO"
+            label="COM_RECEIVEMENTS_START"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_INIZIO" 
          default="08:00:00" 
          required="true" 
@@ -62,7 +62,7 @@
 
        <field name="fine" type="settime" class="inputbox"
             readonly="true"
-            label="COM_RECEIVEMENTS_FORM_LBL_ORA_FINE"
+            label="COM_RECEIVEMENTS_FINISH"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_FINE" 
          default="09:00:00" 
         filter="safehtml" /> 

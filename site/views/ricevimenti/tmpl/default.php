@@ -30,7 +30,7 @@ $lang->load('', JPATH_ADMINISTRATOR);
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getSitesOptions(), 'value', 'text', $this->state->get('filter.sede'));?>
 			</select>
 			<button type="submit" onclick="setTask('ricevimenti.init_booking')"><?=JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
-			<button onclick="alert(2); return false;"><?=JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></button>
+			<button onclick="alert('TO DO...'); return false;"><?=JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></button>
 		</div>
 		<div class="clr"><br /></div>
 	<table class='front-end-list'>
