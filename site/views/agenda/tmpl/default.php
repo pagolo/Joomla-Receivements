@@ -14,7 +14,6 @@ JHtml::_('behavior.tooltip');
 
 $doc = JFactory::getDocument();
 $doc->addStyleSheet(JUri::base() . '/components/com_receivements/assets/css/form.css');
-//$doc->addStyleSheet(JUri::base() . '/components/com_receivements/assets/css/list.css');
 $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js');
 ?>
 
@@ -27,14 +26,16 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         <ul>
         <?php foreach($this->data->agenda as $i => $day) : ?>
                 <li style="list-style:none">
-                <input id="show_<?=$i?>" onclick="recv_show(<?=$i?>)" type="image"  style='vertical-align: bottom' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/plus.gif';?>" alt="show" />
-                <input id="hide_<?=$i?>" onclick="recv_hide(<?=$i?>)" type="image" style='vertical-align: bottom;display:none' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/minus.gif';?>" alt="hide" />
+                <input id="show_<?=$i?>" onclick="recv_show(<?=$i?>)" type="image"  style='vertical-align: bottom;<?=$day['id']==$this->agenda_open?'display:none':'display:inline'?>' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/plus.gif';?>" alt="show" />
+                <input id="hide_<?=$i?>" onclick="recv_hide(<?=$i?>)" type="image" style='vertical-align: bottom;<?=$day['id']==$this->agenda_open?'display:inline':'display:none'?>' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/minus.gif';?>" alt="hide" />
                 <?php echo ReceivementsFrontendHelper::convertDateFrom($day['data'], 'l, d/m/Y H:i'); ?>
                 (<?php echo JText::sprintf('COM_RECEIVEMENTS_ONTOTAL',$day['totale_ric'],$this->data->ore['max_app']); ?>)
-                <ul id="nested_<?=$i?>" style="padding: 0px 50px;display:none;">
+                <ul id="nested_<?=$i?>" style="padding: 0px 50px;<?=$day['id']==$this->agenda_open?'display:block':'display:none'?>;">
                 <?php foreach($day['nested'] as $ii => $booking) : ?>
                         <li>
                         <?php echo $booking['nome'].', '.$booking['classe'].' ('.JText::_($booking['parentela']).')'; ?>
+                        <input title="<?=JText::_('COM_RECEIVEMENTS_DELETE_AND_SEND_EMAIL')?>" onclick="if (confirm('<?=JText::_('COM_RECEIVEMENTS_REALLY_DELETE_AND_SEND_EMAIL')?>')) window.location.href='<?=JRoute::_('index.php?option=com_receivements&task=agenda.email_delete&agenda='.$booking['id_agenda'].'&id='.$booking['id'],false,2)?>'" type="image"  style='vertical-align: bottom' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/email-delete.png';?>" alt="show" />
+                        <input title="<?=JText::_('COM_RECEIVEMENTS_DELETE_AND_NO_EMAIL')?>" onclick="if (confirm('<?=JText::_('COM_RECEIVEMENTS_REALLY_DELETE_AND_NO_EMAIL')?>')) window.location.href='<?=JRoute::_('index.php?option=com_receivements&task=agenda.delete&agenda='.$booking['id_agenda'].'&id='.$booking['id'],false,2)?>'" type="image"  style='vertical-align: bottom' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/delete.png';?>" alt="show" />
                         </li>
                 <?php endforeach ?>
                 </ul>

@@ -30,8 +30,7 @@ class ReceivementsViewPrenota extends JView {
         $this->state = $this->get('State');
         $this->form  = $this->get('Form');
         if (JRequest::getVar('layout', '', 'get', 'string') == 'confirmation') {
-                $cookie = $app->input->cookie;
-                $this->data = (array)unserialize(base64_decode($cookie->get('receivements_cookie')));
+                $this->data = $app->getUserState('com_receivements.booking.data', array());
         }
         
         // Check for errors.

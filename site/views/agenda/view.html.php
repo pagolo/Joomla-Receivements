@@ -17,6 +17,7 @@ jimport('joomla.application.component.view');
  */
 class ReceivementsViewAgenda extends JView {
     protected $data;
+    protected $agenda_open;
 
     /**
      * Display the view
@@ -28,13 +29,10 @@ class ReceivementsViewAgenda extends JView {
         $pathway->addItem(JText::_('COM_RECEIVEMENTS_AGENDA'));
         
         $this->data = $this->get('Data');
-        /*
-        if (JRequest::getVar('layout', '', 'get', 'string') == 'result') {
-                $this->result = JRequest::getVar('status', '', 'get', 'string');
-        } else {
-                $this->data = $this->get('Data');
-        }
-        */
+        $app	= JFactory::getApplication();
+        $this->agenda_open = $app->getUserState('com_receivements.agenda.open');
+        $app->setUserState('com_receivements.agenda.open', 0);
+        
         parent::display($tpl);
     }//function
 }

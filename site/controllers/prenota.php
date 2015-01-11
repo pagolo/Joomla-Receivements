@@ -48,14 +48,27 @@ class ReceivementsControllerPrenota extends ReceivementsController {
 			return false;
 		}
 
-                $model->SaveData($data);
+                if (!($model->SaveData($data))) {
+                        $app->enqueueMessage(JText::_('COM_RECEIVEMENTS_ERROR_SAVING_DATA'), 'warning');
+			$this->setRedirect(JRoute::_(JURI::getInstance()->toString(), false));
+			return false;
+                }
                 
                 // send long-time cookie
+                $temp = array();
+                $temp['nome'] = $data['nome'];
+                $temp['classe'] = $data['classe'];
+                $temp['email'] = $data['email'];
+                $temp['parentela'] = $data['parentela'];
                 $cookie = $app->input->cookie;
-                $cookie->set('receivements_cookie', base64_encode(serialize($data)), strtotime( '+90 days' ));
+                $cookie->set('receivements_cookie', base64_encode(serialize($temp)), strtotime( '+120 days' ));
+                // Save the data in the session.
+               	$app->setUserState('com_receivements.booking.data', $data);
 
                 ReceivementsEmailHelper::sendConfirmationEmail($data);
                 
                 $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=prenota&layout=confirmation', false));
+                
+                return true;
         }
 }

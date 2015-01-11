@@ -70,6 +70,7 @@ class ReceivementsModelPrenota extends JModelForm
 
 			// Override the base user data with any data in the session.
 			$temp = (array)$app->getUserState('com_receivements.booking.data', array());
+			// TODO: qui prelevare i dati dal database se la prenotazione è con utente loggato...
 			if (empty($temp) || (!isset($temp['ricevimenti_count'])) || $temp['ricevimenti_count'] == 0) {
                                 $cookie = $app->input->cookie;
                                 $temp = (array)unserialize(base64_decode($cookie->get('receivements_cookie')));
@@ -201,7 +202,7 @@ class ReceivementsModelPrenota extends JModelForm
                 */
                 // inviare email
                 if (!empty($dt['teacher_email'])) {
-                        ReceivementsEmailHelper::sendEmailToTeacher($dt, $data['nome'], $data['classe'], $data['email']);
+                        ReceivementsEmailHelper::sendEmailToTeacher($dt, $data['nome'], $data['classe'], $data['email'], $data['parentela']);
                 }
             }
             return true;

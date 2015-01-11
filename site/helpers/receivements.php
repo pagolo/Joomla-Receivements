@@ -138,7 +138,7 @@ class ReceivementsFrontendHelper
 class ReceivementsEmailHelper
 {
 	static
-	function sendEmailToTeacher($dt, $nome, $classe, $email)
+	function sendEmailToTeacher($dt, $nome, $classe, $email, $parentela)
 	{
 	        $config	= JFactory::getConfig();
 	        $emailSubject	= JText::sprintf(
@@ -149,6 +149,7 @@ class ReceivementsEmailHelper
 	        $emailBody = JText::sprintf(
 				'COM_RECEIVEMENTS_EMAIL_TO_TEACHER_BODY',
 				$dt['teacher_name'],
+				strtolower(JText::_($parentela)),
 				$nome,
 				$classe,
 				ReceivementsFrontendHelper::convertDateFrom($dt['datetime'], 'l, d/m/Y H:i')
@@ -180,6 +181,32 @@ class ReceivementsEmailHelper
 				$data['student'],
 				$data['classe']
 			);
+	        $mailer = JFactory::getMailer();
+                $mailer->setSender( array( $config->get('mailfrom'), $config->get('fromname') ) );
+                $mailer->addRecipient( $data['email'] );
+                $mailer->setSubject( $emailSubject );
+                $mailer->setBody( $emailBody );
+
+		$return = $mailer->Send();
+                return $return;		
+        }
+        
+	static
+	function sendDeletionEmailToParent($data)
+	{
+	        $config	= JFactory::getConfig();
+	        $emailSubject	= JText::sprintf(
+				'COM_RECEIVEMENTS_EMAIL_REMOVAL_SUBJECT',
+				$config->get('sitename')
+			);
+
+	        $emailBody = JText::sprintf(
+				'COM_RECEIVEMENTS_EMAIL_REMOVAL_TO_PARENT_BODY',
+				$data['name'],
+				ReceivementsFrontendHelper::convertDateFrom($data['data'], 'l, d/m/Y H:i'),
+				$data['student']
+			);
+
 	        $mailer = JFactory::getMailer();
                 $mailer->setSender( array( $config->get('mailfrom'), $config->get('fromname') ) );
                 $mailer->addRecipient( $data['email'] );
