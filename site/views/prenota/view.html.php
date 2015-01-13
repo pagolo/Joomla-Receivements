@@ -27,6 +27,10 @@ class ReceivementsViewPrenota extends JView {
         $pathway = $app->getPathway();
         $pathway->addItem(JText::_('COM_RECEIVEMENTS_DO_BOOKING'));
 
+        if (!(ReceivementsFrontendHelper::canBook())) {
+                $app->redirect('index.php?option=com_receivements&view=ricevimenti');
+        }
+
         $this->state = $this->get('State');
         $this->form  = $this->get('Form');
         if (JRequest::getVar('layout', '', 'get', 'string') == 'confirmation') {

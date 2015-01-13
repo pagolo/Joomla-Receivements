@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `#__receivements_prenotazioni` (
   `parentela` enum('COM_RECEIVEMENTS_PARENT','COM_RECEIVEMENTS_GRANDPARENT','COM_RECEIVEMENTS_UNCLE','COM_RECEIVEMENTS_BROTHER','COM_RECEIVEMENTS_TUTOR','COM_RECEIVEMENTS_OTHER') COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(90) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nome` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `utente` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `utente` int(11) NOT NULL DEFAULT '0',
   `creato` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_unicode_ci;
@@ -77,5 +77,14 @@ CREATE TABLE IF NOT EXISTS `#__receivements_agenda` (
   `id_ore` int(11) NOT NULL,
   `totale_ric` int(11) NOT NULL DEFAULT '0',
   `data` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) DEFAULT COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `#__receivements_parenti` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_classe` int(11) NOT NULL,
+  `utente` int(11) NOT NULL,
+  `studente` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
+  `parentela` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_unicode_ci;

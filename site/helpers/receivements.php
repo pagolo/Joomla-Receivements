@@ -104,6 +104,63 @@ class ReceivementsFrontendHelper
                 return (isset($params_array['captcha'])? $params_array['captcha'] : ''); 
         }
         
+	function getParentsGroup()
+	{
+                $params = JFactory::getApplication()->getParams();
+                $params_array = $params->toArray();
+                return (isset($params_array['parents_group'])? $params_array['parents_group'] : 'Genitori'); 
+        }
+        
+	function getTeachersGroup()
+	{
+                $params = JFactory::getApplication()->getParams();
+                $params_array = $params->toArray();
+                return (isset($params_array['teachers_group'])? $params_array['teachers_group'] : 'Docenti'); 
+        }
+        
+	static
+	function getForcedLogin()
+	{
+                $params = JFactory::getApplication()->getParams();
+                $params_array = $params->toArray();
+                return (isset($params_array['forced_login'])? $params_array['forced_login'] : 0); 
+        }
+        
+	static
+	function canBook()
+	{
+	        if (!(ReceivementsFrontendHelper::getForcedLogin())) {
+	                return true;
+                }
+                $user = JFactory::getUser();
+                if  ($user->authorise('core.admin')) { // administrator
+                        return true;
+                }
+                $group_name = ReceivementsFrontendHelper::getParentsGroup();
+		$db = JFactory::getDbo();
+		$db->setQuery('SELECT id FROM #__usergroups WHERE title = ' . $db->Quote($group_name));
+                $group_id = $db->loadResult();
+                if (in_array($group_id, $user->getAuthorisedGroups())) {
+                        return true;
+                }
+                return false;
+        }
+        
+        static
+        function handleParentData($data) {
+		$db = JFactory::getDbo();
+                $user = JFactory::getUser();
+                $userid = $user->get('id');
+		$db->setQuery('SELECT id FROM #__receivements_parenti WHERE utente = ' . $db->Quote($userid));
+                $data_id = $db->loadResult();
+                if (empty($data_id)) {  // create record
+                        $db->setQuery('INSERT INTO #__receivements_parenti (classe, utente, studente, parentela) VALUES ('.$db->Quote($data['classe']).', '.$db->Quote($userid).', '.$db->Quote($data['nome']).', '.$db->Quote($data['parentela']).')');
+                } else {                // update record
+                        $db->setQuery('UPDATE #__receivements_parenti SET classe='.$db->Quote($data['classe']).', studente='.$db->Quote($data['nome']).', parentela='.$db->Quote($data['parentela']).' WHERE utente='.$db->Quote($userid));
+                }
+                return $db->execute();
+	}
+
         static
         function isDateAvailable($date, $utente, $ore) {
 		$db = JFactory::getDbo();
@@ -146,18 +203,25 @@ class ReceivementsEmailHelper
 				$config->get('sitename')
 			);
 
+                $param = strtolower(JText::_($parentela));
+                if (ReceivementsFrontendHelper::getForcedLogin()) {
+                        $parente = JFactory::getUser()->get('name');
+                        $param = $parente . ', ' . $param;
+                }
+                
 	        $emailBody = JText::sprintf(
 				'COM_RECEIVEMENTS_EMAIL_TO_TEACHER_BODY',
 				$dt['teacher_name'],
-				strtolower(JText::_($parentela)),
+				$param,
 				$nome,
 				$classe,
-				ReceivementsFrontendHelper::convertDateFrom($dt['datetime'], 'l, d/m/Y H:i')
+				ReceivementsFrontendHelper::convertDateFrom($dt['datetime'], 'l, d/m/Y H:i'),
+				$email
 			);
 	        $mailer = JFactory::getMailer();
                 $mailer->setSender( array( $config->get('mailfrom'), $config->get('fromname') ) );
                 $mailer->addRecipient( $dt['teacher_email'] );
-                $mailer->addReplyTo( array( $email ) );
+                //$mailer->addReplyTo( array( $email ) );
                 $mailer->setSubject( $emailSubject );
                 $mailer->setBody( $emailBody );
 
@@ -248,15 +312,3 @@ class ReceivementsEmailHelper
                 return $return;		
         }
 }
-/*        
-class DateTeacher
-{
-        private string guid;
-        private string teacher;
-        private string teachername;
-        private string teacher_email;
-        private string fulldate;
-        private string inizio;
-        private string id_ore;
-}
-*/

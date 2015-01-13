@@ -64,6 +64,10 @@ class ReceivementsControllerPrenota extends ReceivementsController {
                 $cookie->set('receivements_cookie', base64_encode(serialize($temp)), strtotime( '+120 days' ));
                 // Save the data in the session.
                	$app->setUserState('com_receivements.booking.data', $data);
+                // if forcedlogin then save to db
+                if (ReceivementsFrontendHelper::getForcedLogin() && ReceivementsFrontendHelper::canBook()) {
+                        ReceivementsFrontendHelper::handleParentData($data);
+                }
 
                 ReceivementsEmailHelper::sendConfirmationEmail($data);
                 

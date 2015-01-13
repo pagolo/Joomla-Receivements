@@ -71,7 +71,8 @@ class ReceivementsModelPrenota extends JModelForm
 			// Override the base user data with any data in the session.
 			$temp = (array)$app->getUserState('com_receivements.booking.data', array());
 			// TODO: qui prelevare i dati dal database se la prenotazione è con utente loggato...
-			if (empty($temp) || (!isset($temp['ricevimenti_count'])) || $temp['ricevimenti_count'] == 0) {
+			if (empty($temp)) {
+//			if (empty($temp) || (!isset($temp['ricevimenti_count'])) || $temp['ricevimenti_count'] == 0) {
                                 $cookie = $app->input->cookie;
                                 $temp = (array)unserialize(base64_decode($cookie->get('receivements_cookie')));
                         }
@@ -155,7 +156,9 @@ class ReceivementsModelPrenota extends JModelForm
                 $guid = $db->Quote($dt['guid']);
                 //$guid_expire = JFactory::getDate('+1 days');
                 $id_agenda = $db->Quote($agenda_id);
-                $id_classe = $db->Quote($data['classe']);
+                $classe = $db->Quote($data['classe']);
+                $db->setQuery('SELECT id FROM #__receivements_classi WHERE classe = '.$classe);
+                $id_classe = $db->Quote($db->loadResult());
                 if ($data['parentela'] === '*') $data['parentela'] = 'COM_RECEIVEMENTS_PARENT';
                 $parentela = $db->Quote($data['parentela']);
                 $email = $db->Quote($data['email']);

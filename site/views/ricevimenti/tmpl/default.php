@@ -11,7 +11,7 @@ $document->addScript(JUri::base() . '/components/com_receivements/assets/js/form
 //Load admin language file
 $lang = JFactory::getLanguage();
 $lang->load('', JPATH_ADMINISTRATOR);
-
+$canBook = ReceivementsFrontendHelper::canBook();
 ?>
 <h1><?=JText::_('COM_RECEIVEMENTS')?></h1>
 
@@ -29,8 +29,12 @@ $lang->load('', JPATH_ADMINISTRATOR);
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_SITES');?></option>
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getSitesOptions(), 'value', 'text', $this->state->get('filter.sede'));?>
 			</select>
+<?php if ($canBook) : ?>
 			<button type="submit" onclick="setTask('ricevimenti.init_booking')"><?=JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
 			<button onclick="alert('TO DO...'); return false;"><?=JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></button>
+<?php else : ?>
+                        <em><?=JText::_('COM_RECEIVEMENTS_PLEASE_LOGIN')?></em>
+<?php endif; ?>
 		</div>
 		<div class="clr"><br /></div>
 	<table class='front-end-list'>
@@ -60,7 +64,11 @@ $lang->load('', JPATH_ADMINISTRATOR);
 ?>
 			<tr class="row">
 				<td style="text-align:center"><?=$checked?></td>
+<?php if ($canBook) : ?>
 				<td><a href="index.php?option=com_receivements&view=prenota&id=<?=$row->id?>" title="<?=JText::_('COM_RECEIVEMENTS_PLEASE_BOOK')?>"><?=$row->name?></a></td>
+<?php else : ?>
+				<td><?=$row->name?></td>
+<?php endif; ?>
 				<td><?=$row->materie?></td>
 				<td><?=$row->classi?></td>
 				<td><?=$row->sede?></td>
