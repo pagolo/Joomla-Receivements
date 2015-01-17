@@ -63,3 +63,19 @@ $doc->addStyleSheet(JUri::base() . '/components/com_receivements/assets/css/form
         </form>
         
 </div>
+
+<?php if (ReceivementsFrontendHelper::getForcedLogin()) : ?>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#jform_nome").change(function(){
+        var student = $("#jform_nome").val();
+        var uri = 'index.php?option=com_receivements&view=ajax&layout=change-student&format=raw&student='+encodeURIComponent(student);
+        $.get( uri, function( data ) {
+                $("#jform_classe").val(data.classe);
+                $("#jform_parentela").val(data.parentela == 'COM_RECEIVEMENTS_PARENT' ? '*' : data.parentela);
+        }, "json" );
+  });
+});
+</script>
+<?php endif; ?>

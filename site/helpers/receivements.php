@@ -192,6 +192,18 @@ class ReceivementsFrontendHelper
         }
 }
 
+class ReceivementsAjaxHelper
+
+{
+	static
+	function changeStudent($user_id, $nome)
+	{
+	       $db = JFactory::getDBO();
+	       $db->setQuery('SELECT classe, parentela FROM #__receivements_parenti WHERE utente = '.$db->Quote($user_id).' AND studente = '.$db->Quote($nome));
+	       return $db->loadAssoc();
+	}
+}
+
 class ReceivementsEmailHelper
 {
 	static

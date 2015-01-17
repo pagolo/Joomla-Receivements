@@ -65,9 +65,12 @@ class ReceivementsControllerPrenota extends ReceivementsController {
                 // Save the data in the session.
                	$app->setUserState('com_receivements.booking.data', $data);
                 // if forcedlogin then save to db
+                // no, no need to do this
+                /*
                 if (ReceivementsFrontendHelper::getForcedLogin() && ReceivementsFrontendHelper::canBook()) {
                         ReceivementsFrontendHelper::handleParentData($data);
                 }
+                */
 
                 ReceivementsEmailHelper::sendConfirmationEmail($data);
                 

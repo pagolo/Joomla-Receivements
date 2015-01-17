@@ -20,6 +20,11 @@ class ReceivementsHelper {
      */
     public static function addSubmenu($vName = '') {
         		JSubMenuHelper::addEntry(
+			JText::_('COM_RECEIVEMENTS_TITLE_BOOKINGS'),
+			'index.php?option=com_receivements&view=prenotazioni',
+			$vName == 'prenotazioni'
+		);
+        		JSubMenuHelper::addEntry(
 			JText::_('COM_RECEIVEMENTS_TITLE_ORE'),
 			'index.php?option=com_receivements&view=ore',
 			$vName == 'ore'

@@ -51,6 +51,7 @@
         <submenu>
             
 			<menu link="option=com_receivements&amp;view=ore" view="ore" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Ore">COM_RECEIVEMENTS_TITLE_ORE</menu>
+			<menu link="option=com_receivements&amp;view=prenotazioni" view="prenotazioni" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Prenotazioni">COM_RECEIVEMENTS_TITLE_PRENOTAZIONI</menu>
 
         </submenu>
         <files folder="administrator">
@@ -73,5 +74,3 @@
     </plugins>
     
 </extension>
-<!-- Component built by the Joomla Component Creator -->
-<!-- http://www.component-creator.com/ -->

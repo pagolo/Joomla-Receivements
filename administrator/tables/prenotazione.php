@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 /**
  * sede Table class
  */
-class ReceivementsTablesede extends JTable
+class ReceivementsTablePrenotazione extends JTable
 {
 
 	/**
@@ -23,7 +23,7 @@ class ReceivementsTablesede extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		parent::__construct('#__receivements_sedi', 'id', $db);
+		parent::__construct('#__receivements_prenotazioni', 'id', $db);
 	}
 
 	/**
@@ -50,10 +50,10 @@ class ReceivementsTablesede extends JTable
 			$registry->loadArray($array['metadata']);
 			$array['metadata'] = (string) $registry;
 		}
-		if (!JFactory::getUser()->authorise('core.admin', 'com_receivements.sede.' . $array['id']))
+		if (!JFactory::getUser()->authorise('core.admin', 'com_receivements.prenotazione.' . $array['id']))
 		{
-			$actions         = JFactory::getACL()->getActions('com_receivements', 'sede');
-			$default_actions = JFactory::getACL()->getAssetRules('com_receivements.sede.' . $array['id'])->getData();
+			$actions         = JFactory::getACL()->getActions('com_receivements', 'prenotazione');
+			$default_actions = JFactory::getACL()->getAssetRules('com_receivements.prenotazione.' . $array['id'])->getData();
 			$array_jaccess   = array();
 			foreach ($actions as $action)
 			{
@@ -198,7 +198,7 @@ class ReceivementsTablesede extends JTable
 	{
 		$k = $this->_tbl_key;
 
-		return 'com_receivements.sede.' . (int) $this->$k;
+		return 'com_receivements.prenotazione.' . (int) $this->$k;
 	}
 
 	/**

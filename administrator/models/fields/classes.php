@@ -11,10 +11,13 @@ defined('JPATH_BASE') or die;
 
 jimport('joomla.form.formfield');
 
+JFormHelper::loadFieldClass('text');
+JHTML::_('behavior.modal');
+
 /**
  * Supports an HTML select list of categories
  */
-class JFormFieldTimeupdated extends JFormField
+class JFormFieldClasses extends JFormFieldText
 {
 	/**
 	 * The form field type.
@@ -22,7 +25,7 @@ class JFormFieldTimeupdated extends JFormField
 	 * @var		string
 	 * @since	1.6
 	 */
-	protected $type = 'timeupdated';
+	protected $type = 'Classes';
 
 	/**
 	 * Method to get the field input markup.
@@ -35,20 +38,15 @@ class JFormFieldTimeupdated extends JFormField
 		// Initialize variables.
 		$html = array();
         
-        
-		$old_time_updated = $this->value;
-        $hidden = (boolean) $this->element['hidden'];
-        if ($hidden == null || !$hidden){
-            if (!strtotime($old_time_updated)) {
-                $html[] = '-';
-            } else {
-                $jdate = new JDate($old_time_updated);
-                $pretty_date = $jdate->format(JText::_('DATE_FORMAT_LC2'));
-                $html[] = "<div>".$pretty_date."</div>";
-            }
-        }
-        $time_updated = JFactory::getDate()->toSql();
-        $html[] = '<input type="hidden" name="'.$this->name.'" value="'.$time_updated.'" />';
+        	$html[] = parent::getInput();
+        	
+        	$html[] = '<a class="modal my_field" rel="{handler: \'iframe\', size: {x: 140, y: 400}}" style="border:none" title="';
+        	$html[] = JText::_('COM_RECEIVEMENTS_SELECT_CLASSES');
+                $html[] = '" href="/index.php?option=com_receivements&view=classi&tmpl=component">';
+        	$html[] = '<img style="padding:0px;height:120%;border:none" src="' . JURI::base(true) . '/components/com_receivements/assets/icons/pen.png' . '" alt="pen_icon">';
+        	$html[] = "</a>";
+
+        	
         
 		return implode($html);
 	}

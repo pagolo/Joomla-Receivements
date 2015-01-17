@@ -54,7 +54,8 @@ class ReceivementsModelPrenota extends JModelForm
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_receivements.prenota', 'prenota', array('control' => 'jform', 'load_data' => $loadData));
+		$xml = ReceivementsFrontendHelper::getForcedLogin() ? 'prenota-loggato' :  'prenota';
+		$form = $this->loadForm('com_receivements.prenota', $xml, array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form)) {
 			return false;
 		}

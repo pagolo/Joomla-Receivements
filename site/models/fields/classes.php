@@ -38,13 +38,13 @@ class JFormFieldClasses extends JFormFieldText
 		// Initialize variables.
 		$html = array();
         
-                $html[] = '<div class="my_field">';
         	$html[] = parent::getInput();
-        	$html[] = '<a class="modal my_field" rel="{handler: \'iframe\', size: {x: 140, y: 400}}" title="';
+        	
+        	$html[] = '<a class="modal my_field" rel="{handler: \'iframe\', size: {x: 140, y: 400}}" style="border:none" title="';
         	$html[] = JText::_('COM_RECEIVEMENTS_SELECT_CLASSES');
                 $html[] = '" href="/index.php?option=com_receivements&view=classi&tmpl=component">';
-        	$html[] = '<img style="padding:0px;height:120%" src="' . JURI::base(true) . '/components/com_receivements/assets/icons/pen.png' . '" alt="pen_icon">';
-        	$html[] = "</a></div>";
+        	$html[] = '<img style="padding:0px;height:120%;border:none" src="' . JURI::base(true) . '/components/com_receivements/assets/icons/pen.png' . '" alt="pen_icon">';
+        	$html[] = "</a>";
 
         	
         

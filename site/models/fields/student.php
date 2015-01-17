@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Form
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -18,7 +18,7 @@ JFormHelper::loadFieldClass('list');
  * @subpackage  Form
  * @since       11.1
  */
-class JFormFieldUsersInGroup extends JFormFieldList
+class JFormFieldStudent extends JFormFieldList
 {
 	/**
 	 * The form field type.
@@ -26,7 +26,7 @@ class JFormFieldUsersInGroup extends JFormFieldList
 	 * @var    string
 	 * @since  11.1
 	 */
-	public $type = 'UsersInGroup';
+	public $type = 'Student';
 
 	/**
 	 * Method to get the custom field options.
@@ -40,17 +40,12 @@ class JFormFieldUsersInGroup extends JFormFieldList
 	{
 		// Initialize variables.
 		$options = array();
-
-		// Initialize some field attributes.
-		$groupkey = $this->element['group_name'];
-                $params = JComponentHelper::getParams('com_receivements');
-                $params_array = $params->toArray();
-                $groupname = isset($params_array[$groupkey])? $params_array[$groupkey] : ($groupkey=='teachers_group'?'Docenti':'Genitori'); 
-		$format = "SELECT u.id , u.name FROM #__users as u inner join #__usergroups AS ug ON ug.title = %s inner join #__user_usergroup_map AS ugm ON ugm.user_id = u.id  where ugm.group_id=ug.id ORDER BY name";
-        
+		
 		// Get the database object.
 		$db = JFactory::getDBO();
-		$query = JText::sprintf($format, $db->quote($groupname));
+
+                $user_id = JFactory::getUser()->get('id');
+		$query = 'SELECT studente FROM #__receivements_parenti WHERE utente = '.$db->Quote($user_id).' ORDER BY studente';
 
 		// Set the query and get the result list.
 		$db->setQuery($query);
@@ -66,15 +61,11 @@ class JFormFieldUsersInGroup extends JFormFieldList
 		// Build the field options.
 		if (!empty($items))
 		{
-		        //$options[] = JHtml::_('select.option', 0, JText::_('COM_RECEIVEMENTS_ALL'));
 			foreach ($items as $item)
 			{
-				$options[] = JHtml::_('select.option', $item->id, $item->name);
+				$options[] = JHtml::_('select.option', $item->studente, $item->studente);
 			}
 		}
-
-		// Merge any additional options in the XML definition.
-		$options = array_merge(parent::getOptions(), $options);
 
 		return $options;
 	}

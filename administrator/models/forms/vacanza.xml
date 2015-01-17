@@ -9,10 +9,12 @@
                 <field
 			name="utente"
 			type="usersingroup"
-			group_name="Docenti"
+			group_name="teachers_group"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_ID_DOCENTE"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_ID_DOCENTE" 
-                                                    filter="safehtml" /> 
+                                                    filter="safehtml">
+                <option value="0">COM_RECEIVEMENTS_ALL_TEACHERS</option>
+           </field> 
 
 
        <field name="inizio" type="calendar" class="inputbox" format="%d-%m-%Y" default="NOW"

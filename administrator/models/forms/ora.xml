@@ -9,7 +9,7 @@
                 <field
 			name="id_docente"
 			type="usersingroup"
-			group_name="Docenti"
+			group_name="teachers_group"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_ID_DOCENTE"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_ID_DOCENTE" 
                                                     filter="safehtml" /> 
@@ -23,8 +23,8 @@
             /> 
 
 
-       <field name="classi" type="text"
-                
+       <field name="classi" type="classes"
+            readonly="true"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_CLASSI"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_CLASSI" 
                 
@@ -40,28 +40,28 @@
                 
             option_on="Yes"
             option_off="Yes">
-                <option value="0">Lunedì</option>
-                <option value="1">Martedì</option>
-                <option value="2">Mercoledì</option>
-                <option value="3">Giovedì</option>
-                <option value="4">Venerdì</option>
-                <option value="5">Sabato</option>
+                <option value="0">COM_RECEIVEMENTS_ORE_GIORNO_OPTION_0</option>
+                <option value="1">COM_RECEIVEMENTS_ORE_GIORNO_OPTION_1</option>
+                <option value="2">COM_RECEIVEMENTS_ORE_GIORNO_OPTION_2</option>
+                <option value="3">COM_RECEIVEMENTS_ORE_GIORNO_OPTION_3</option>
+                <option value="4">COM_RECEIVEMENTS_ORE_GIORNO_OPTION_4</option>
+                <option value="5">COM_RECEIVEMENTS_ORE_GIORNO_OPTION_5</option>
         </field> 
 
-       <field name="inizio" type="text" size="40" class="inputbox"
-                                                    
+       <field name="inizio" type="settime" size="40" class="inputbox"
+            readonly="true"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_INIZIO"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_INIZIO" 
-                                                     default="00:00" 
+                                                     default="08:00:00" 
                                                     
                                                      required="true" 
                                                     filter="safehtml" /> 
 
-       <field name="fine" type="text" size="40" class="inputbox"
-                                                    
+       <field name="fine" type="settime" size="40" class="inputbox"
+            readonly="true"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_FINE"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_FINE" 
-                                                     default="00:00" 
+                                                     default="09:00:00" 
                                                     
                                                     
                                                     filter="safehtml" /> 

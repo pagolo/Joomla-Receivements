@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/components/com_receivements/models/rules">
+       <field name="ricevimenti" type="receivements" class="inputbox"
+                label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_RECV"
+                description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_RECV"
+                validate="ricevimenti" 
+                required="true" 
+                /> 
+	<fieldset name="Personal data">
+                <field
+                        name="utente"
+                        type="createdby"
+                        />
+
+                <field name="nome" type="student" class="inputbox"
+                        label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_NOME"
+                        description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_NOME" 
+                        required="true" 
+                        /> 
+
+                <field
+		        name="classe"
+		        type="text" class="inputbox" readonly="true"
+                        label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_CLASSE"
+                        description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_CLASSE" 
+                        /> 
+
+                <field name="email" type="text" class="inputbox"
+                        label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_EMAIL"
+                        description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_EMAIL" 
+                        readonly="true" 
+                        />
+
+                <field name="parentela" type="list"
+                        label="COM_RECEIVEMENTS_FORM_LBL_PARENTELA"
+                        description="COM_RECEIVEMENTS_FORM_DESC_PARENTELA" 
+                        readonly="true" 
+                        option_on="Yes"
+                        option_off="Yes">
+                                <option value="*">COM_RECEIVEMENTS_PARENT</option>
+                                <option value="COM_RECEIVEMENTS_GRANDPARENT">COM_RECEIVEMENTS_GRANDPARENT</option>
+                                <option value="COM_RECEIVEMENTS_UNCLE">COM_RECEIVEMENTS_UNCLE</option>
+                                <option value="COM_RECEIVEMENTS_BROTHER">COM_RECEIVEMENTS_BROTHER</option>
+                                <option value="COM_RECEIVEMENTS_TUTOR">COM_RECEIVEMENTS_TUTOR</option>
+                                <option value="COM_RECEIVEMENTS_OTHER">COM_RECEIVEMENTS_OTHER</option>
+                        </field> 
+
+	</fieldset>
+        <fieldset name="Control">                
+                <field
+                        name="captcha"
+                        type="captcha"
+                        label="COM_RECEIVEMENTS_CAPTCHA_LABEL"
+                        description="COM_RECEIVEMENTS_CAPTCHA_DESC"
+                        validate="captcha"
+                />        
+        </fieldset>
+</form>

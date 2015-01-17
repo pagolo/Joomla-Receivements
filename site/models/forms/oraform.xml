@@ -7,13 +7,6 @@
                         default="0" 
 			type="hidden" />
 
-                <!--field
-			name="id_docente"
-			type="usersingroup"
-			group_name="Docenti"
-                        label="COM_RECEIVEMENTS_FORM_LBL_ORA_ID_DOCENTE"
-                        description="COM_RECEIVEMENTS_FORM_DESC_ORA_ID_DOCENTE" 
-                         /--> 
                 <field
                         name="id_docente"
                         type="createdby"
