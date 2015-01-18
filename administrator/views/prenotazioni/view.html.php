@@ -57,7 +57,7 @@ class ReceivementsViewPrenotazioni extends JView {
         JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_BOOKINGS'), 'prenotazioni.png');
 
         if ($canDo->get('core.edit.state')) {
-
+            JToolBarHelper :: custom( 'prenotazioni.email_delete', 'email-delete.png', 'email-delete.png', JText::_('COM_RECEIVEMENTS_EMAIL_N_DELETE'), false, false );
             if (isset($this->items[0]->state)) {
                 JToolBarHelper::divider();
                 JToolBarHelper::custom('prenotazioni.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);

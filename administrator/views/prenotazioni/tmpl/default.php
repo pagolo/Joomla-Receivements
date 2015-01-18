@@ -24,6 +24,26 @@ $saveOrder = $listOrder == 'p.ordering';
 
 ?>
 
+<script type="text/javascript">
+    Joomla.submitbutton = function(task)
+    {
+        if (task == 'prenotazioni.email_delete')
+        {
+            if (document.adminForm.boxchecked.value == 0) {
+                alert('<?=JText::_('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')?>');
+                return false;
+            }
+            if (confirm('<?=JText::_('COM_RECEIVEMENTS_REALLY_EMAIL_N_DELETE')?>')) {
+                Joomla.submitform(task);
+            } else {
+                return false;
+            }
+        } else {
+            Joomla.submitform(task);
+        }
+    }
+</script>
+
 <form action="<?php echo JRoute::_('index.php?option=com_receivements&view=prenotazioni'); ?>" method="post" name="adminForm" id="adminForm">
     <fieldset id="filter-bar">
         <!--TODO: keep filter working...-->

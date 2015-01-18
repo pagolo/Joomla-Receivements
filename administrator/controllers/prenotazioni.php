@@ -12,6 +12,13 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controlleradmin');
 
+$language =& JFactory::getLanguage();
+$extension = 'com_receivements';
+$base_dir = JPATH_SITE;
+$language_tag = $language->getTag();
+$language->load($extension, $base_dir, $language_tag, true);
+require_once JPATH_SITE . '/components/com_receivements/helpers/receivements.php';
+
 /**
  * Sedi list controller class.
  */
@@ -23,12 +30,28 @@ class ReceivementsControllerPrenotazioni extends JControllerAdmin
 	 */
 	public function getModel($name = 'Prenotazione', $prefix = 'ReceivementsModel')
 	{
-	echo "<pre>";
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
-	print_r($model);
 		return $model;
 	}
     
+        public function email_delete() {
+                $model = $this->getModel();
+                $array = JRequest::getVar( 'cid', array(0), 'post', 'array' );
+                $table = $model->getTable();
+                foreach($array as $booking_id) {
+                        $data = $model->getBookingData($booking_id);
+                        if (!empty($data)) {
+                                if ($table->delete($booking_id)) {
+                                        ReceivementsEmailHelper::sendDeletionEmailToParent($data);
+                                }
+                        }
+                }
+                $message = count($array) == 1 ? 'COM_RECEIVEMENTS_ITEM_DELETED_SUCCESSFULLY' : 'COM_RECEIVEMENTS_ITEMS_DELETED_SUCCESSFULLY';
+                $app = JFactory::getApplication();
+                $app->enqueueMessage(JText::_($message), 'message');
+                //$this->setRedirect(JRoute::_('index.php?option=com_receivements&view=prenotazioni'));
+                $this->setRedirect('index.php?option=com_receivements&view=prenotazioni');
+        }
     
 	/**
 	 * Method to save the submitted ordering values for records via AJAX.

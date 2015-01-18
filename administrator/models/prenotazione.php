@@ -23,7 +23,12 @@ class ReceivementsModelPrenotazione extends JModelAdmin
 	 */
 	protected $text_prefix = 'COM_RECEIVEMENTS';
 
-
+        public function getBookingData($id) {
+                $db = JFactory::getDbo();
+                $db->setQuery('SELECT p.*, p.nome as student, a.data, u.name FROM #__receivements_prenotazioni p LEFT JOIN #__receivements_agenda a ON (p.id_agenda = a.id) LEFT JOIN #__receivements_ore o ON (a.id_ore = o.id) LEFT JOIN #__users u ON (u.id = o.id_docente) WHERE p.id = '.$db->Quote($id));
+                return $db->loadAssoc();        
+        }
+        
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
