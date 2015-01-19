@@ -34,7 +34,8 @@ class ReceivementsModelOre extends JModelList {
                 'inizio', 'a.inizio',
                 'fine', 'a.fine',
                 'max_app', 'a.max_app',
-                'sede', 'a.sede',
+                'sede', 's.sede',
+                'email', 'a.email',
                 'attiva', 'a.attiva',
 
             );
@@ -107,9 +108,10 @@ class ReceivementsModelOre extends JModelList {
                 )
         );
         */
-        $query->select('a.id,u.name');
+        $query->select('a.*,u.name,s.sede');
         $query->from('`#__receivements_ore` AS a');
         $query->join('LEFT', $db->quoteName('#__users', 'u') . ' ON (' . $db->quoteName('a.id_docente') . ' = ' . $db->quoteName('u.id') . ')');        
+        $query->join('LEFT', $db->quoteName('#__receivements_sedi', 's') . ' ON (' . $db->quoteName('a.sede') . ' = ' . $db->quoteName('s.id') . ')');        
         
 
         // Filter by search in title
@@ -141,5 +143,4 @@ class ReceivementsModelOre extends JModelList {
         
         return $items;
     }
-
 }

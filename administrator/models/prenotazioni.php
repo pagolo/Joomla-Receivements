@@ -40,7 +40,6 @@ class ReceivementsModelPrenotazioni extends JModelList {
     }
 	public function getTable($type = 'Prenotazione', $prefix = 'ReceivementsTable', $config = array())
 	{
-	       echo "hhh";exit;
 		return JTable::getInstance($type, $prefix, $config);
 	}
 
@@ -54,13 +53,10 @@ class ReceivementsModelPrenotazioni extends JModelList {
         $app = JFactory::getApplication('administrator');
 
         // Load the filter state.
-        $search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
-        $this->setState('filter.search', $search);
-
-        $published = $app->getUserStateFromRequest($this->context . '.filter.state', 'filter_published', '', 'string');
-        $this->setState('filter.state', $published);
-
-        
+        $from = $app->getUserStateFromRequest($this->context . '.filter.from', 'filter_from');
+        $this->setState('filter.from', $from);
+        $to = $app->getUserStateFromRequest($this->context . '.filter.to', 'filter_to');
+        $this->setState('filter.to', $to);
 
         // Load the parameters.
         $params = JComponentHelper::getParams('com_receivements');
@@ -80,7 +76,6 @@ class ReceivementsModelPrenotazioni extends JModelList {
      * @param	string		$id	A prefix for the store id.
      * @return	string		A store id.
      * @since	1.6
-     */
     protected function getStoreId($id = '') {
         // Compile the store id.
         $id.= ':' . $this->getState('filter.search');
@@ -88,6 +83,7 @@ class ReceivementsModelPrenotazioni extends JModelList {
 
         return parent::getStoreId($id);
     }
+     */
 
     /**
      * Build an SQL query to load the list data.
@@ -109,22 +105,29 @@ class ReceivementsModelPrenotazioni extends JModelList {
         $query->join('LEFT', '#__users u ON ( o.id_docente = u.id )');
         $query->join('LEFT', '#__users u2 ON ( p.utente = u2.id )');
         $query->join('LEFT', '#__receivements_sedi s ON (o.sede = s.id)');
-        $query->where('a.data > NOW()');
 
-        // Filter by search in title
-        $search = $this->getState('filter.search');
-        if (!empty($search)) {
-            if (stripos($search, 'id:') === 0) {
-                $query->where('a.id = ' . (int) substr($search, 3));
+        $from = $this->getState('filter.from');
+        if (!empty($from)) {
+            if ($from == JText::_('COM_RECEIVEMENTS_TODAY')) {
+                $query->where('a.data >= NOW()');
             } else {
-                $search = $db->Quote('%' . $db->escape($search, true) . '%');
-                
+                // TODO: check $from format
+                $myDate = JFactory::getDate($from);
+                $format = JText::_('Y-m-d');
+                $outdate = JHTML::_('date', $myDate, $format);
+                $query->where('a.data >= '.$db->Quote($outdate));
             }
         }
 
+        $to = $this->getState('filter.to');
+        if (!empty($to)) {
+                // TODO: check $to format
+                $myDate = JFactory::getDate($to);
+                $format = JText::_('Y-m-d');
+                $outdate = JHTML::_('date', $myDate, $format);
+                $query->where('a.data <= '.$db->Quote($outdate));
+        }
         
-
-
         // Add the list ordering clause.
         $orderCol = $this->state->get('list.ordering');
         $orderDirn = $this->state->get('list.direction');

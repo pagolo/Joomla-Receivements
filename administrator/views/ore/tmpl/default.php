@@ -19,9 +19,8 @@ $user = JFactory::getUser();
 $userId = $user->get('id');
 $listOrder = $this->state->get('list.ordering');
 $listDirn = $this->state->get('list.direction');
-$canOrder = $user->authorise('core.edit.state', 'com_receivements');
+$canChange = $canOrder = $user->authorise('core.edit.state', 'com_receivements');
 $saveOrder = $listOrder == 'a.ordering';
-
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_receivements&view=ore'); ?>" method="post" name="adminForm" id="adminForm">
@@ -47,21 +46,6 @@ $saveOrder = $listOrder == 'a.ordering';
                     <input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
                 </th>
                 
-                <?php if (isset($this->items[0]->state)) : ?>
-                    <th width="5%">
-                        <?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.state', $listDirn, $listOrder); ?>
-                    </th>
-                <?php endif; ?>
-
-                <?php if (isset($this->items[0]->ordering)) : ?>
-                    <th width="10%">
-                        <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ORDERING', 'a.ordering', $listDirn, $listOrder); ?>
-                        <?php if ($canOrder && $saveOrder) : ?>
-                            <?php echo JHtml::_('grid.order', $this->items, 'filesave.png', 'ore.saveorder'); ?>
-                        <?php endif; ?>
-                    </th>
-                <?php endif; ?>
-
                 <?php if (isset($this->items[0]->id)) : ?>
                     <th width="1%" class="nowrap">
                         <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -71,6 +55,32 @@ $saveOrder = $listOrder == 'a.ordering';
                     <th class="nowrap left">
                         <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_NAME', 'u.name', $listDirn, $listOrder); ?>
                     </th>
+                <?php if (isset($this->items[0]->id)) : ?>
+                    <th class="nowrap">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_CLASSES', 'a.classi', $listDirn, $listOrder); ?>
+                    </th>
+                    <th class="nowrap">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_DAY', 'a.giorno', $listDirn, $listOrder); ?>
+                    </th>
+                    <th class="nowrap">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_START', 'a.inizio', $listDirn, $listOrder); ?>
+                    </th>
+                    <th class="nowrap">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_END', 'a.fine', $listDirn, $listOrder); ?>
+                    </th>
+                    <th width="2%" class="nowrap">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_MAXAPP', 'a.max_app', $listDirn, $listOrder); ?>
+                    </th>
+                    <th class="nowrap">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_SITE', 's.sede', $listDirn, $listOrder); ?>
+                    </th>
+		    <th class="nowrap" width="5%">
+			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_EMAIL', 'a.email', $listDirn, $listOrder); ?>
+		    </th>
+		    <th class="nowrap" width="5%">
+			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_ACTIVATED', 'a.attiva', $listDirn, $listOrder); ?>
+		    </th>
+                <?php endif; ?>
                 <?php endif; ?>
             </tr>
         </thead>
@@ -102,32 +112,6 @@ $saveOrder = $listOrder == 'a.ordering';
                         <?php echo JHtml::_('grid.id', $i, $item->id); ?>
                     </td>
                     
-                    <?php if (isset($this->items[0]->state)) { ?>
-                        <td class="center">
-                            <?php echo JHtml::_('jgrid.published', $item->state, $i, 'ore.', $canChange, 'cb'); ?>
-                        </td>
-                    <?php } ?>
-
-                    <?php if (isset($this->items[0]->ordering)) { ?>
-                        <td class="order">
-                            <?php if ($canChange) : ?>
-                                <?php if ($saveOrder) : ?>
-                                    <?php if ($listDirn == 'asc') : ?>
-                                        <span><?php echo $this->pagination->orderUpIcon($i, true, 'ore.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                                        <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'ore.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                                    <?php elseif ($listDirn == 'desc') : ?>
-                                        <span><?php echo $this->pagination->orderUpIcon($i, true, 'ore.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                                        <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, true, 'ore.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                                <?php $disabled = $saveOrder ? '' : 'disabled="disabled"'; ?>
-                                <input type="text" name="order[]" size="5" value="<?php echo $item->ordering; ?>" <?php echo $disabled ?> class="text-area-order" />
-                            <?php else : ?>
-                                <?php echo $item->ordering; ?>
-                            <?php endif; ?>
-                        </td>
-                    <?php } ?>
-
                     <?php if (isset($this->items[0]->id)) { ?>
                         <td class="center">
                             <?php echo (int) $item->id; ?>
@@ -139,6 +123,36 @@ $saveOrder = $listOrder == 'a.ordering';
 			     <?php echo $this->escape($item->name); ?></a>
                         </td>
                     <?php } ?>
+                    <?php if (isset($this->items[0]->id)) : ?>
+                        <td class="left">
+                            <?php echo $item->classi; ?>
+                        </td>
+                        <td class="left">
+                            <?php echo JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_'.$item->giorno); ?>
+                        </td>
+                        <td class="left">
+                            <?php echo substr($item->inizio, 0, 5); ?>
+                        </td>
+                        <td class="left">
+                            <?php echo substr($item->fine, 0, 5); ?>
+                        </td>
+                        <td class="left">
+                            <?php echo $item->max_app; ?>
+                        </td>
+                        <td class="left">
+                            <?php echo $item->sede; ?>
+                        </td>
+                        <td class="center">
+			    <?php if ($canChange) : ?>
+				<?php echo JHtml::_('grid.boolean', $i, $item->email=='1', 'ore.yes_email', 'ore.no_email'); ?>
+			    <?php endif; ?>
+                        </td>
+                        <td class="center">
+			    <?php if ($canChange) : ?>
+				<?php echo JHtml::_('grid.boolean', $i, $item->attiva=='1', 'ore.activate', 'ore.unactivate'); ?>
+			    <?php endif; ?>
+                        </td>
+                    <?php endif; ?>
                 </tr>
             <?php endforeach; ?>
         </tbody>

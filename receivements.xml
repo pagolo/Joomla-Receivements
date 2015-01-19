@@ -68,8 +68,5 @@
             <folder>views</folder>
         </files>
     </administration>
-    <plugins>
-        <plugin group="search" plugin="receivements"/>
-    </plugins>
     
 </extension>

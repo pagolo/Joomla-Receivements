@@ -12,11 +12,9 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controlleradmin');
 
+// include frontend helpers
 $language =& JFactory::getLanguage();
-$extension = 'com_receivements';
-$base_dir = JPATH_SITE;
-$language_tag = $language->getTag();
-$language->load($extension, $base_dir, $language_tag, true);
+$language->load('com_receivements', JPATH_SITE, $language->getTag(), true);
 require_once JPATH_SITE . '/components/com_receivements/helpers/receivements.php';
 
 /**

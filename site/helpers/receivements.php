@@ -71,7 +71,7 @@ class ReceivementsFrontendHelper
 	{
 		$myDate = JFactory::getDate($date);
 		$format = JText::_('Y-m-d');
-		return JHTML::_('date', $myDate, $format);;
+		return JHTML::_('date', $myDate, $format);
 	}
 
 	static
@@ -83,7 +83,8 @@ class ReceivementsFrontendHelper
 	static
 	function getPreBooking()
 	{
-                $params = JFactory::getApplication()->getParams();
+	        $app = JFactory::getApplication();
+                $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
                 $params_array = $params->toArray();
                 return (isset($params_array['pre_booking'])? $params_array['pre_booking'] : 3); 
         }
@@ -91,7 +92,8 @@ class ReceivementsFrontendHelper
 	static
 	function getShowTotalDays()
 	{
-                $params = JFactory::getApplication()->getParams();
+	        $app = JFactory::getApplication();
+                $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
                 $params_array = $params->toArray();
                 return (isset($params_array['show_total_days'])? $params_array['show_total_days'] : 7); 
         }
@@ -99,21 +101,24 @@ class ReceivementsFrontendHelper
 	static
 	function getCaptcha()
 	{
-                $params = JFactory::getApplication()->getParams();
+	        $app = JFactory::getApplication();
+                $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
                 $params_array = $params->toArray();
                 return (isset($params_array['captcha'])? $params_array['captcha'] : ''); 
         }
         
 	function getParentsGroup()
 	{
-                $params = JFactory::getApplication()->getParams();
+	        $app = JFactory::getApplication();
+                $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
                 $params_array = $params->toArray();
                 return (isset($params_array['parents_group'])? $params_array['parents_group'] : 'Genitori'); 
         }
         
 	function getTeachersGroup()
 	{
-                $params = JFactory::getApplication()->getParams();
+	        $app = JFactory::getApplication();
+                $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
                 $params_array = $params->toArray();
                 return (isset($params_array['teachers_group'])? $params_array['teachers_group'] : 'Docenti'); 
         }
@@ -121,7 +126,8 @@ class ReceivementsFrontendHelper
 	static
 	function getForcedLogin()
 	{
-                $params = JFactory::getApplication()->getParams();
+	        $app = JFactory::getApplication();
+                $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
                 $params_array = $params->toArray();
                 return (isset($params_array['forced_login'])? $params_array['forced_login'] : 0); 
         }

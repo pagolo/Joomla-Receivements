@@ -24,7 +24,7 @@ class ReceivementsController extends JController {
     public function display($cachable = false, $urlparams = false) {
         require_once JPATH_COMPONENT . '/helpers/receivements.php';
 
-        $view = JFactory::getApplication()->input->getCmd('view', 'ore');
+        $view = JFactory::getApplication()->input->getCmd('view', 'prenotazioni');
         JFactory::getApplication()->input->set('view', $view);
 
         parent::display($cachable, $urlparams);

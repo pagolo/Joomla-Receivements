@@ -26,7 +26,88 @@ class ReceivementsControllerOre extends JControllerAdmin
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 		return $model;
 	}
+
+        public function email($value)
+        {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+		// Initialise variables.
+		$ids	= JRequest::getVar('cid', array(), '', 'array');
+
+		if (empty($ids))
+		{
+			JError::raiseWarning(500, JText::_('COM_RECEIVEMENTS_NO_ITEM_SELECTED'));
+		}
+		else
+		{
+			// Get the model.
+			$model = $this->getModel();
+
+			// Change the state of the records.
+			if (!$model->setUseEmail($ids, $value))
+			{
+				JError::raiseWarning(500, $model->getError());
+			}
+			else
+			{
+				$this->setMessage(JText::plural('COM_RECEIVEMENTS_EMAIL_CHANGED', count($ids)));
+			}
+		}
+
+		$this->setRedirect('index.php?option=com_receivements&view=ore');
+        }    
+
+        public function attiva($value)
+        {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+		// Initialise variables.
+		$ids	= JRequest::getVar('cid', array(), '', 'array');
+
+		if (empty($ids))
+		{
+			JError::raiseWarning(500, JText::_('COM_RECEIVEMENTS_NO_ITEM_SELECTED'));
+		}
+		else
+		{
+			// Get the model.
+			$model = $this->getModel();
+
+			// Change the state of the records.
+			if (!$model->setActivation($ids, $value))
+			{
+				JError::raiseWarning(500, $model->getError());
+			}
+			else
+			{
+				$this->setMessage(JText::plural('COM_RECEIVEMENTS_ACTIVATION_CHANGED', count($ids)));
+			}
+		}
+
+		$this->setRedirect('index.php?option=com_receivements&view=ore');
+        }    
+
+        public function yes_email()
+        {
+                $this->email('1');
+        }
     
+        public function activate()
+        {
+                $this->attiva('1');
+        }
+    
+        public function no_email()
+        {
+                $this->email('0');
+        }
+    
+        public function unactivate()
+        {
+                $this->attiva('0');
+        }
     
 	/**
 	 * Method to save the submitted ordering values for records via AJAX.

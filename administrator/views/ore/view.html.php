@@ -71,33 +71,17 @@ class ReceivementsViewOre extends JView {
 
         if ($canDo->get('core.edit.state')) {
 
-            if (isset($this->items[0]->state)) {
+            if (isset($this->items[0])) {
                 JToolBarHelper::divider();
-                JToolBarHelper::custom('ore.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-                JToolBarHelper::custom('ore.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
-            } else if (isset($this->items[0])) {
-                //If this component does not use state then show a direct delete button as we can not trash
+		JToolBarHelper::publish('ore.yes_email', 'COM_RECEIVEMENTS_EMAIL_ON', true);
+		JToolBarHelper::unpublish('ore.no_email', 'COM_RECEIVEMENTS_EMAIL_OFF', true);
+		JToolBarHelper::publish('ore.activate', 'COM_RECEIVEMENTS_ACTIVATE', true);
+		JToolBarHelper::unpublish('ore.unactivate', 'COM_RECEIVEMENTS_UNACTIVATE', true);
+                JToolBarHelper::divider();
                 JToolBarHelper::deleteList('', 'ore.delete', 'JTOOLBAR_DELETE');
+                JToolBarHelper::divider();
             }
 
-            if (isset($this->items[0]->state)) {
-                JToolBarHelper::divider();
-                JToolBarHelper::archiveList('ore.archive', 'JTOOLBAR_ARCHIVE');
-            }
-            if (isset($this->items[0]->checked_out)) {
-                JToolBarHelper::custom('ore.checkin', 'checkin.png', 'checkin_f2.png', 'JTOOLBAR_CHECKIN', true);
-            }
-        }
-
-        //Show trash and delete for components that uses the state field
-        if (isset($this->items[0]->state)) {
-            if ($state->get('filter.state') == -2 && $canDo->get('core.delete')) {
-                JToolBarHelper::deleteList('', 'ore.delete', 'JTOOLBAR_EMPTY_TRASH');
-                JToolBarHelper::divider();
-            } else if ($canDo->get('core.edit.state')) {
-                JToolBarHelper::trash('ore.trash', 'JTOOLBAR_TRASH');
-                JToolBarHelper::divider();
-            }
         }
 
         if ($canDo->get('core.admin')) {

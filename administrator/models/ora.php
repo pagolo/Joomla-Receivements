@@ -128,4 +128,71 @@ class ReceivementsModelOra extends JModelAdmin
 		}
 	}
 
+        public function setUseEmail(&$pks, $value) {
+            $user		= JFactory::getUser();
+	    $table		= $this->getTable();
+	    $pks		= (array) $pks;
+            foreach ($pks as $i => $pk) {
+                if ($table->load($pk)) {
+                        $old	= $table->getProperties();
+			$allow	= $user->authorise('core.edit.state', 'com_receivements');
+			if ($allow) {
+                                // Skip changing of same state
+			        if ($table->email == $value) {
+				    unset($pks[$i]);
+				    continue;
+				}
+				$table->email = $value;
+				try {
+				    // Store the table.
+				    if (!$table->store())
+				    {
+				            $this->setError($table->getError());
+					    return false;
+				    }
+                                }
+				catch (Exception $e)
+					{
+						$this->setError($e->getMessage());
+						return false;
+					}
+                        }
+		}
+	    }
+	    return true;
+        }
+
+        public function setActivation(&$pks, $value) {
+            $user		= JFactory::getUser();
+	    $table		= $this->getTable();
+	    $pks		= (array) $pks;
+            foreach ($pks as $i => $pk) {
+                if ($table->load($pk)) {
+                        $old	= $table->getProperties();
+			$allow	= $user->authorise('core.edit.state', 'com_receivements');
+			if ($allow) {
+                                // Skip changing of same state
+			        if ($table->attiva == $value) {
+				    unset($pks[$i]);
+				    continue;
+				}
+				$table->attiva = $value;
+				try {
+				    // Store the table.
+				    if (!$table->store())
+				    {
+				            $this->setError($table->getError());
+					    return false;
+				    }
+                                }
+				catch (Exception $e)
+					{
+						$this->setError($e->getMessage());
+						return false;
+					}
+                        }
+		}
+	    }
+	    return true;
+        }
 }

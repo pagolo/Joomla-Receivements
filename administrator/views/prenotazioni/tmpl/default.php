@@ -10,7 +10,9 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.tooltip');
+JHTML::_('behavior.formvalidation');
 JHTML::_('script', 'system/multiselect.js', false, true);
+
 // Import CSS
 $document = JFactory::getDocument();
 $document->addStyleSheet('components/com_receivements/assets/css/receivements.css');
@@ -21,6 +23,11 @@ $listOrder = $this->state->get('list.ordering');
 $listDirn = $this->state->get('list.direction');
 $canOrder = $user->authorise('core.edit.state', 'com_receivements');
 $saveOrder = $listOrder == 'p.ordering';
+
+// include frontend helpers
+//$language =& JFactory::getLanguage();
+//$language->load('com_receivements', JPATH_SITE, $language->getTag(), true);
+require_once JPATH_SITE . '/components/com_receivements/helpers/receivements.php';
 
 ?>
 
@@ -42,21 +49,34 @@ $saveOrder = $listOrder == 'p.ordering';
             Joomla.submitform(task);
         }
     }
+    window.addEvent('domready', function(){
+    document.formvalidator.setHandler('date', function(value) {
+      regex=/^\d{2}-\d{2}-\d{4}$/;
+      if (regex.test(value)) {
+        var a = value.split('-');
+        var size=a.length;
+        if (size != 3) return false;
+        if (a[0] < 1 || a[0] > 31) return false;
+        if (a[1] < 1 || a[1] > 12) return false;
+        return true;
+      }
+      return false;
+      });
+    });
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_receivements&view=prenotazioni'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_receivements&view=prenotazioni'); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
     <fieldset id="filter-bar">
-        <!--TODO: keep filter working...-->
+
         <div class="filter-search fltlft">
-            <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-            <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('Search'); ?>" />
-            <button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
-            <button type="button" onclick="document.id('filter_search').value = '';
-                    this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
+            <label class="filter-search-lbl" for="filter_from"><?php echo JText::_('COM_RECEIVEMENTS_FROM'); ?></label>
+            <input type="text" name="filter_from" id="filter_from" class="required validate-date" size="12" value="<?php $from=$this->state->get('filter.from');echo $this->escape($from?$from:JHTML::_('date', JFactory::getDate(), 'd-m-Y')); ?>" title="<?php echo JText::_('Search'); ?>" />
+            <label class="filter-search-lbl" for="filter_to"><?php echo JText::_('COM_RECEIVEMENTS_TO'); ?></label>
+            <input type="text" name="filter_to" id="filter_to" class="validate-date" size="12" value="<?php echo $this->escape($this->state->get('filter.to')); ?>" title="<?php echo JText::_('Search'); ?>" />
+            <button type="submit" class="validate"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
+            <button type="button" onclick="document.id('filter_from').value = '<?=JHTML::_('date', JFactory::getDate(), 'd-m-Y')?>';document.id('filter_to').value = '';
+                    this.form.submit();"><?php echo JText::_('COM_RECEIVEMENTS_FROM_NOW'); ?></button>
         </div>
-
-        
-
     </fieldset>
     <div class="clr"> </div>
 
@@ -99,7 +119,10 @@ $saveOrder = $listOrder == 'p.ordering';
                 <?php endif; ?>
                 <?php if (isset($this->items[0]->email)) : ?>
                     <th class="nowrap left">
-                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_PARENT', 'u2.name', $listDirn, $listOrder); ?>
+                        <?php
+                        $orderby = ReceivementsFrontendHelper::getForcedLogin() ? 'u2.name' : 'p.email';
+                        echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_PARENT', $orderby, $listDirn, $listOrder);
+                        ?>
                     </th>
                 <?php endif; ?>
                 <?php if (isset($this->items[0]->data)) : ?>
@@ -197,12 +220,12 @@ $saveOrder = $listOrder == 'p.ordering';
                     <?php } ?>
                     <?php if (isset($this->items[0]->data)) { ?>
                         <td class="left">
-			     <?php echo $this->convertDateFrom($item->data,'d F Y, H:i'); ?>
+			     <?php echo ReceivementsFrontendHelper::convertDateFrom($item->data,'d F Y, H:i'); ?>
                         </td>
                     <?php } ?>
                     <?php if (isset($this->items[0]->creato)) { ?>
                         <td class="left">
-			     <?php echo $this->convertDateFrom($item->creato,'d F Y, H:i'); ?>
+			     <?php echo ReceivementsFrontendHelper::convertDateFrom($item->creato,'d F Y, H:i'); ?>
                         </td>
                     <?php } ?>
                     <?php if (isset($this->items[0]->sede)) { ?>
