@@ -28,7 +28,8 @@ class ReceivementsModelCattedre extends JModelList {
             $config['filter_fields'] = array(
                 'id', 'a.id',
                 'materie', 'a.materie',
-
+                'codice', 'a.codice',
+                'denom_min', 'a.denom_min',
             );
         }
 
@@ -91,15 +92,7 @@ class ReceivementsModelCattedre extends JModelList {
         $db = $this->getDbo();
         $query = $db->getQuery(true);
 
-        // Select the required fields from the table.
-        /*
-        $query->select(
-                $this->getState(
-                        'list.select', 'DISTINCT a.*'
-                )
-        );
-        */
-        $query->select('a.id,a.materie');
+        $query->select('a.id,a.materie,a.codice,a.denom_min');
         $query->from('`#__receivements_cattedre` AS a');
         
 
@@ -110,7 +103,12 @@ class ReceivementsModelCattedre extends JModelList {
                 $query->where('a.id = ' . (int) substr($search, 3));
             } else {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
-                
+                $conditions = array( 
+                        $db->quoteName('a.materie') . ' LIKE ' . $search,  
+                        $db->quoteName('a.codice') . ' LIKE ' . $search,
+                        $db->quoteName('a.denom_min') . ' LIKE ' . $search,
+                ); 
+                $query->where($conditions, 'OR'); 
             }
         }
 

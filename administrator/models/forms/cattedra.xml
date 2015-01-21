@@ -6,12 +6,20 @@
             readonly="true" class="readonly"
             description="JGLOBAL_FIELD_ID_DESC" /> 
 
-       <field name="materie" type="text"
-                
+       <field name="materie" type="text" size="40"
             label="COM_RECEIVEMENTS_FORM_LBL_CATTEDRA_CATTEDRA"
-            description="COM_RECEIVEMENTS_FORM_DESC_CATTEDRA_CATTEDRA" 
-                
-                
+            description="COM_RECEIVEMENTS_FORM_DESC_CATTEDRA_CATTEDRA"
+            required="true" 
+                 /> 
+
+       <field name="codice" type="text"
+            label="COM_RECEIVEMENTS_FORM_LBL_CATTEDRA_CODICE"
+            description="COM_RECEIVEMENTS_FORM_DESC_CATTEDRA_CODICE" 
+                 /> 
+
+       <field name="denom_min" type="text"  size="80"
+            label="COM_RECEIVEMENTS_FORM_LBL_CATTEDRA_DENOM"
+            description="COM_RECEIVEMENTS_FORM_DESC_CATTEDRA_DENOM" 
                  /> 
 
 

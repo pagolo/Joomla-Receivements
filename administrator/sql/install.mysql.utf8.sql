@@ -24,8 +24,11 @@ INSERT INTO `#__receivements_sedi` (`id`, `sede`) VALUES
 (2, 'Succursale');
 
 CREATE TABLE IF NOT EXISTS `#__receivements_cattedre` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `materie` text COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `materie` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `codice` varchar(32) COLLATE utf8_unicode_ci NULL,
+  `denom_min` varchar(255) COLLATE utf8_unicode_ci NULL,
+  
   PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_unicode_ci;
 
@@ -43,7 +46,9 @@ INSERT INTO `#__receivements_cattedre` (`id`, `materie`) VALUES
 CREATE TABLE IF NOT EXISTS `#__receivements_classi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `classe` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `note` text COLLATE utf8_unicode_ci NOT NULL,
+  `anno` int(11) NULL,
+  `sezione` varchar(16) COLLATE utf8_unicode_ci NULL,
+  `indirizzo` varchar(255) COLLATE utf8_unicode_ci NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `classe` (`classe`)
 ) DEFAULT COLLATE=utf8_unicode_ci ;

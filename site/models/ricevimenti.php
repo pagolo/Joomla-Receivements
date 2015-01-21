@@ -27,7 +27,7 @@ class ReceivementsModelRicevimenti extends JModelList
                 // get data from db
                 $user = JFactory::getUser();
                 $db = $this->getDBO();
-                $db->setQuery('SELECT studente AS nome, classe, parentela FROM #__receivements_parenti WHERE utente = '.$db->Quote($user->get('id')));
+                $db->setQuery('SELECT p.studente AS nome, c.classe AS classe, p.parentela AS parentela FROM #__receivements_parenti p LEFT JOIN #__receivements_classi c ON (p.id_classe = c.id) WHERE p.utente = '.$db->Quote($user->get('id')));
                 $temp = $db->loadAssoc();
                 // put data on session
                 if (!(empty($temp))) {

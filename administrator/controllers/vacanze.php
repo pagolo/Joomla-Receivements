@@ -26,6 +26,47 @@ class ReceivementsControllerVacanze extends JControllerAdmin
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 		return $model;
 	}
+
+        public function holiday($value)
+        {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+		// Initialise variables.
+		$ids	= JRequest::getVar('cid', array(), '', 'array');
+
+		if (empty($ids))
+		{
+			JError::raiseWarning(500, JText::_('COM_RECEIVEMENTS_NO_ITEM_SELECTED'));
+		}
+		else
+		{
+			// Get the model.
+			$model = $this->getModel();
+
+			// Change the state of the records.
+			if (!$model->setHoliday($ids, $value))
+			{
+				JError::raiseWarning(500, $model->getError());
+			}
+			else
+			{
+				$this->setMessage(JText::plural('COM_RECEIVEMENTS_HOLIDAY_CHANGED', count($ids)));
+			}
+		}
+
+		$this->setRedirect('index.php?option=com_receivements&view=vacanze');
+        }    
+    
+        public function festivo()
+        {
+                $this->holiday('1');
+        }
+    
+        public function feriale()
+        {
+                $this->holiday('0');
+        }
     
     
 	/**

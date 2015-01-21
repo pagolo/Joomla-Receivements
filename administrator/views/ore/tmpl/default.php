@@ -25,7 +25,6 @@ $saveOrder = $listOrder == 'a.ordering';
 
 <form action="<?php echo JRoute::_('index.php?option=com_receivements&view=ore'); ?>" method="post" name="adminForm" id="adminForm">
     <fieldset id="filter-bar">
-        <!--TODO: keep filter working...-->
         <div class="filter-search fltlft">
             <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
             <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('Search'); ?>" />
@@ -56,6 +55,12 @@ $saveOrder = $listOrder == 'a.ordering';
                         <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_NAME', 'u.name', $listDirn, $listOrder); ?>
                     </th>
                 <?php if (isset($this->items[0]->id)) : ?>
+		    <th class="nowrap" width="5%">
+			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_EMAIL', 'a.email', $listDirn, $listOrder); ?>
+		    </th>
+		    <th class="nowrap" width="5%">
+			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_ACTIVATED', 'a.attiva', $listDirn, $listOrder); ?>
+		    </th>
                     <th class="nowrap">
                         <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_CLASSES', 'a.classi', $listDirn, $listOrder); ?>
                     </th>
@@ -74,12 +79,6 @@ $saveOrder = $listOrder == 'a.ordering';
                     <th class="nowrap">
                         <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_SITE', 's.sede', $listDirn, $listOrder); ?>
                     </th>
-		    <th class="nowrap" width="5%">
-			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_EMAIL', 'a.email', $listDirn, $listOrder); ?>
-		    </th>
-		    <th class="nowrap" width="5%">
-			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_ACTIVATED', 'a.attiva', $listDirn, $listOrder); ?>
-		    </th>
                 <?php endif; ?>
                 <?php endif; ?>
             </tr>
@@ -124,6 +123,16 @@ $saveOrder = $listOrder == 'a.ordering';
                         </td>
                     <?php } ?>
                     <?php if (isset($this->items[0]->id)) : ?>
+                        <td class="center">
+			    <?php if ($canChange) : ?>
+				<?php echo JHtml::_('grid.boolean', $i, $item->email=='1', 'ore.yes_email', 'ore.no_email'); ?>
+			    <?php endif; ?>
+                        </td>
+                        <td class="center">
+			    <?php if ($canChange) : ?>
+				<?php echo JHtml::_('grid.boolean', $i, $item->attiva=='1', 'ore.activate', 'ore.unactivate'); ?>
+			    <?php endif; ?>
+                        </td>
                         <td class="left">
                             <?php echo $item->classi; ?>
                         </td>
@@ -136,21 +145,11 @@ $saveOrder = $listOrder == 'a.ordering';
                         <td class="left">
                             <?php echo substr($item->fine, 0, 5); ?>
                         </td>
-                        <td class="left">
+                        <td class="center">
                             <?php echo $item->max_app; ?>
                         </td>
                         <td class="left">
                             <?php echo $item->sede; ?>
-                        </td>
-                        <td class="center">
-			    <?php if ($canChange) : ?>
-				<?php echo JHtml::_('grid.boolean', $i, $item->email=='1', 'ore.yes_email', 'ore.no_email'); ?>
-			    <?php endif; ?>
-                        </td>
-                        <td class="center">
-			    <?php if ($canChange) : ?>
-				<?php echo JHtml::_('grid.boolean', $i, $item->attiva=='1', 'ore.activate', 'ore.unactivate'); ?>
-			    <?php endif; ?>
                         </td>
                     <?php endif; ?>
                 </tr>

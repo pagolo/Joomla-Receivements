@@ -26,8 +26,8 @@ class ReceivementsModelOre extends JModelList {
     public function __construct($config = array()) {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
-                                'id', 'a.id',
-                                'name', 'u.name',
+                'id', 'a.id',
+                'name', 'u.name',
                 'id_docente', 'a.id_docente',
                 'classi', 'a.classi',
                 'giorno', 'a.giorno',
@@ -101,13 +101,6 @@ class ReceivementsModelOre extends JModelList {
         $query = $db->getQuery(true);
 
         // Select the required fields from the table.
-        /*
-        $query->select(
-                $this->getState(
-                        'list.select', 'DISTINCT a.*'
-                )
-        );
-        */
         $query->select('a.*,u.name,s.sede');
         $query->from('`#__receivements_ore` AS a');
         $query->join('LEFT', $db->quoteName('#__users', 'u') . ' ON (' . $db->quoteName('a.id_docente') . ' = ' . $db->quoteName('u.id') . ')');        
@@ -121,12 +114,14 @@ class ReceivementsModelOre extends JModelList {
                 $query->where('a.id = ' . (int) substr($search, 3));
             } else {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
-                
+                $conditions = array( 
+                        $db->quoteName('u.name') . ' LIKE ' . $search,  
+                        $db->quoteName('s.sede') . ' LIKE ' . $search
+                        // TODO add weekday and dates
+                ); 
+                $query->where($conditions, 'OR'); 
             }
         }
-
-        
-
 
         // Add the list ordering clause.
         $orderCol = $this->state->get('list.ordering');

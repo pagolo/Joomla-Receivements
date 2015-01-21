@@ -6,22 +6,26 @@
             readonly="true" class="readonly"
             description="JGLOBAL_FIELD_ID_DESC" /> 
 
-       <field name="classe" type="text"
-                
+       <field name="classe" type="text" size="40"
             label="COM_RECEIVEMENTS_FORM_LBL_CLASSE_CLASSE"
             description="COM_RECEIVEMENTS_FORM_DESC_CLASSE_CLASSE" 
-                
-                
+            required="true"                
                  /> 
 
-       <field name="note" type="textarea"
-                
-            label="COM_RECEIVEMENTS_FORM_LBL_SEDE_NOTE"
-            description="COM_RECEIVEMENTS_FORM_DESC_SEDE_NOTE" 
-                
-                
+       <field name="anno" type="int" size="40"
+            label="COM_RECEIVEMENTS_FORM_LBL_CLASSE_ANNO"
+            description="COM_RECEIVEMENTS_FORM_DESC_CLASSE_ANNO" 
                  /> 
 
+       <field name="sezione" type="text" size="40"
+            label="COM_RECEIVEMENTS_FORM_LBL_CLASSE_SEZIONE"
+            description="COM_RECEIVEMENTS_FORM_DESC_CLASSE_SEZIONE" 
+                 /> 
+
+       <field name="indirizzo" type="text" size="80"
+            label="COM_RECEIVEMENTS_FORM_LBL_CLASSE_INDIRIZZO"
+            description="COM_RECEIVEMENTS_FORM_DESC_CLASSE_INDIRIZZO" 
+                 /> 
 
         </fieldset>
 

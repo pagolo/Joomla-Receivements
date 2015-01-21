@@ -26,6 +26,7 @@
        <field name="fine" type="calendar" class="inputbox"  format="%d-%m-%Y" default="NOW"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_FINE"
             description="COM_RECEIVEMENTS_FORM_DESC_FRAZ_FINE" 
+                                                     required="true" 
                                                     filter="safehtml" /> 
 
        <field name="festivo" type="checkbox" value="1" default="1"

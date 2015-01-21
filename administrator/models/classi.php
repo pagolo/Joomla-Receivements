@@ -28,7 +28,9 @@ class ReceivementsModelClassi extends JModelList {
             $config['filter_fields'] = array(
                 'id', 'a.id',
                 'classe', 'a.classe',
-                'note', 'a.note'
+                'anno', 'a.anno',
+                'sezione', 'a.sezione',
+                'indirizzo', 'a.indirizzo',
 
             );
         }
@@ -93,16 +95,8 @@ class ReceivementsModelClassi extends JModelList {
         $query = $db->getQuery(true);
 
         // Select the required fields from the table.
-        /*
-        $query->select(
-                $this->getState(
-                        'list.select', 'DISTINCT a.*'
-                )
-        );
-        */
-        $query->select('a.id,a.classe,a.note');
+        $query->select('a.*');
         $query->from('`#__receivements_classi` AS a');
-        
 
         // Filter by search in title
         $search = $this->getState('filter.search');
@@ -111,7 +105,13 @@ class ReceivementsModelClassi extends JModelList {
                 $query->where('a.id = ' . (int) substr($search, 3));
             } else {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
-                
+                $conditions = array( 
+                        $db->quoteName('a.classe') . ' LIKE ' . $search,  
+                        $db->quoteName('a.anno') . ' LIKE ' . $search,
+                        $db->quoteName('a.sezione') . ' LIKE ' . $search,
+                        $db->quoteName('a.indirizzo') . ' LIKE ' . $search,
+                ); 
+                $query->where($conditions, 'OR'); 
             }
         }
 

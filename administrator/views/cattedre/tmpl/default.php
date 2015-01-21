@@ -66,10 +66,14 @@ $saveOrder = $listOrder == 'a.ordering';
                     <th width="1%" class="nowrap">
                         <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
                     </th>
-                <?php endif; ?>
-                <?php if (isset($this->items[0]->materie)) : ?>
                     <th class="nowrap left">
                         <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_MATTERS', 'a.materie', $listDirn, $listOrder); ?>
+                    </th>
+                    <th width="10%" class="nowrap left">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_CODE', 'a.codice', $listDirn, $listOrder); ?>
+                    </th>
+                    <th class="nowrap left">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_OFFICIAL_MATTERS', 'a.denom_min', $listDirn, $listOrder); ?>
                     </th>
                 <?php endif; ?>
             </tr>
@@ -132,11 +136,15 @@ $saveOrder = $listOrder == 'a.ordering';
                         <td class="center">
                             <?php echo (int) $item->id; ?>
                         </td>
-                    <?php } ?>
-                    <?php if (isset($this->items[0]->materie)) { ?>
                         <td class="left">
-			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=cattedra.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_HOUR', $this->escape($item->materie)); ?>">
+			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=cattedra.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_MATTERS', $this->escape($item->materie)); ?>">
 			     <?php echo $this->escape($item->materie); ?></a>
+                        </td>
+                        <td class="left">
+			     <?php echo $this->escape($item->codice); ?>
+                        </td>
+                        <td class="left">
+			     <?php echo $this->escape($item->denom_min); ?>
                         </td>
                     <?php } ?>
                 </tr>

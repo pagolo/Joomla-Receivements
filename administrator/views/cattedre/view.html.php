@@ -77,7 +77,9 @@ class ReceivementsViewCattedre extends JView {
                 JToolBarHelper::custom('cattedre.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
             } else if (isset($this->items[0])) {
                 //If this component does not use state then show a direct delete button as we can not trash
+                JToolBarHelper::divider();
                 JToolBarHelper::deleteList('', 'cattedre.delete', 'JTOOLBAR_DELETE');
+                JToolBarHelper::divider();
             }
 
             if (isset($this->items[0]->state)) {

@@ -135,7 +135,7 @@ $saveOrder = $listOrder == 'a.ordering';
                     <?php } ?>
                     <?php if (isset($this->items[0]->sede)) { ?>
                         <td class="left">
-			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=sede.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_HOUR', $this->escape($item->sede)); ?>">
+			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=sede.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_SITE', $this->escape($item->sede)); ?>">
 			     <?php echo $this->escape($item->sede); ?></a>
                         </td>
                     <?php } ?>

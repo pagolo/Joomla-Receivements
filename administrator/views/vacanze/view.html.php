@@ -77,7 +77,12 @@ class ReceivementsViewVacanze extends JView {
                 JToolBarHelper::custom('vacanze.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
             } else if (isset($this->items[0])) {
                 //If this component does not use state then show a direct delete button as we can not trash
+                JToolBarHelper::divider();
+		JToolBarHelper::publish('vacanze.festivo', 'COM_RECEIVEMENTS_HOLIDAY', true);
+		JToolBarHelper::unpublish('vacanze.feriale', 'COM_RECEIVEMENTS_WEEKDAY', true);
+                JToolBarHelper::divider();
                 JToolBarHelper::deleteList('', 'vacanze.delete', 'JTOOLBAR_DELETE');
+                JToolBarHelper::divider();
             }
 
             if (isset($this->items[0]->state)) {
@@ -104,10 +109,4 @@ class ReceivementsViewVacanze extends JView {
             JToolBarHelper::preferences('com_receivements');
         }
     }
-    protected function convertDateFrom($date) {
-        $myDate = JFactory::getDate($date);
-        $format = JText::_('DATE_FORMAT_LC3');
-        return JHTML::_('date', $myDate, $format);;
-    }
-
 }

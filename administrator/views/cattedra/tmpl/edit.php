@@ -66,9 +66,13 @@ $document->addStyleSheet('components/com_receivements/assets/css/receivements.cs
             <legend><?php echo JText::_('COM_RECEIVEMENTS_LEGEND_CATTEDRA'); ?></legend>
             <ul class="adminformlist">
 
-                				<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
-				<li><?php echo $this->form->getLabel('materie'); ?>
-				<?php echo $this->form->getInput('materie'); ?></li>
+                <input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+		<li><?php echo $this->form->getLabel('materie'); ?>
+		<?php echo $this->form->getInput('materie'); ?></li>
+		<li><?php echo $this->form->getLabel('codice'); ?>
+		<?php echo $this->form->getInput('codice'); ?></li>
+		<li><?php echo $this->form->getLabel('denom_min'); ?>
+		<?php echo $this->form->getInput('denom_min'); ?></li>
 
 
             </ul>

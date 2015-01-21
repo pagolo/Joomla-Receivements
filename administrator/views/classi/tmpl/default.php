@@ -26,7 +26,6 @@ $saveOrder = $listOrder == 'a.ordering';
 
 <form action="<?php echo JRoute::_('index.php?option=com_receivements&view=classi'); ?>" method="post" name="adminForm" id="adminForm">
     <fieldset id="filter-bar">
-        <!--TODO: keep filter working...-->
         <div class="filter-search fltlft">
             <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
             <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('Search'); ?>" />
@@ -53,28 +52,21 @@ $saveOrder = $listOrder == 'a.ordering';
                     </th>
                 <?php endif; ?>
 
-                <?php if (isset($this->items[0]->ordering)) : ?>
-                    <th width="10%">
-                        <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ORDERING', 'a.ordering', $listDirn, $listOrder); ?>
-                        <?php if ($canOrder && $saveOrder) : ?>
-                            <?php echo JHtml::_('grid.order', $this->items, 'filesave.png', 'classi.saveorder'); ?>
-                        <?php endif; ?>
-                    </th>
-                <?php endif; ?>
-
                 <?php if (isset($this->items[0]->id)) : ?>
                     <th width="1%" class="nowrap">
                         <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
                     </th>
-                <?php endif; ?>
-                <?php if (isset($this->items[0]->classe)) : ?>
                     <th class="nowrap left">
                         <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_CLASS', 'a.classe', $listDirn, $listOrder); ?>
                     </th>
-                <?php endif; ?>
-                <?php if (isset($this->items[0]->note)) : ?>
                     <th class="nowrap left">
-                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_NOTE', 'a.note', $listDirn, $listOrder); ?>
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_YEAR', 'a.anno', $listDirn, $listOrder); ?>
+                    </th>
+                    <th class="nowrap left">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_SECTION', 'a.sezione', $listDirn, $listOrder); ?>
+                    </th>
+                    <th class="nowrap left">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_ADDRESS', 'a.indirizzo', $listDirn, $listOrder); ?>
                     </th>
                 <?php endif; ?>
             </tr>
@@ -137,16 +129,18 @@ $saveOrder = $listOrder == 'a.ordering';
                         <td class="center">
                             <?php echo (int) $item->id; ?>
                         </td>
-                    <?php } ?>
-                    <?php if (isset($this->items[0]->classe)) { ?>
                         <td class="left">
 			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=classe.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_CLASS', $this->escape($item->classe)); ?>">
 			     <?php echo $this->escape($item->classe); ?></a>
                         </td>
-                    <?php } ?>
-                    <?php if (isset($this->items[0]->note)) { ?>
                         <td class="left">
-			     <?php echo $this->escape($item->note); ?>
+			     <?php echo $item->anno; ?>
+                        </td>
+                        <td class="left">
+			     <?php echo $this->escape($item->sezione); ?>
+                        </td>
+                        <td class="left">
+			     <?php echo $this->escape($item->indirizzo); ?>
                         </td>
                     <?php } ?>
                 </tr>

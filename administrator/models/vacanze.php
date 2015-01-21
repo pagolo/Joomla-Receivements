@@ -28,7 +28,11 @@ class ReceivementsModelVacanze extends JModelList {
             $config['filter_fields'] = array(
                 'id', 'a.id',
                 'inizio', 'a.inizio',
+                'fine', 'a.fine',
                 'name', 'u.name',
+                'descrizione', 'a.descrizione',
+                'festivo', 'a.festivo',
+                'finale', 'a.finale',
             );
         }
 
@@ -92,14 +96,7 @@ class ReceivementsModelVacanze extends JModelList {
         $query = $db->getQuery(true);
 
         // Select the required fields from the table.
-        /*
-        $query->select(
-                $this->getState(
-                        'list.select', 'DISTINCT a.*'
-                )
-        );
-        */
-        $query->select('a.id,a.inizio,a.fine,a.finale,a.utente,u.name AS name,a.descrizione');
+        $query->select('a.id,a.inizio,a.fine,a.finale,a.festivo,a.utente,u.name AS name,a.descrizione');
         $query->from('`#__receivements_calendario` AS a');
         $query->join('LEFT', $db->quoteName('#__users', 'u') . ' ON (' . $db->quoteName('a.utente') . ' = ' . $db->quoteName('u.id') . ')');        
         
@@ -111,7 +108,12 @@ class ReceivementsModelVacanze extends JModelList {
                 $query->where('a.id = ' . (int) substr($search, 3));
             } else {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
-                
+                $conditions = array( 
+                        $db->quoteName('u.name') . ' LIKE ' . $search,  
+                        $db->quoteName('a.descrizione') . ' LIKE ' . $search
+                        // TODO date search
+                ); 
+                $query->where($conditions, 'OR'); 
             }
         }
 

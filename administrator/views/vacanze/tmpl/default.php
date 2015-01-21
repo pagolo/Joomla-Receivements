@@ -19,8 +19,10 @@ $user = JFactory::getUser();
 $userId = $user->get('id');
 $listOrder = $this->state->get('list.ordering');
 $listDirn = $this->state->get('list.direction');
-$canOrder = $user->authorise('core.edit.state', 'com_receivements');
+$canChange = $canOrder = $user->authorise('core.edit.state', 'com_receivements');
 $saveOrder = $listOrder == 'a.ordering';
+
+require_once JPATH_SITE . '/components/com_receivements/helpers/receivements.php';
 
 ?>
 
@@ -66,15 +68,23 @@ $saveOrder = $listOrder == 'a.ordering';
                     <th width="1%" class="nowrap">
                         <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
                     </th>
-                <?php endif; ?>
-                <?php if (isset($this->items[0]->inizio)) : ?>
                     <th width="20%" class="nowrap left">
                         <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_STARTDATE', 'a.inizio', $listDirn, $listOrder); ?>
                     </th>
-                <?php endif; ?>
-                <?php if (isset($this->items[0]->utente)) : ?>
-                    <th class="nowrap left">
-                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_NAME', 'u.name', $listDirn, $listOrder); ?>
+                    <th width="20%" class="nowrap left">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_ENDDATE', 'a.fine', $listDirn, $listOrder); ?>
+                    </th>
+		    <th class="nowrap" width="5%">
+			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_FORM_LBL_FESTIVO', 'a.festivo', $listDirn, $listOrder); ?>
+		    </th>
+		    <th class="nowrap" width="5%">
+			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_FORM_LBL_FRAZ_FINALE', 'a.finale', $listDirn, $listOrder); ?>
+		    </th>
+                    <th width="30%" class="nowrap left">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_FORM_LBL_FRAZ_DESC', 'a.descrizione', $listDirn, $listOrder); ?>
+                    </th>
+                    <th width="19%" class="nowrap left">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_TEACHER', 'u.name', $listDirn, $listOrder); ?>
                     </th>
                 <?php endif; ?>
             </tr>
@@ -137,17 +147,28 @@ $saveOrder = $listOrder == 'a.ordering';
                         <td class="center">
                             <?php echo (int) $item->id; ?>
                         </td>
-                    <?php } ?>
-                    <?php if (isset($this->items[0]->inizio)) { ?>
                         <td class="left">
 			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=vacanza.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_VACATION', $this->escape($item->inizio)); ?>">
-			     <?php echo $this->convertDateFrom($item->inizio); ?></a>
+			     <?php echo ReceivementsFrontendHelper::convertDateFrom($item->inizio,'d F Y'); ?></a>
                         </td>
-                    <?php } ?>
-                    <?php if (isset($this->items[0]->utente)) { ?>
                         <td class="left">
-			     <a href="<?php echo JRoute::_('index.php?option=com_receivements&task=vacanza.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_RECEIVEMENTS_EDIT_VACATION', $this->escape($item->inizio)); ?>">
-			     <?php echo $this->escape($item->name); ?></a>
+			     <?php echo ReceivementsFrontendHelper::convertDateFrom($item->fine,'d F Y'); ?>
+                        </td>
+                        <td class="center">
+			    <?php if ($canChange) : ?>
+				<?php echo JHtml::_('grid.boolean', $i, $item->festivo=='1', 'vacanze.festivo', 'vacanze.feriale'); ?>
+			    <?php endif; ?>
+                        </td>
+                        <td class="center">
+			    <?php if ($canChange) : ?>
+				<?php echo JHtml::_('grid.boolean', $i, $item->finale=='1', null, null); ?>
+			    <?php endif; ?>
+                        </td>
+                        <td class="left">
+			     <?php echo $this->escape($item->descrizione); ?>
+                        </td>
+                        <td class="left">
+			     <?php echo $item->name? $this->escape($item->name) : '---'; ?>
                         </td>
                     <?php } ?>
                 </tr>

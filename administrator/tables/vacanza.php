@@ -37,28 +37,29 @@ class ReceivementsTablevacanza extends JTable
 	 */
 	public function bind($array, $ignore = '')
 	{
-
-		
-
 		//Support for checkbox field: attiva
 		if (!isset($array['finale'])){
 			$array['finale'] = 0;
 		}
 
-                if (isset($array['inizio'])) {
+                if (JFactory::getApplication()->getUserState('com_receivements.vacanza.noconvert', false) == false) {
+                    if (isset($array['inizio'])) {
                         $t = explode('-', $array['inizio']);
                         $a = $t[2]; $c = $t[0];
                         $t[0] = $a; $t[2] = $c;
                         $array['inizio'] = implode('-', $t);
-                }
+                    }
                 
-                if (isset($array['fine'])) {
+                    if (isset($array['fine'])) {
                         $t = explode('-', $array['fine']);
                         $a = $t[2]; $c = $t[0];
                         $t[0] = $a; $t[2] = $c;
                         $array['fine'] = implode('-', $t);
+                    }
+                } else {
+                    JFactory::getApplication()->setUserState('com_receivements.vacanza.noconvert', false);
                 }
-                
+
 		if (isset($array['params']) && is_array($array['params']))
 		{
 			$registry = new JRegistry();

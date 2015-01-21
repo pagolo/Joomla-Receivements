@@ -119,5 +119,43 @@ class ReceivementsModelVacanza extends JModelAdmin
 
 		}
 	}
+        public function setHoliday(&$pks, $value) {
+            $user		= JFactory::getUser();
+	    $table		= $this->getTable();
+	    $pks		= (array) $pks;
+	    $app                = JFactory::getApplication();
+            foreach ($pks as $i => $pk) {
+                $app->setUserState('com_receivements.vacanza.noconvert', true);
+                if ($table->load($pk)) {
+                        $old	= $table->getProperties();
+			$allow	= $user->authorise('core.edit.state', 'com_receivements');
+			if ($allow) {
+                                // Skip changing of same state
+			        if ($table->festivo == $value) {
+				    unset($pks[$i]);
+				    continue;
+				}
+				$table->festivo = $value;
+				try {
+				    // Store the table.
+				    if (!$table->store())
+				    {
+				            $this->setError($table->getError());
+				            $app->setUserState('com_receivements.vacanza.noconvert', false);
+					    return false;
+				    }
+                                }
+				catch (Exception $e)
+					{
+						$this->setError($e->getMessage());
+						$app->setUserState('com_receivements.vacanza.noconvert', false);
+						return false;
+					}
+                        }
+		}
+	    }
+            $app->setUserState('com_receivements.vacanza.noconvert', false);
+	    return true;
+        }
 
 }

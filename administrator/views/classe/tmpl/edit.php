@@ -69,8 +69,12 @@ $document->addStyleSheet('components/com_receivements/assets/css/receivements.cs
                 				<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
 				<li><?php echo $this->form->getLabel('classe'); ?>
 				<?php echo $this->form->getInput('classe'); ?></li>
-				<li><?php echo $this->form->getLabel('note'); ?>
-				<?php echo $this->form->getInput('note'); ?></li>
+				<li><?php echo $this->form->getLabel('anno'); ?>
+				<?php echo $this->form->getInput('anno'); ?></li>
+				<li><?php echo $this->form->getLabel('sezione'); ?>
+				<?php echo $this->form->getInput('sezione'); ?></li>
+				<li><?php echo $this->form->getLabel('indirizzo'); ?>
+				<?php echo $this->form->getInput('indirizzo'); ?></li>
 
 
             </ul>
