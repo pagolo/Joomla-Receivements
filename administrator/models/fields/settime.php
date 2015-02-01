@@ -44,7 +44,7 @@ class JFormFieldSetTime extends JFormFieldText
                 $html[] = '" href="/index.php?option=com_receivements&view=oraform&layout=settime&tmpl=component&parent=';
                 $html[] = $this->id;
                 $html[] = '">';
-        	$html[] = '<img style="padding:0px;height:120%" src="' . JURI::base(true) . '/components/com_receivements/assets/icons/pen.png' . '" alt="pen_icon">';
+        	$html[] = '<img style="padding:0px;height:120%" src="' . JURI::base(true) . '/components/com_receivements/assets/images/pen.png' . '" alt="pen_icon">';
         	$html[] = "</a>";
         
 		return implode($html);

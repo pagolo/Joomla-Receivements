@@ -33,6 +33,7 @@
             label="COM_RECEIVEMENTS_FINISH"
             description="COM_RECEIVEMENTS_FORM_DESC_ASSENZA_FINE" 
          default="NOW" 
+         required="true" 
         filter="safehtml" /> 
 
         <field name="descrizione" type="text"

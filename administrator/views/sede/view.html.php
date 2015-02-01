@@ -53,7 +53,7 @@ class ReceivementsViewSede extends JView {
         }
         $canDo = ReceivementsHelper::getActions();
 
-        JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_SEDE'), 'ora.png');
+        JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_SEDE'), 'sedi.png');
 
         // If not checked out, can save the item.
         if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create')))) {

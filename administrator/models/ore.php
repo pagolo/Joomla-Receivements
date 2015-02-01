@@ -101,8 +101,9 @@ class ReceivementsModelOre extends JModelList {
         $query = $db->getQuery(true);
 
         // Select the required fields from the table.
-        $query->select('a.*,u.name,s.sede');
+        $query->select('a.*,u.name,s.sede,c.materie');
         $query->from('`#__receivements_ore` AS a');
+        $query->join('LEFT', $db->quoteName('#__receivements_cattedre', 'c') . ' ON (' . $db->quoteName('a.cattedra') . ' = ' . $db->quoteName('c.id') . ')');
         $query->join('LEFT', $db->quoteName('#__users', 'u') . ' ON (' . $db->quoteName('a.id_docente') . ' = ' . $db->quoteName('u.id') . ')');        
         $query->join('LEFT', $db->quoteName('#__receivements_sedi', 's') . ' ON (' . $db->quoteName('a.sede') . ' = ' . $db->quoteName('s.id') . ')');        
         
@@ -116,7 +117,9 @@ class ReceivementsModelOre extends JModelList {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
                 $conditions = array( 
                         $db->quoteName('u.name') . ' LIKE ' . $search,  
-                        $db->quoteName('s.sede') . ' LIKE ' . $search
+                        $db->quoteName('a.classi') . ' LIKE ' . $search,
+                        $db->quoteName('s.sede') . ' LIKE ' . $search,
+                        $db->quoteName('c.materie') . ' LIKE ' . $search,
                         // TODO add weekday and dates
                 ); 
                 $query->where($conditions, 'OR'); 

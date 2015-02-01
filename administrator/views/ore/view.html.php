@@ -69,6 +69,15 @@ class ReceivementsViewOre extends JView {
             }
         }
 
+        JToolBarHelper::divider();
+//        JToolBarHelper::custom( 'ore.importadocenti', 'import-export.png', 'import-export.png', JText::_('COM_RECEIVEMENTS_IMPORT'), false, false );
+        $import =
+        '<a class="toolbar button modal" rel="{handler: \'iframe\', size: {x: 600, y: 512}, onClose: function(){window.parent.document.location.reload(true)}}" '.
+        ' href="index.php?option=com_receivements&amp;tmpl=component&amp;view=importadocenti">'.
+        '<span title="'.JText::_('COM_RECEIVEMENTS_TEACHERS_IMPORT').'" class="icon-32-import-export"></span>'.JText::_('COM_RECEIVEMENTS_IMPORT').'</a>';      
+        $bar =& JToolBar::getInstance();
+        $bar->appendButton('Custom', $import);
+        
         if ($canDo->get('core.edit.state')) {
 
             if (isset($this->items[0])) {
@@ -78,7 +87,7 @@ class ReceivementsViewOre extends JView {
 		JToolBarHelper::publish('ore.activate', 'COM_RECEIVEMENTS_ACTIVATE', true);
 		JToolBarHelper::unpublish('ore.unactivate', 'COM_RECEIVEMENTS_UNACTIVATE', true);
                 JToolBarHelper::divider();
-                JToolBarHelper::deleteList('', 'ore.delete', 'JTOOLBAR_DELETE');
+                JToolBarHelper::deleteList('COM_RECEIVEMENTS_SURE_DELETE', 'ore.delete', 'JTOOLBAR_DELETE');
                 JToolBarHelper::divider();
             }
 

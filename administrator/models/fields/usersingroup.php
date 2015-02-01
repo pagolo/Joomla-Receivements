@@ -45,7 +45,23 @@ class JFormFieldUsersInGroup extends JFormFieldList
 		$groupkey = $this->element['group_name'];
                 $params = JComponentHelper::getParams('com_receivements');
                 $params_array = $params->toArray();
-                $groupname = isset($params_array[$groupkey])? $params_array[$groupkey] : ($groupkey=='teachers_group'?'Docenti':'Genitori'); 
+                $groupname = isset($params_array[$groupkey])? $params_array[$groupkey] : false;
+                if ($groupname === false) {
+                        switch ($groupkey) {
+                                case 'teachers_group':
+                                        $groupname = 'Docenti';
+                                        break;
+                                case 'parents_group':
+                                        $groupname = 'Genitori';
+                                        break;
+                                case 'students_group':
+                                        $groupname = 'Studenti';
+                                        break;
+                                case 'operators_group':
+                                        $groupname = 'Operatori';
+                                        break;
+                        }
+                }
 		$format = "SELECT u.id , u.name FROM #__users as u inner join #__usergroups AS ug ON ug.title = %s inner join #__user_usergroup_map AS ugm ON ugm.user_id = u.id  where ugm.group_id=ug.id ORDER BY name";
         
 		// Get the database object.

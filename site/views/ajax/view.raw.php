@@ -21,7 +21,6 @@ class ReceivementsViewAjax extends JView {
      */
     public function display($tpl = null)
     {
-        
         if (JRequest::getVar('layout', '', 'get', 'string') == 'change-student') {
                 $student_name = JRequest::getVar('student', '', 'get', 'string');
                 $user_id = JFactory::getUser()->get('id');

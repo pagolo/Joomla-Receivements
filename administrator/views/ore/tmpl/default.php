@@ -55,15 +55,18 @@ $saveOrder = $listOrder == 'a.ordering';
                         <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_NAME', 'u.name', $listDirn, $listOrder); ?>
                     </th>
                 <?php if (isset($this->items[0]->id)) : ?>
+                    <th class="nowrap">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_CLASSES', 'a.classi', $listDirn, $listOrder); ?>
+                    </th>
+                    <th class="nowrap">
+                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_MATTERS', 'c.materie', $listDirn, $listOrder); ?>
+                    </th>
 		    <th class="nowrap" width="5%">
-			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_EMAIL', 'a.email', $listDirn, $listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_EMAIL_RECEIVE', 'a.email', $listDirn, $listOrder); ?>
 		    </th>
 		    <th class="nowrap" width="5%">
 			<?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_ACTIVATED', 'a.attiva', $listDirn, $listOrder); ?>
 		    </th>
-                    <th class="nowrap">
-                        <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_CLASSES', 'a.classi', $listDirn, $listOrder); ?>
-                    </th>
                     <th class="nowrap">
                         <?php echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_DAY', 'a.giorno', $listDirn, $listOrder); ?>
                     </th>
@@ -123,6 +126,12 @@ $saveOrder = $listOrder == 'a.ordering';
                         </td>
                     <?php } ?>
                     <?php if (isset($this->items[0]->id)) : ?>
+                        <td class="left">
+                            <?php echo $item->classi; ?>
+                        </td>
+                        <td class="left">
+                            <?php echo $item->materie; ?>
+                        </td>
                         <td class="center">
 			    <?php if ($canChange) : ?>
 				<?php echo JHtml::_('grid.boolean', $i, $item->email=='1', 'ore.yes_email', 'ore.no_email'); ?>
@@ -132,9 +141,6 @@ $saveOrder = $listOrder == 'a.ordering';
 			    <?php if ($canChange) : ?>
 				<?php echo JHtml::_('grid.boolean', $i, $item->attiva=='1', 'ore.activate', 'ore.unactivate'); ?>
 			    <?php endif; ?>
-                        </td>
-                        <td class="left">
-                            <?php echo $item->classi; ?>
                         </td>
                         <td class="left">
                             <?php echo JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_'.$item->giorno); ?>

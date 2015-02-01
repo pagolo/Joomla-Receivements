@@ -107,6 +107,7 @@ class ReceivementsModelPrenotazioni extends JModelList {
         $query->join('LEFT', '#__receivements_sedi s ON (o.sede = s.id)');
 
         $from = $this->getState('filter.from');
+        if ($from === null) $from = JText::_('COM_RECEIVEMENTS_TODAY');
         if (!empty($from)) {
             if ($from == JText::_('COM_RECEIVEMENTS_TODAY')) {
                 $query->where('a.data >= NOW()');

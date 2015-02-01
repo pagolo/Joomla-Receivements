@@ -17,6 +17,7 @@ JHtml::_('behavior.tooltip');
 //echo $this->regexp;
 $doc = JFactory::getDocument();
 $doc->addStyleSheet(JUri::base() . '/components/com_receivements/assets/css/form.css');
+$doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js');
 
 ?>
 
@@ -65,8 +66,8 @@ $doc->addStyleSheet(JUri::base() . '/components/com_receivements/assets/css/form
 </div>
 
 <?php if (ReceivementsFrontendHelper::getForcedLogin()) : ?>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
+<script type="text/javascript">
+getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
 $(document).ready(function(){
   $("#jform_nome").change(function(){
         var student = $("#jform_nome").val();
@@ -76,6 +77,7 @@ $(document).ready(function(){
                 $("#jform_parentela").val(data.parentela == 'COM_RECEIVEMENTS_PARENT' ? '*' : data.parentela);
         }, "json" );
   });
+});
 });
 </script>
 <?php endif; ?>

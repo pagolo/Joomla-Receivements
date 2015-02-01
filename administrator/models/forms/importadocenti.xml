@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+        <field name="upload_teachers" type="file" 
+                label="COM_RECEIVEMENTS_CSV_FILE" 
+                description="COM_RECEIVEMENTS_CSV_FILE_DESC"
+                accept=".csv" 
+                />
+
+        <field name="separator" type="text" size="1" maxlength="1" default=";"
+                label="COM_RECEIVEMENTS_CSV_SEPARATOR" 
+                description="COM_RECEIVEMENTS_CSV_SEPARATOR_DESC"
+                />
+        
+        <field name="update" type="checkbox" value="1" default="1"
+                label="COM_RECEIVEMENTS_UPDATE_EXISTING" 
+                description="COM_RECEIVEMENTS_UPDATE_EXISTING_DESC"
+                />
+        
+       <field name="max_app" type="list" class="inputbox"
+            label="COM_RECEIVEMENTS_MAX_APP"
+            description="COM_RECEIVEMENTS_MAX_APP_DESC" 
+            default="6"> 
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+        </field>
+
+        <field name="name" type="list" default="lastfirst"
+                label="COM_RECEIVEMENTS_NAME_RULE"
+                description="COM_RECEIVEMENTS_NAME_RULE_DESC">
+                <option value="firstlast">COM_RECEIVEMENTS_FIRST_LAST</option>
+                <option value="lastfirst">COM_RECEIVEMENTS_LAST_FIRST</option>
+        </field>
+
+        <field name="username" type="list"                
+                label="COM_RECEIVEMENTS_USERNAME_RULE"
+                description="COM_RECEIVEMENTS_USERNAME_RULE_DESC" 
+                >
+                <option value="%s.%s">COM_RECEIVEMENTS_JOHN_SMITH</option>
+                <option value="%.1s.%s">COM_RECEIVEMENTS_J_SMITH</option>
+                <option value="#%s.%s">COM_RECEIVEMENTS_SMITH_JOHN</option>
+        </field>
+
+	</fieldset>
+
+</form>

@@ -61,7 +61,7 @@ class ReceivementsModelClassi extends JModelList {
         $this->setState('params', $params);
 
         // List state information.
-        parent::populateState('a.id,a.classe,a.note', 'asc');
+        parent::populateState('a.id,a.classe', 'asc');
     }
 
     /**

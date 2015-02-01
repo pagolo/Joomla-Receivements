@@ -1,14 +1,48 @@
 .icon-48-ore {
-      background-image: url(../images/l_ore.png);
+      background-image: url(../images/clock48.png);
+      padding-left:60px!important;
+}
+
+.icon-48-sedi {
+      background-image: url(../images/house48.png);
+      padding-left:60px!important;
+}
+
+.icon-48-cattedre {
+      background-image: url(../images/cattedra48.png);
+      padding-left:60px!important;
+}
+
+.icon-48-classi {
+      background-image: url(../images/classroom48.png);
+      padding-left:60px!important;
+}
+
+.icon-48-vacanze {
+      background-image: url(../images/calendar48.png);
+      padding-left:60px!important;
+}
+
+.icon-48-datetime {
+      background-image: url(../images/datetime48.png);
+      padding-left:60px!important;
+}
+
+.icon-48-parents {
+      background-image: url(../images/parents48.png);
       padding-left:60px!important;
 }
 
 .icon-48-ora {
-      background-image: url(../images/l_ore.png);
+      background-image: url(../images/clock48.png);
       padding-left:60px!important;
 }
 
 .icon-32-email-delete {
       background-image: url(../images/email-delete.png);
+}
+
+.icon-32-import-export {
+      background-image: url(../images/import-export.png);
 }
 

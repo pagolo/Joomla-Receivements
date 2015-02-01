@@ -54,7 +54,7 @@ class ReceivementsViewVacanze extends JView {
         $state = $this->get('State');
         $canDo = ReceivementsHelper::getActions($state->get('filter.category_id'));
 
-        JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_VACANZE'), 'sedi.png');
+        JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_VACANZE'), 'vacanze.png');
 
         //Check if the form exists before showing the add/edit buttons
         $formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/vacanza';

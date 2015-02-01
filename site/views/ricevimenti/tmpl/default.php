@@ -12,8 +12,9 @@ $document->addScript(JUri::base() . '/components/com_receivements/assets/js/form
 $lang = JFactory::getLanguage();
 $lang->load('', JPATH_ADMINISTRATOR);
 $canBook = ReceivementsFrontendHelper::canBook();
+$class = $this->state->get('filter.classe');
 ?>
-<h1><?=JText::_('COM_RECEIVEMENTS')?></h1>
+<h1><?php echo JText::_('COM_RECEIVEMENTS').' '.($class==='*'? '' : $class); ?></h1>
 
 <form action="" method="post" name="publicForm">
 		<div class="filter-select fltlft">
@@ -23,7 +24,7 @@ $canBook = ReceivementsFrontendHelper::canBook();
 			</select>
 			<select name="filter_class" class="inputbox" onchange="setTask('');this.form.submit();">
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_CLASSES');?></option>
-				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getClassesOptions(), 'text', 'text', $this->state->get('filter.classe'));?>
+				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getClassesOptions(), 'text', 'text', $class);?>
 			</select>
 			<select name="filter_site" class="inputbox" onchange="setTask('');this.form.submit();">
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_SITES');?></option>
@@ -43,7 +44,9 @@ $canBook = ReceivementsFrontendHelper::canBook();
 				<th><input type="checkbox" name="toggle" value="" title="<?=JText::_('COM_RECEIVEMENTS_SELECT_ALL')?>" onclick="checkAll(this)" /></th>
 				<th><?=JText::_('COM_RECEIVEMENTS_TEACHER')?></th>
 				<th><?=JText::_('COM_RECEIVEMENTS_MATTERS')?></th>
+<?php if ($class === '*' || empty($class)) : ?>
 				<th><?=JText::_('COM_RECEIVEMENTS_CLASSES')?></th>
+<?php endif; ?>
 				<th><?=JText::_('COM_RECEIVEMENTS_SITE')?></th>
 				<th><?=JText::_('COM_RECEIVEMENTS_DAY_TIME')?></th>
 			</tr>
@@ -70,7 +73,9 @@ $canBook = ReceivementsFrontendHelper::canBook();
 				<td><?=$row->name?></td>
 <?php endif; ?>
 				<td><?=$row->materie?></td>
+<?php if ($class === '*' || empty($class)) : ?>
 				<td><?=$row->classi?></td>
+<?php endif; ?>
 				<td><?=$row->sede?></td>
 				<td>
                                 <?php 

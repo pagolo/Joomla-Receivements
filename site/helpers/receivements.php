@@ -205,7 +205,7 @@ class ReceivementsAjaxHelper
 	function changeStudent($user_id, $nome)
 	{
 	       $db = JFactory::getDBO();
-	       $db->setQuery('SELECT classe, parentela FROM #__receivements_parenti WHERE utente = '.$db->Quote($user_id).' AND studente = '.$db->Quote($nome));
+	       $db->setQuery('SELECT c.classe, p.parentela FROM #__receivements_parenti p LEFT JOIN #__receivements_classi c ON (c.id = p.id_classe) WHERE utente = '.$db->Quote($user_id).' AND studente = '.$db->Quote($nome));
 	       return $db->loadAssoc();
 	}
 }

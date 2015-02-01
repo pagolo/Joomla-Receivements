@@ -54,7 +54,7 @@ class ReceivementsViewPrenotazioni extends JView {
         $state = $this->get('State');
         $canDo = ReceivementsHelper::getActions($state->get('filter.category_id'));
 
-        JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_BOOKINGS'), 'prenotazioni.png');
+        JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_BOOKINGS'), 'datetime.png');
 
         if ($canDo->get('core.edit.state')) {
             if (isset($this->items[0])) {
