@@ -10,6 +10,19 @@ defined('_JEXEC') or die;
 class ReceivementsFrontendHelper
 
 {
+        static
+        function buildReceivementCell($text, &$view, $len = 12, $expand = false) {
+                if ($expand) $len += 10;
+                $display_text = $view->escape(substr($text, 0, $len));
+                $text = $view->escape($text);
+                $tooltip = $display_text != $text;
+                $html = array();
+                if ($tooltip) $html[] = JText::sprintf('<span title="%s">', $text);
+                $html[] = $display_text . ($tooltip? '...' : '');
+                if ($tooltip) $html[] = '</span>';
+                return implode($html);
+        }
+        
 	static
 	function getWeekDayOptions()
 	{

@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 $message_trans = JRequest::getVar('msg', '', 'get', 'string');
 ?>
 
-<fieldset>
+<fieldset style="font-size:1.4em">
 <legend><?php echo JText::_('COM_RECEIVEMENTS_TEACHERS_IMPORT'); ?></legend>
 <br />
 <em>

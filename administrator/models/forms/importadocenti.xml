@@ -5,7 +5,8 @@
         <field name="upload_teachers" type="file" 
                 label="COM_RECEIVEMENTS_CSV_FILE" 
                 description="COM_RECEIVEMENTS_CSV_FILE_DESC"
-                accept=".csv" 
+                accept=".csv"
+                required="true" 
                 />
 
         <field name="separator" type="text" size="1" maxlength="1" default=";"

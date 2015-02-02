@@ -88,12 +88,12 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                 if ($hour_id) { // aggiorna i dati
                         if ($update) {
                                 $db->setQuery('UPDATE #__receivements_ore  SET classi='.$db->Quote($classi).', giorno='.$db->Quote($giorno).', inizio='.$db->Quote($inizio).', fine='.$db->Quote($fine).', max_app='.$db->Quote($max_app).', cattedra='.$db->Quote($materia_id).', sede='.$db->Quote($sede_id).' WHERE id = '.$db->Quote($hour_id));
-                                $db->execute();
+                                return ($db->execute());
                         }
-                        return;
+                        return false;
                 }
                 $db->setQuery('INSERT INTO #__receivements_ore (id_docente, classi, giorno, inizio, fine, max_app, cattedra, sede, email, attiva) VALUES ('.$db->Quote($userid).', '.$db->Quote($classi).', '.$db->Quote($giorno).', '.$db->Quote($inizio).', '.$db->Quote($fine).', '.$db->Quote($max_app).', '.$db->Quote($materia_id).', '.$db->Quote($sede_id).', TRUE, TRUE)');
-                $db->execute();
+                return ($db->execute());
         }
         /**
          * Do import hours and (perhaps) teachers
@@ -103,7 +103,16 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
          */
         public function doImport($input, $filename)
         {
+                /* data to show */
+                $data = new stdClass;
+                $data->users_created = 0;
+                $data->users_failed = 0;
+                $data->users_existing = 0;
+                $data->hours_saved = 0;
+                $data->hours_failed = 0;
+                /* import users? */
                 $import_users = false;
+                /* access to uploaded file */
                 $fh = fopen($filename, 'r');
                 $headers = fgetcsv($fh, 0, $input['separator']);
                 if (in_array ($this->x('FIRSTNAME'), $headers) && in_array($this->x('LASTNAME'), $headers)) {
@@ -157,12 +166,15 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                                         }
                                 } else {
                                         $userid = ReceivementsHelper::useridFromUsername($username);
+                                        if ($userid) $data->users_existing++;
                                 }
                                 if (!$userid) {
                                         $user = ReceivementsHelper::createUser($username, $row->$password,$name,  $row->$email, ReceivementsFrontendHelper::getTeachersGroup(), false);
                                         if ($user == null) {
+                                                $data->users_failed++;
                                                 continue; // TODO accodare avviso
                                         }
+                                        $data->users_created++;
                                         $userid = $user->id;
                                 }
                         } else { // don't import users, userid must be specified
@@ -170,8 +182,10 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                                 $username = $row->$_username;
                                 $userid = ReceivementsHelper::useridFromUsername($username);
                                 if (!$userid) {
+                                        $data->users_failed++;
                                         continue; // TODO accodare avviso
                                 }
+                                $data->users_existing++;
                         }
                         if ($user == null) $user = JFactory::getUser($userid);
                         $_materia = $this->x('MATTER');
@@ -202,23 +216,29 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                                 }
                         }
                         if ($giorno_finale == -1) {
+                                $data->hours_failed++;
                                 continue; // TODO accodare avviso
                         }
                         $_inizio = $this->x('START');
                         $inizio = $row->$_inizio;
                         if (strlen($inizio) != 5 || $inizio[2] != ':') {
+                                $data->hours_failed++;
                                 continue; // TODO accodare avviso
                         }
                         $inizio_finale = $inizio . ':00';
                         $_fine = $this->x('END');
                         $fine = $row->$_fine;
                         if (strlen($fine) != 5 || $fine[2] != ':') {
+                                $data->hours_failed++;
                                 continue; // TODO accodare avviso
                         }
                         $fine_finale = $fine . ':00';
                         $success = $this->saveHour($userid, $classi_finale, $giorno_finale, $inizio_finale, $fine_finale, $materia_id, $sede_id, $input['update'], $input['max_app']);
+                        if ($success) $data->hours_saved++;
+                        else $data->hours_failed++;
                 }
-                //exit;
+
+                JFactory::getApplication()->setUserState('com_receivements.importadocenti.data', $data);
                 return true;                
         }                                           
         

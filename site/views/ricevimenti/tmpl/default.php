@@ -13,6 +13,7 @@ $lang = JFactory::getLanguage();
 $lang->load('', JPATH_ADMINISTRATOR);
 $canBook = ReceivementsFrontendHelper::canBook();
 $class = $this->state->get('filter.classe');
+$showClass = $class === '*' || empty($class);
 ?>
 <h1><?php echo JText::_('COM_RECEIVEMENTS').' '.($class==='*'? '' : $class); ?></h1>
 
@@ -44,7 +45,7 @@ $class = $this->state->get('filter.classe');
 				<th><input type="checkbox" name="toggle" value="" title="<?=JText::_('COM_RECEIVEMENTS_SELECT_ALL')?>" onclick="checkAll(this)" /></th>
 				<th><?=JText::_('COM_RECEIVEMENTS_TEACHER')?></th>
 				<th><?=JText::_('COM_RECEIVEMENTS_MATTERS')?></th>
-<?php if ($class === '*' || empty($class)) : ?>
+<?php if ($showClass) : ?>
 				<th><?=JText::_('COM_RECEIVEMENTS_CLASSES')?></th>
 <?php endif; ?>
 				<th><?=JText::_('COM_RECEIVEMENTS_SITE')?></th>
@@ -68,13 +69,13 @@ $class = $this->state->get('filter.classe');
 			<tr class="row">
 				<td style="text-align:center"><?=$checked?></td>
 <?php if ($canBook) : ?>
-				<td><a href="index.php?option=com_receivements&view=prenota&id=<?=$row->id?>" title="<?=JText::_('COM_RECEIVEMENTS_PLEASE_BOOK')?>"><?=$row->name?></a></td>
+				<td><a href="index.php?option=com_receivements&view=prenota&id=<?=$row->id?>" title="<?=JText::_('COM_RECEIVEMENTS_PLEASE_BOOK')?>"><?=$this->escape($row->name)?></a></td>
 <?php else : ?>
-				<td><?=$row->name?></td>
+				<td><?=$this->escape($row->name)?></td>
 <?php endif; ?>
-				<td><?=$row->materie?></td>
-<?php if ($class === '*' || empty($class)) : ?>
-				<td><?=$row->classi?></td>
+				<td><?php echo ReceivementsFrontendHelper::buildReceivementCell($row->materie, $this, 17, !$showClass); ?></td>
+<?php if ($showClass) : ?>
+				<td><?php echo ReceivementsFrontendHelper::buildReceivementCell($row->classi, $this); ?></td>
 <?php endif; ?>
 				<td><?=$row->sede?></td>
 				<td>
