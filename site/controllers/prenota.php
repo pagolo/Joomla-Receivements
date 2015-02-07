@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version     0.0.1
+ * @version     0.5.0
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
@@ -10,8 +10,8 @@
 // No direct access
 defined('_JEXEC') or die;
 
-require_once JPATH_COMPONENT . '/controller.php';
-require_once JPATH_COMPONENT . '/helpers/receivements.php';
+require_once JPATH_COMPONENT . DS . 'controller.php';
+require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
 
 /**
  * Prenota controller class.
@@ -61,7 +61,7 @@ class ReceivementsControllerPrenota extends ReceivementsController {
                 $temp['email'] = $data['email'];
                 $temp['parentela'] = $data['parentela'];
                 $cookie = $app->input->cookie;
-                $cookie->set('receivements_cookie', base64_encode(serialize($temp)), strtotime( '+120 days' ));
+                $cookie->set('receivements_cookie', base64_encode(serialize($temp)), strtotime( '+90 days' ), '/');
                 // Save the data in the session.
                	$app->setUserState('com_receivements.booking.data', $data);
                 // if forcedlogin then save to db

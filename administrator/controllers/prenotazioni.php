@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     0.0.1
+ * @version     0.5.0
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
@@ -15,7 +15,7 @@ jimport('joomla.application.component.controlleradmin');
 // include frontend helpers
 $language =& JFactory::getLanguage();
 $language->load('com_receivements', JPATH_SITE, $language->getTag(), true);
-require_once JPATH_SITE . '/components/com_receivements/helpers/receivements.php';
+require_once JPATH_SITE.DS.'components'.DS.'com_receivements'.DS.'helpers'.DS.'receivements.php';
 
 /**
  * Sedi list controller class.

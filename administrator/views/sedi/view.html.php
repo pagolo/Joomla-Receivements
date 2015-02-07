@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version     0.0.1
+ * @version     0.5.0
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
@@ -49,7 +49,7 @@ class ReceivementsViewSedi extends JView {
      * @since	1.6
      */
     protected function addToolbar() {
-        require_once JPATH_COMPONENT . '/helpers/receivements.php';
+        require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
 
         $state = $this->get('State');
         $canDo = ReceivementsHelper::getActions($state->get('filter.category_id'));
@@ -57,7 +57,7 @@ class ReceivementsViewSedi extends JView {
         JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_SEDI'), 'sedi.png');
 
         //Check if the form exists before showing the add/edit buttons
-        $formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/sede';
+        $formPath = JPATH_COMPONENT_ADMINISTRATOR . DS . 'views' . DS . 'sede';
         if (file_exists($formPath)) {
 
             if ($canDo->get('core.create')) {

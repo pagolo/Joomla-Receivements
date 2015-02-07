@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     0.0.1
+ * @version     0.5.0
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
@@ -11,7 +11,7 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modeladmin');
-require_once JPATH_COMPONENT . '/helpers/receivements.php';
+require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
 
 /**
  * Receivements model.
@@ -156,7 +156,8 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                                         $username_fmt = substr($username_fmt, 1);
                                         $this->swap($nome, $cognome);
                                 }
-                                $username = $base = sprintf($username_fmt, strtolower($row->$nome), strtolower($row->$cognome));
+                                $username = sprintf($username_fmt, strtolower($row->$nome), strtolower($row->$cognome));
+                                $username = $base = str_replace(' ', '_', $username);
                                 $userid = 0;
                                 if ($row->$new) {
                                         $c = 1;
@@ -202,8 +203,8 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                         $ids_classi = array();
                         foreach($nomi_classi as $classe) {
                                 $classe = trim($classe);
-                                //$classe_id = ReceivementsHelper::idFromName($classe, '#__receivements_classi', 'classe');
-                                //if (!$classe_id) $classe_id = ReceivementsHelper::InsertField($classe, '#__receivements_classi', 'classe');
+                                $classe_id = ReceivementsHelper::idFromName($classe, '#__receivements_classi', 'classe');
+                                if (!$classe_id) $classe_id = ReceivementsHelper::InsertField($classe, '#__receivements_classi', 'classe');
                                 $ids_classi[] = $classe;//$classe_id;
                         }
                         $classi_finale = implode(',', $ids_classi);

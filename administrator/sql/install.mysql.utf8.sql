@@ -89,6 +89,7 @@ CREATE TABLE IF NOT EXISTS `#__receivements_parenti` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_classe` int(11) NOT NULL,
   `utente` int(11) NOT NULL,
+  `id_studente` int(11) NOT NULL DEFAULT '0',
   `studente` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `parentela` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)

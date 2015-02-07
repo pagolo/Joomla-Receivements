@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     0.0.1
+ * @version     0.5.0
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
@@ -109,7 +109,7 @@ class ReceivementsModelOraForm extends JModelForm
     
 	public function getTable($type = 'Ora', $prefix = 'ReceivementsTable', $config = array())
 	{   
-        $this->addTablePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
+        $this->addTablePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
         return JTable::getInstance($type, $prefix, $config);
 	}     
 

@@ -3,6 +3,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 JHtml::_('behavior.tooltip');
+JHTML::_('behavior.modal');
 JHTML::_('script', 'system/multiselect.js', false, true);
 // Import CSS
 $document = JFactory::getDocument();
@@ -33,7 +34,7 @@ $showClass = $class === '*' || empty($class);
 			</select>
 <?php if ($canBook) : ?>
 			<button type="submit" onclick="setTask('ricevimenti.init_booking')"><?=JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
-			<button onclick="alert('TO DO...'); return false;"><?=JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></button>
+                        <a class="button modal" rel="{handler: 'iframe', size: {x: 640, y: 400}}" href="index.php?option=com_receivements&view=prenotazioni&tmpl=component"><?=JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></a> 
 <?php else : ?>
                         <em><?=JText::_('COM_RECEIVEMENTS_PLEASE_LOGIN')?></em>
 <?php endif; ?>

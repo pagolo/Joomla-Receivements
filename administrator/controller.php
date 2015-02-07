@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version     0.0.1
+ * @version     0.5.0
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
@@ -22,7 +22,7 @@ class ReceivementsController extends JController {
      * @since	1.5
      */
     public function display($cachable = false, $urlparams = false) {
-        require_once JPATH_COMPONENT . '/helpers/receivements.php';
+        require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
 
         $view = JFactory::getApplication()->input->getCmd('view', 'prenotazioni');
         JFactory::getApplication()->input->set('view', $view);

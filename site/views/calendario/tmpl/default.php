@@ -25,7 +25,6 @@ $lang->load('', JPATH_ADMINISTRATOR);
 		</thead>
 		<tbody>
 <?php
-		$i = 0;
 		foreach ($this->items as &$row)
 		{
 ?>
@@ -35,7 +34,6 @@ $lang->load('', JPATH_ADMINISTRATOR);
 				<td><em><?=$row->descrizione?></em></td>
 			</tr>
 <?php
-			$i++;
 		}
 ?>
 		</tbody>

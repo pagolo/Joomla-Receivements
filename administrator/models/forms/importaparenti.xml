@@ -2,6 +2,38 @@
 <form>
 	<fieldset>
 
+        <field name="upload_parents" type="file" 
+                label="COM_RECEIVEMENTS_CSV_FILE" 
+                description="COM_RECEIVEMENTS_CSV_FILE_DESC"
+                accept=".csv"
+                required="true" 
+                />
+
+        <field name="separator" type="text" size="1" maxlength="1" default=";"
+                label="COM_RECEIVEMENTS_CSV_SEPARATOR" 
+                description="COM_RECEIVEMENTS_CSV_SEPARATOR_DESC"
+                />
+        
+        <field name="update" type="checkbox" value="1" default="1"
+                label="COM_RECEIVEMENTS_UPDATE_EXISTING" 
+                description="COM_RECEIVEMENTS_UPDATE_EXISTING_PARENT_DESC"
+                />        
+
+        <field name="name" type="list" default="lastfirst"
+                label="COM_RECEIVEMENTS_NAME_RULE"
+                description="COM_RECEIVEMENTS_NAME_RULE_DESC">
+                <option value="firstlast">COM_RECEIVEMENTS_FIRST_LAST</option>
+                <option value="lastfirst">COM_RECEIVEMENTS_LAST_FIRST</option>
+        </field>
+
+        <field name="username" type="list"                
+                label="COM_RECEIVEMENTS_USERNAME_RULE"
+                description="COM_RECEIVEMENTS_USERNAME_RULE_DESC" 
+                >
+                <option value="%s.%s">COM_RECEIVEMENTS_JOHN_SMITH</option>
+                <option value="%.1s.%s">COM_RECEIVEMENTS_J_SMITH</option>
+                <option value="#%s.%s">COM_RECEIVEMENTS_SMITH_JOHN</option>
+        </field>
 
 	</fieldset>
 

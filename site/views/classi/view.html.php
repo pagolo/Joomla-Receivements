@@ -10,6 +10,8 @@ jimport('joomla.application.component.view');
  */
 class ReceivementsViewClassi extends JView
 {
+        protected $items;
+
         // Overwriting JView display method
         function display($tpl = null) 
         {

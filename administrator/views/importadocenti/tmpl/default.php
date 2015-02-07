@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     0.0.1
+ * @version     0.5.0
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
@@ -34,7 +34,7 @@ $doc->addScript(JUri::base() . 'components/com_receivements/assets/js/spin.min.j
 				<?php echo $this->form->getInput('username'); ?></li>
 				<li><?php echo $this->form->getLabel('name'); ?>
 				<?php echo $this->form->getInput('name'); ?></li>
-				<li><button onclick="myspinner(this)" type="submit"><?php echo JText::_('COM_RECEIVEMENTS_IMPORT'); ?></button></li>
+				<li><button onclick="myspinner(this)" style="font-size:1.2em" type="submit"><?php echo JText::_('COM_RECEIVEMENTS_IMPORT'); ?></button></li>
             </ul>
         </fieldset>
 

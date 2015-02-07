@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version     0.0.1
+ * @version     0.5.0
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
@@ -10,7 +10,7 @@
 // No direct access
 defined('_JEXEC') or die;
 
-require_once JPATH_COMPONENT . '/controller.php';
+require_once JPATH_COMPONENT . DS . 'controller.php';
 
 /**
  * Assenza controller class.
@@ -159,6 +159,9 @@ class ReceivementsControllerAssenza extends ReceivementsController {
     }
 
     public function remove() {
+        // Check for request forgeries.
+        // TODO supportare la riga seguente
+        // JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
         // Initialise variables.
         $app = JFactory::getApplication();

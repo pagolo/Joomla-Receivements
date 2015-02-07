@@ -28,7 +28,6 @@ $lang->load('', JPATH_ADMINISTRATOR);
 		</thead>
 		<tbody>
 <?php
-		$i = 0;
 		foreach ($this->items as &$row)
 		{
 ?>
@@ -39,7 +38,6 @@ $lang->load('', JPATH_ADMINISTRATOR);
 				<td><button onclick="window.location.href = '<?php echo JRoute::_('index.php?option=com_receivements&task=assenza&id=' . $row->id, false, 2); ?>';" class="btn btn-mini" type="button"><?php echo JText::_('COM_RECEIVEMENTS_ORE_EDIT'); ?></button></td>
 			</tr>
 <?php
-			$i++;
 		}
 ?>
 		</tbody>

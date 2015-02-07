@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5" method="upgrade">
     <name>com_receivements</name>
-    <creationDate>2014-12-07</creationDate>
-    <copyright>Copyright (C) 2014. Tutti i diritti riservati.</copyright>
+    <creationDate>February 2015</creationDate>
+    <copyright>Copyright (C) 2015. Tutti i diritti riservati.</copyright>
     <license>GNU General Public License versione 2 o successiva; vedi LICENSE.txt</license>
     <author>Paolo Bozzo</author>
     <authorEmail>info@dbfweb.com</authorEmail>
     <authorUrl>http://dbfweb.com</authorUrl>
-    <version>0.0.1</version>
+    <version>0.5.0</version>
     <description></description>
-    
-    
     
     <install> <!-- Runs on install -->
         <sql>
@@ -49,9 +47,12 @@
         </languages>
         <menu img="components/com_receivements/assets/images/s_com_receivements.png" >COM_RECEIVEMENTS</menu>
         <submenu>
-            
 			<menu link="option=com_receivements&amp;view=prenotazioni" view="prenotazioni" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Prenotazioni">COM_RECEIVEMENTS_TITLE_PRENOTAZIONI</menu>
-
+			<menu link="option=com_receivements&amp;view=ore" view="ore" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Ore">COM_RECEIVEMENTS_TITLE_ORE</menu>
+			<menu link="option=com_receivements&amp;view=sedi" view="sedi" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Sedi">COM_RECEIVEMENTS_TITLE_SEDI</menu>
+			<menu link="option=com_receivements&amp;view=cattedre" view="cattedre" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Cattedre">COM_RECEIVEMENTS_TITLE_CATTEDRE</menu>
+			<menu link="option=com_receivements&amp;view=classi" view="classi" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Classi">COM_RECEIVEMENTS_TITLE_CLASSI</menu>
+			<menu link="option=com_receivements&amp;view=vacanze" view="vacanze" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Calendario">COM_RECEIVEMENTS_TITLE_CALENDARIO</menu>
         </submenu>
         <files folder="administrator">
             <filename>access.xml</filename>

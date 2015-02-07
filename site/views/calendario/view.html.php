@@ -10,6 +10,9 @@ jimport('joomla.application.component.view');
  */
 class ReceivementsViewCalendario extends JView
 {
+    protected $state;
+    protected $items;
+
         // Overwriting JView display method
         function display($tpl = null) 
         {
