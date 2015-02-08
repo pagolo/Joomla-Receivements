@@ -34,14 +34,7 @@ CREATE TABLE IF NOT EXISTS `#__receivements_cattedre` (
 
 INSERT INTO `#__receivements_cattedre` (`id`, `materie`) VALUES
 (1, 'Religione'),
-(2, 'Italiano e Storia'),
-(3, 'Italiano, Latino e Storia'),
-(4, 'Francese'),
-(5, 'Inglese'),
-(6, 'Matematica e Fisica'),
-(7, 'Chimica'),
-(8, 'Scienze'),
-(9, 'Scienze motorie');
+(2, 'Scienze motorie');
 
 CREATE TABLE IF NOT EXISTS `#__receivements_classi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

@@ -40,9 +40,9 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 
 <div class="front-end-edit">
     <?php if (!empty($this->item->id)): ?>
-        <h1><?=JText::_('COM_RECEIVEMENTS_EDIT_RECEIVEMENT_HOUR')?></h1>
+        <h1><?php echo JText::_('COM_RECEIVEMENTS_EDIT_RECEIVEMENT_HOUR')?></h1>
     <?php else: ?>
-        <h1><?=JText::_('COM_RECEIVEMENTS_CREATE_RECEIVEMENT_HOUR')?></h1>
+        <h1><?php echo JText::_('COM_RECEIVEMENTS_CREATE_RECEIVEMENT_HOUR')?></h1>
     <?php endif; ?>
 
     <form id="form-ora" action="<?php echo JRoute::_('index.php?option=com_receivements&task=ora.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">

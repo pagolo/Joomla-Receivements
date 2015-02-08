@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 JHtml::_('behavior.tooltip');
 
 ?>
-<h1><?=JText::_('COM_RECEIVEMENTS_BOOKINGS')?></h1>
+<h1><?php echo JText::_('COM_RECEIVEMENTS_BOOKINGS')?></h1>
 
 <?php
 if (empty($this->items)) echo JText::_('COM_RECEIVEMENTS_NO_BOOKING_AVAILABLE');

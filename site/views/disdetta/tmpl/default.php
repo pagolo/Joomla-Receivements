@@ -14,21 +14,21 @@ JHtml::_('behavior.tooltip');
 ?>
 
 <?php if (empty($this->data)) : ?>
-        <em><strong><?=JText::_('COM_RECEIVEMENTS_BOOKING_NOT_FOUND')?></strong></em>
+        <em><strong><?php echo JText::_('COM_RECEIVEMENTS_BOOKING_NOT_FOUND')?></strong></em>
 <?php else : ?>
         <div class="front-end-edit">
-        <form action="<?=JRoute::_('index?option=com_receivements&task=disdetta.remove')?>" id="form-remove" method="post" class="form-validate">
+        <form action="<?php echo JRoute::_('index?option=com_receivements&task=disdetta.remove')?>" id="form-remove" method="post" class="form-validate">
         <fieldset>
-        <legend><?=JText::_('COM_RECEIVEMENTS_REMOVE_BOOKING')?></legend>
-        <?=JText::sprintf('COM_RECEIVEMENTS_REALLY_REALLY_DELETE',$this->data['name'],ReceivementsFrontendHelper::convertDateFrom($this->data['data'], 'd/m/Y H:i'))?><br />&nbsp;<br />
-        <input type="hidden" id="jform_id" name="jform[id]" value="<?=$this->data['id']?>" />
-        <input type="hidden" id="jform_student" name="jform[student]" value="<?=$this->data['student']?>" />
-        <input type="hidden" id="jform_classe" name="jform[classe]" value="<?=$this->data['classe']?>" />
-        <input type="hidden" id="jform_data" name="jform[data]" value="<?=$this->data['data']?>" />
-        <input type="hidden" id="jform_name" name="jform[name]" value="<?=$this->data['name']?>" />
-        <input type="hidden" id="jform_email" name="jform[email]" value="<?=$this->data['email']?>" />
-        <input type="hidden" id="jform_use_email" name="jform[use_email]" value="<?=$this->data['use_email']?>" />
-        <button type="submit"><?=JText::_('COM_RECEIVEMENTS_REMOVE')?></button>
+        <legend><?php echo JText::_('COM_RECEIVEMENTS_REMOVE_BOOKING')?></legend>
+        <?php echo JText::sprintf('COM_RECEIVEMENTS_REALLY_REALLY_DELETE',$this->data['name'],ReceivementsFrontendHelper::convertDateFrom($this->data['data'], 'd/m/Y H:i'))?><br />&nbsp;<br />
+        <input type="hidden" id="jform_id" name="jform[id]" value="<?php echo $this->data['id']?>" />
+        <input type="hidden" id="jform_student" name="jform[student]" value="<?php echo $this->data['student']?>" />
+        <input type="hidden" id="jform_classe" name="jform[classe]" value="<?php echo $this->data['classe']?>" />
+        <input type="hidden" id="jform_data" name="jform[data]" value="<?php echo $this->data['data']?>" />
+        <input type="hidden" id="jform_name" name="jform[name]" value="<?php echo $this->data['name']?>" />
+        <input type="hidden" id="jform_email" name="jform[email]" value="<?php echo $this->data['email']?>" />
+        <input type="hidden" id="jform_use_email" name="jform[use_email]" value="<?php echo $this->data['use_email']?>" />
+        <button type="submit"><?php echo JText::_('COM_RECEIVEMENTS_REMOVE')?></button>
         <button class="cancel-button" onclick="window.location.href = '<?php echo JRoute::_('index.php', false, 2); ?>';" type="button"><?php echo JText::_('JCANCEL'); ?></button>
         <input type="hidden" name="option" value="com_receivements" />
         <input type="hidden" name="task" value="disdetta.remove" />

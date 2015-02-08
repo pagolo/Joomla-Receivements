@@ -28,7 +28,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 
         <?php echo $this->form->getInput('ricevimenti'); ?>
         <fieldset class="select_rcv">
-                <legend><?=JText::_('COM_RECEIVEMENTS_PERSONAL_DATA')?></legend>
+                <legend><?php echo JText::_('COM_RECEIVEMENTS_PERSONAL_DATA')?></legend>
                 <ul class="ul_rcv">
                         <li>
                                 <?php echo $this->form->getLabel('nome'); ?>
@@ -55,7 +55,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         </fieldset>
         <?php endif; ?>
         <fieldset class="center">
-                <button type="submit"><?=JText::_('COM_RECEIVEMENTS_SEND_REQUEST')?></button>
+                <button type="submit"><?php echo JText::_('COM_RECEIVEMENTS_SEND_REQUEST')?></button>
                 <button class="cancel-button" onclick="window.location.href = '<?php echo JRoute::_('index.php?option=com_receivements&task=ricevimenti', false, 2); ?>';" type="button"><?php echo JText::_('JCANCEL'); ?></button>
                 <input type="hidden" name="option" value="com_receivements" />
                 <input type="hidden" name="task" value="prenota.save" />

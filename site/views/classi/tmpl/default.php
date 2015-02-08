@@ -28,8 +28,8 @@ $lang->load('', JPATH_ADMINISTRATOR);
 		      $checked    = JHTML::_( 'grid.id', $i, $row->classe );
 ?>
 				<tr class="row">
-					<td><?=$checked?></td>
-					<td><?=$row->classe?></td>
+					<td><?php echo $checked?></td>
+					<td><?php echo $row->classe?></td>
 				</tr>
 <?php
 			$i++;

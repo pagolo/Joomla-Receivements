@@ -33,24 +33,24 @@ $showClass = $class === '*' || empty($class);
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getSitesOptions(), 'value', 'text', $this->state->get('filter.sede'));?>
 			</select>
 <?php if ($canBook) : ?>
-			<button type="submit" onclick="setTask('ricevimenti.init_booking')"><?=JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
-                        <a class="button modal" rel="{handler: 'iframe', size: {x: 640, y: 400}}" href="index.php?option=com_receivements&view=prenotazioni&tmpl=component"><?=JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></a> 
+			<button type="submit" onclick="setTask('ricevimenti.init_booking')"><?php echo JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
+                        <a class="button modal" rel="{handler: 'iframe', size: {x: 640, y: 400}}" href="index.php?option=com_receivements&view=prenotazioni&tmpl=component"><?php echo JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></a> 
 <?php else : ?>
-                        <em><?=JText::_('COM_RECEIVEMENTS_PLEASE_LOGIN')?></em>
+                        <em><?php echo JText::_('COM_RECEIVEMENTS_PLEASE_LOGIN')?></em>
 <?php endif; ?>
 		</div>
 		<div class="clr"><br /></div>
 	<table class='front-end-list'>
 		<thead>
 			<tr>
-				<th><input type="checkbox" name="toggle" value="" title="<?=JText::_('COM_RECEIVEMENTS_SELECT_ALL')?>" onclick="checkAll(this)" /></th>
-				<th><?=JText::_('COM_RECEIVEMENTS_TEACHER')?></th>
-				<th><?=JText::_('COM_RECEIVEMENTS_MATTERS')?></th>
+				<th><input type="checkbox" name="toggle" value="" title="<?php echo JText::_('COM_RECEIVEMENTS_SELECT_ALL')?>" onclick="checkAll(this)" /></th>
+				<th><?php echo JText::_('COM_RECEIVEMENTS_TEACHER')?></th>
+				<th><?php echo JText::_('COM_RECEIVEMENTS_MATTERS')?></th>
 <?php if ($showClass) : ?>
-				<th><?=JText::_('COM_RECEIVEMENTS_CLASSES')?></th>
+				<th><?php echo JText::_('COM_RECEIVEMENTS_CLASSES')?></th>
 <?php endif; ?>
-				<th><?=JText::_('COM_RECEIVEMENTS_SITE')?></th>
-				<th><?=JText::_('COM_RECEIVEMENTS_DAY_TIME')?></th>
+				<th><?php echo JText::_('COM_RECEIVEMENTS_SITE')?></th>
+				<th><?php echo JText::_('COM_RECEIVEMENTS_DAY_TIME')?></th>
 			</tr>
 		</thead>
                 <tfoot>
@@ -68,17 +68,17 @@ $showClass = $class === '*' || empty($class);
 		      $checked    = JHTML::_( 'grid.id', $i, $row->id );
 ?>
 			<tr class="row">
-				<td style="text-align:center"><?=$checked?></td>
+				<td style="text-align:center"><?php echo $checked?></td>
 <?php if ($canBook) : ?>
-				<td><a href="index.php?option=com_receivements&view=prenota&id=<?=$row->id?>" title="<?=JText::_('COM_RECEIVEMENTS_PLEASE_BOOK')?>"><?=$this->escape($row->name)?></a></td>
+				<td><a href="index.php?option=com_receivements&view=prenota&id=<?php echo $row->id?>" title="<?php echo JText::_('COM_RECEIVEMENTS_PLEASE_BOOK')?>"><?php echo $this->escape($row->name)?></a></td>
 <?php else : ?>
-				<td><?=$this->escape($row->name)?></td>
+				<td><?php echo $this->escape($row->name)?></td>
 <?php endif; ?>
 				<td><?php echo ReceivementsFrontendHelper::buildReceivementCell($row->materie, $this, 17, !$showClass); ?></td>
 <?php if ($showClass) : ?>
 				<td><?php echo ReceivementsFrontendHelper::buildReceivementCell($row->classi, $this); ?></td>
 <?php endif; ?>
-				<td><?=$row->sede?></td>
+				<td><?php echo $row->sede?></td>
 				<td>
                                 <?php 
                                 echo JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_' . $row->giorno);

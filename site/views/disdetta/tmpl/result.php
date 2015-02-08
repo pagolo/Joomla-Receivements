@@ -14,7 +14,7 @@ JHtml::_('behavior.tooltip');
 ?>
 
 <?php if ($this->result == 'ok') : ?>
-        <em><strong><?=JText::_('COM_RECEIVEMENTS_BOOKING_DELETED_SUCCESSFULLY')?></strong></em>
+        <em><strong><?php echo JText::_('COM_RECEIVEMENTS_BOOKING_DELETED_SUCCESSFULLY')?></strong></em>
 <?php else : ?>
-        <em><strong><?=JText::_('COM_RECEIVEMENTS_BOOKING_NOT_DELETED')?></strong></em>
+        <em><strong><?php echo JText::_('COM_RECEIVEMENTS_BOOKING_NOT_DELETED')?></strong></em>
 <?php endif; ?>

@@ -44,7 +44,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
                 echo JText::_('COM_RECEIVEMENTS_EDIT_ASSENZA');
         ?></h1>
     <?php else: ?>
-        <h1><?=JText::_('COM_RECEIVEMENTS_CREATE_ASSENZA')?></h1>
+        <h1><?php echo JText::_('COM_RECEIVEMENTS_CREATE_ASSENZA')?></h1>
     <?php endif; ?>
 
     <form id="form-assenza" action="<?php echo JRoute::_('index.php?option=com_receivements&task=assenza.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">

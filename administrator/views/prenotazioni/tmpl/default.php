@@ -37,10 +37,10 @@ require_once JPATH_SITE.DS.'components'.DS.'com_receivements'.DS.'helpers'.DS.'r
         if (task == 'prenotazioni.email_delete')
         {
             if (document.adminForm.boxchecked.value == 0) {
-                alert('<?=JText::_('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')?>');
+                alert('<?php echo JText::_('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')?>');
                 return false;
             }
-            if (confirm('<?=JText::_('COM_RECEIVEMENTS_REALLY_EMAIL_N_DELETE')?>')) {
+            if (confirm('<?php echo JText::_('COM_RECEIVEMENTS_REALLY_EMAIL_N_DELETE')?>')) {
                 Joomla.submitform(task);
             } else {
                 return false;
@@ -74,7 +74,7 @@ require_once JPATH_SITE.DS.'components'.DS.'com_receivements'.DS.'helpers'.DS.'r
             <label class="filter-search-lbl" for="filter_to"><?php echo JText::_('COM_RECEIVEMENTS_TO'); ?></label>
             <input type="text" name="filter_to" id="filter_to" class="validate-date" size="12" value="<?php echo $this->escape($this->state->get('filter.to')); ?>" title="<?php echo JText::_('Search'); ?>" />
             <button type="submit" class="validate"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
-            <button type="button" onclick="document.id('filter_from').value = '<?=JHTML::_('date', JFactory::getDate(), 'd-m-Y')?>';document.id('filter_to').value = '';
+            <button type="button" onclick="document.id('filter_from').value = '<?php echo JHTML::_('date', JFactory::getDate(), 'd-m-Y')?>';document.id('filter_to').value = '';
                     this.form.submit();"><?php echo JText::_('COM_RECEIVEMENTS_FROM_NOW'); ?></button>
         </div>
     </fieldset>
