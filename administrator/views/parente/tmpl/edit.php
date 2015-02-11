@@ -66,15 +66,30 @@ $document->addStyleSheet('components/com_receivements/assets/css/receivements.cs
             <legend><?php echo JText::_('COM_RECEIVEMENTS_LEGEND_PARENTE'); ?></legend>
             <ul class="adminformlist">
 
-                				<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
-				<li><?php echo $this->form->getLabel('utente'); ?>
-				<?php echo $this->form->getInput('utente'); ?></li>
-				<li><?php echo $this->form->getLabel('parentela'); ?>
-				<?php echo $this->form->getInput('parentela'); ?></li>
-				<li><?php echo $this->form->getLabel('studente'); ?>
-				<?php echo $this->form->getInput('studente'); ?></li>
-				<li><?php echo $this->form->getLabel('id_classe'); ?>
-				<?php echo $this->form->getInput('id_classe'); ?></li>
+                <input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+		<li><?php echo $this->form->getLabel('utente'); ?>
+		<?php echo $this->form->getInput('utente'); ?></li>
+		<li><?php echo $this->form->getLabel('parentela'); ?>
+		<?php echo $this->form->getInput('parentela'); ?></li>
+<?php if (ReceivementsHelper::groupidFromGroupname(ReceivementsFrontendHelper::getStudentsGroup())) : ?>
+		<li><?php echo $this->form->getLabel('id_studente'); ?>
+		<?php echo $this->form->getInput('id_studente'); ?></li>
+<script type="text/javascript">
+  getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
+  $(document).ready(function(){
+    $("#jform_id_studente").change(function(){
+        var student = $("#jform_id_studente option:selected").text();
+        var student_id = $("#jform_id_studente").val();
+        if (student_id) $("#jform_studente").val(student);
+      });
+    });
+  });
+</script>
+<?php endif; ?>
+		<li><?php echo $this->form->getLabel('studente'); ?>
+		<?php echo $this->form->getInput('studente'); ?></li>
+		<li><?php echo $this->form->getLabel('id_classe'); ?>
+		<?php echo $this->form->getInput('id_classe'); ?></li>
 
 
             </ul>

@@ -17,6 +17,8 @@ jimport('joomla.application.component.modelform');
  */
 class ReceivementsModelAgenda extends JModel
 {
+        protected $data = null;
+
         public function getData()
         {
 		if ($this->data === null) {

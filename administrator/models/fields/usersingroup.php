@@ -43,10 +43,9 @@ class JFormFieldUsersInGroup extends JFormFieldList
 
 		// Initialize some field attributes.
 		$groupkey = $this->element['group_name'];
-                $params = JComponentHelper::getParams('com_receivements');
-                $params_array = $params->toArray();
-                $groupname = isset($params_array[$groupkey])? $params_array[$groupkey] : false;
-                if ($groupname === false) {
+                $params = &JComponentHelper::getParams('com_receivements');
+                $groupname = $params->get($groupkey);
+                if (empty($groupname)) {
                         switch ($groupkey) {
                                 case 'teachers_group':
                                         $groupname = 'Docenti';

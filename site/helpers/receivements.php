@@ -124,16 +124,24 @@ class ReceivementsFrontendHelper
 	{
 	        $app = JFactory::getApplication();
                 $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
-                $params_array = $params->toArray();
-                return (isset($params_array['parents_group'])? $params_array['parents_group'] : 'Genitori'); 
+                $groupname = $params->get('parents_group');
+                return (empty($groupname) ? 'Genitori' : $groupname); 
         }
         
 	function getTeachersGroup()
 	{
 	        $app = JFactory::getApplication();
                 $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
-                $params_array = $params->toArray();
-                return (isset($params_array['teachers_group'])? $params_array['teachers_group'] : 'Docenti'); 
+                $groupname = $params->get('teachers_group');
+                return (empty($groupname) ? 'Docenti' : $groupname); 
+        }
+        
+	function getStudentsGroup()
+	{
+	        $app = JFactory::getApplication();
+                $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
+                $groupname = $params->get('students_group');
+                return (empty($groupname) ? 'Studenti' : $groupname); 
         }
         
 	static

@@ -14,7 +14,7 @@ class ReceivementsModelPrenotazioni extends JModelList
                 $temp = (array)unserialize(base64_decode($cookie->get('receivements_cookie')));
                 if (empty($temp) || !isset($temp['email'])) {
                         //$app->enqueueMessage(JText::_('COM_RECEIVEMENTS_COOKIE_EXPIRED'), 'warning');
-                        return false;
+                        $temp['email'] = 'noemail';
                 }
         }
         $user = JFactory::getUser();

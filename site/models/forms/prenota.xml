@@ -21,7 +21,7 @@
                 <field
 		        name="classe"
 		        type="sql" class="inputbox"
-		        query="SELECT a.id AS text, a.classe AS value FROM #__receivements_classi AS a ORDER BY a.classe ASC"
+		        query="SELECT a.id AS text, a.classe AS value, a.classe FROM #__receivements_classi AS a ORDER BY a.classe ASC"
                         label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_CLASSE"
                         description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_CLASSE" 
                         /> 

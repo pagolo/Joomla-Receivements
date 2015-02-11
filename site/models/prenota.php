@@ -36,8 +36,8 @@ class ReceivementsModelPrenota extends JModelForm
 		// Load state from the request userState on edit or from the passed variable on default
                 $id = $app->input->get('id', null, 'raw');
                 //$re = '^(' . str_replace('.', '|', $id) . ')$';
-                $app->setUserState('com_receivements.init.prenota.id', $id);
-		$this->setState('prenota.id', $id);
+                if (!empty($id)) $app->setUserState('com_receivements.init.prenota.id', $id);
+		//$this->setState('prenota.id', $id);
         }
         
 
@@ -66,7 +66,7 @@ class ReceivementsModelPrenota extends JModelForm
 	}
 	public function getData()
 	{
-		if ($this->data === null) {
+		if (!isset($this->data) || $this->data === null) {
 
 			$this->data	= new stdClass();
 			$app	= JFactory::getApplication();

@@ -27,6 +27,16 @@
                                 <option value="COM_RECEIVEMENTS_OTHER">COM_RECEIVEMENTS_OTHER</option>
                         </field> 
 
+                <field
+			name="id_studente"
+			type="usersingroup"
+			group_name="students_group"
+                        label="COM_RECEIVEMENTS_ID_STUDENT"
+                        description="COM_RECEIVEMENTS_DESC_ID_STUDENT"
+                        filter="safehtml">
+                                <option value="0">COM_RECEIVEMENTS_NO_STUDENT</option>
+                </field> 
+
                 <field name="studente" type="text"
                 label="COM_RECEIVEMENTS_STUDENT"
                 description="COM_RECEIVEMENTS_DESC_STUDENT"

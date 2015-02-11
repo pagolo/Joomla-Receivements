@@ -20,6 +20,13 @@
                         description="COM_RECEIVEMENTS_TEACHERS_DESC"
                         default="Docenti"
                 />
+                <field
+                        name="students_group"
+                        type="text"
+                        label="COM_RECEIVEMENTS_STUDENTS_LBL"
+                        description="COM_RECEIVEMENTS_STUDENTS_DESC"
+                        default="Studenti"
+                />
 		<field
 			name="pre_booking"
 			type="list"

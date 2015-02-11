@@ -36,6 +36,9 @@ class ReceivementsControllerRicevimenti extends ReceivementsController
                 }
         }
         if ($val === "") $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=ricevimenti'));
-        else $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=prenota&id=' . $val));
+        else {
+                JFactory::getApplication()->setUserState('com_receivements.init.prenota.id', $val);
+                $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=prenota'));
+        }
     }
 }

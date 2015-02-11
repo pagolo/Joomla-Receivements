@@ -58,7 +58,7 @@ class JFormFieldReceivements extends JFormField
         		$options = (array) $this->getOptions();
         		if (empty($options)) continue;
         		$count++;
-		        $html[] = '<li><div style="float:left;width:60%">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_' . $_item->giorno) . ' ' . substr($_item->inizio,0,5) . '/' . substr($_item->fine,0,5) . '</div><div>';
+		        $html[] = '<li><div style="float:left;width:60%;height:1em">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_' . $_item->giorno) . ' ' . substr($_item->inizio,0,5) . '/' . substr($_item->fine,0,5) . '</div><div>';
 			$html[] = JHtml::_('select.genericlist', $options, 'jform[ricevimenti_'.$i.']', '', 'value', 'text', 'jform_ricevimenti_'.$i);
 			$html[] = '<input type="hidden" name="jform[ricevimenti_user_'.$i.']" value="'.$_item->id_docente.'" id="jform_ricevimenti_user_'.$i.'" />';
 			$html[] = '<input type="hidden" name="jform[ricevimenti_name_'.$i.']" value="'.$_item->name.'" id="jform_ricevimenti_name_'.$i.'" />';
@@ -95,7 +95,7 @@ class JFormFieldReceivements extends JFormField
 		for ($i = 0; $i < ReceivementsFrontendHelper::getShowTotalDays(); $i++) {
 		      $avail = ReceivementsFrontendHelper::isDateAvailable($start, $this->item->id_docente, $this->item->id);
 		      if ($avail == -1) break; // if final holidays then exit
-                      $text = ReceivementsFrontendHelper::convertDateFrom($start, DATE_FORMAT_LC);
+                      $text = ReceivementsFrontendHelper::convertDateFrom($start, 'DATE_FORMAT_LC');
         	      $options[] = JHtml::_('select.option', $start, $text, 'value', 'text', !$avail);
 		      $start = JFactory::getDate($start . ' +7 day');
                 }
