@@ -190,6 +190,10 @@ class ReceivementsModelImportaParenti extends JModelAdmin
                                 $data->users_existing++;
                         }
                         if ($user == null) $user = JFactory::getUser($userid);
+			if ($user == null && $userid == 0) {
+                                $data->hours_failed++;
+                                continue; // TODO accodare avviso
+			}
                         
                         $_classe = $this->x('CLASS');
                         $classe = trim($row->$_classe);
