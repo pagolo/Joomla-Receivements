@@ -2,7 +2,7 @@
 /**
  * @package    Receivements
  * @subpackage Models
- * @author     Paolo Bozzo {@link http://www.dbfweb.com}
+ * @author     Paolo Bozzo - pagolo.bozzo AT gmail.com  {@link http://www.dbfweb.com}
  * @author     Created on 30-Nov-2014
  * @license    GNU/GPL
  */

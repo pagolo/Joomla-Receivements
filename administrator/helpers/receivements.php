@@ -12,7 +12,7 @@
 
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
 
- * @author      Paolo Bozzo <info@dbfweb.com> - http://dbfweb.com
+ * @author      Paolo Bozzo - pagolo.bozzo AT gmail.com - http://dbfweb.com
 
  */
 

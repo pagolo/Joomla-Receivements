@@ -1,0 +1,6 @@
+nome;cognome;password;email;materia;classi;giorno;inizio;fine;sede;nuovo
+Marguerite;Yourcenar;123537;yourcenar@mailinator.com;FRANCESE;1B,2B,3A,3B,4B,5B;Mercoledì;10:30;11:20;Sede;0
+Claudio;Tolomeo;123555;tolomeo@mailinator.com;GEOGRAFIA;1A,1B,1C,2A,2B,2C;Mercoledì;10:30;11:20;Sede;0
+Immanuel;Kant;123564;kant@mailinator.com;FILOSOFIA;4C;Lunedì;09:30;09:45;Succursale;0
+William;Shakespeare;123654;shakespeare@mailinator.com;INGLESE;3A,4A,4B,5B;Giovedì;10:30;11:20;Sede;0
+Cesare;Beccaria;123474;beccaria@mailinator.com;"DIRITTO; ECONOMIA";4A,4C,5A;Mercoledì;11:20;12:10;Sede;0

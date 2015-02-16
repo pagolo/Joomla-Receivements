@@ -68,6 +68,7 @@ class ReceivementsModelRicevimenti extends JModelList
         $query->join('LEFT', $db->quoteName('#__receivements_cattedre', 'c') . ' ON (' . $db->quoteName('cattedra') . ' = ' . $db->quoteName('c.id') . ')');
         $query->join('LEFT', $db->quoteName('#__receivements_sedi', 's') . ' ON (' . $db->quoteName('o.sede') . ' = ' . $db->quoteName('s.id') . ')');
         $query->where('o.attiva <> ' . $db->Quote('0'));
+        $query->order('u.name');
         
         // Filter by search in day
         $search = $this->getState('filter.giorno');

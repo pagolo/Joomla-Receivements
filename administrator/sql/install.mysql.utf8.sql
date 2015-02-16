@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `#__receivements_prenotazioni` (
   `nome` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `utente` int(11) NOT NULL DEFAULT '0',
   `creato` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `guid_scadenza` datetime NULL, 
   PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_unicode_ci;
 

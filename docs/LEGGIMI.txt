@@ -1,0 +1,69 @@
+Receivements for Joomla
+-----------------------
+versione 0.5.4 (preview version)
+licenza  GPL 2
+data     13/02/2015
+autore   P. Bozzo
+
+CARATTERISTICHE
+---------------
+Software per gestire, tramite Joomla, i colloqui dei genitori con i docenti in
+una scuola italiana. Richiede la presenza dei docenti come utenti Joomla.
+L'estensione funziona solo con Joomla 2.5. Si raccomanda di utilizzare la
+versione a cura di 'Porte aperte sul Web'. 
+Nel backend:
+- Gestione delle ore di appuntamento, dei genitori/studenti (opzionale), delle
+classi, delle materie, dei giorni di sospensione del ricevimento.
+Nel frontend:
+- Elenco dei ricevimenti, prenotazione di uno o più ricevimenti, agenda del
+docente (riporta tutti gli appuntamenti che lo riguardano). Elenco delle
+prenotazioni per il genitore. Prenotazioni del giorno.
+
+PRIMA DI TUTTO
+--------------
+Quando si installa l'estensione il backend sarà già pronto e funzionante,
+mentre per il frontend bisognerà costruire i menù.
+Operazioni preliminari:
+Sotto il menù utenti andare su gruppi -> nuovo gruppo e, se non esiste già,
+creare il gruppo Docenti, derivato da 'Registered' (se esiste già un gruppo
+docenti con un altro nome usare quello configurandolo in ricevimenti->opzioni).
+Andare su livello di accesso -> nuovo livello di accesso, dargli il nome
+'Docenti' selezionando il gruppo Docenti.
+Costruzione del menù:
+1. Costruire un menù 'Ricevimenti' e collegarlo a un nuovo modulo 'Ricevimenti'.
+2. Impostare il modulo affinché il menù venga posizionato nella posizione
+   preferita.
+3. Aggiungere al menù le seguenti voci:
+   3.1 Ricevimenti dei docenti
+   3.2 Ora di ricevimento
+   3.3 Giorni di assenza
+   3.4 Agenda del docente
+Le voci sono recuperabili dalla lista di voci sotto il titolo 'Ricevimenti'.
+E' importante anche specificare il livello di accesso (3.1: Public, gli altri
+Docente).
+
+OPZIONALE
+---------
+Sempre nella scheda Ricevimenti delle opzioni è possibile attivare "Login
+richiesto per prenotare". La presenza degli utenti-genitori può essere risolta
+con l'apposita importazione (per il formato consultare il file genitori.csv).
+
+IMPORTAZIONE DEI DOCENTI
+------------------------
+Nell'archivio, oltre a questo file LEGGIMI sono presenti anche due file di
+esempio importazioni: docenti.csv e genitori.csv
+Per importare il file docenti.csv andare in 'Ore' e scegliere 'Importa'.
+I file csv sono file che possono essere caricati con un editor di testo oppure
+con un qualsiasi programma di Foglio Elettronico, come Microsoft Excel (c).
+La prima riga contiene i nomi dei campi in italiano:
+nome;cognome;password;email;materia;classi;giorno;inizio;fine;sede;nuovo
+i primi quattro sono i parametri con cui costruire gli utenti-docenti; l'ultimo
+('nuovo') indica se bisogna comunque creare l'utente (1) oppure se bisogna
+utilizzare il docente eventualmente esistente con gli stessi parametri (0, 
+opzione consigliata e sicura).
+Se tutti gli utenti sono già stati creati, impostare l'opzione nuovo a 0.
+In materia inserire le materie insegnate; in classi la lista delle classi
+separate da virgola; in giorno il giorno della settimana dell'ora di
+ricevimento; in inizio e fine l'ora di inizio e fine del ricevimento, CATEGORI-
+CAMENTE nel formato hh:mm; in sede la sede in cui si riceve.
+
