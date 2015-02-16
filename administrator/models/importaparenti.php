@@ -24,21 +24,6 @@ class ReceivementsModelImportaParenti extends JModelAdmin
 	 */
 	protected $text_prefix = 'COM_RECEIVEMENTS';
 
-
-	/**
-	 * Returns a reference to the a Table object, always creating it.
-	 *
-	 * @param	type	The table type to instantiate
-	 * @param	string	A prefix for the table class name. Optional.
-	 * @param	array	Configuration array for model. Optional.
-	 * @return	JTable	A database object
-	 * @since	1.6
-	public function getTable($type = 'Sede', $prefix = 'ReceivementsTable', $config = array())
-	{
-		return JTable::getInstance($type, $prefix, $config);
-	}
-	 */
-
 	/**
 	 * Method to get the record form.
 	 *
@@ -82,7 +67,6 @@ class ReceivementsModelImportaParenti extends JModelAdmin
                 $y=$tmp;
         }
         protected function saveParent($id_classe, $utente, $studente, $parentela, $update) {
-                // TODO gestire eventuali errori
                 $parent_id = ReceivementsHelper::idFromName($utente, '#__receivements_parenti', 'utente');
                 $db = $this->getDBO();
                 if ($parent_id) { // aggiorna i dati
@@ -191,16 +175,19 @@ class ReceivementsModelImportaParenti extends JModelAdmin
                         }
                         if ($user == null) $user = JFactory::getUser($userid);
 			if ($user == null && $userid == 0) {
-                                $data->hours_failed++;
+                                $data->users_failed++;
                                 continue; // TODO accodare avviso
 			}
-                        
+
                         $_classe = $this->x('CLASS');
                         $classe = trim($row->$_classe);
                         $id_classe = ReceivementsHelper::idFromName($classe, '#__receivements_classi', 'classe');
                         if (!$id_classe) {
-                                $data->parents_failed++;
-                                continue;
+                                $id_classe = ReceivementsHelper::InsertField($classe, '#__receivements_classi', 'classe');
+                                if (!$id_classe) {
+                                        $data->parents_failed++;
+                                        continue;
+                                }
                         }
 
                         $_studente = $this->x('STUDENT');
@@ -230,5 +217,5 @@ class ReceivementsModelImportaParenti extends JModelAdmin
 
                 JFactory::getApplication()->setUserState('com_receivements.importaparenti.data', $data);
                 return true;                
-        }                                           
-}
+        }
+}                                    
