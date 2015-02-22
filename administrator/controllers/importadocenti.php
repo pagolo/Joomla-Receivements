@@ -51,7 +51,8 @@ class ReceivementsControllerImportaDocenti extends JControllerForm
                                 //do import & redirect
                                 if (!$model->doImport($jform, $dest)) 
                                         $this->setRedirect('index.php?option=com_receivements&view=importadocenti&layout=error&msg=COM_RECEIVEMENTS_IMPORT_ERROR&tmpl=component');
-                                $this->setRedirect('index.php?option=com_receivements&view=importadocenti&layout=response&tmpl=component');
+                                else
+                                        $this->setRedirect('index.php?option=com_receivements&view=importadocenti&layout=response&tmpl=component');
                         } else {
                                 //Redirect and throw an error message
                                 $this->setRedirect('index.php?option=com_receivements&view=importadocenti&layout=error&msg=COM_RECEIVEMENTS_NO_UPLOAD_FILE&tmpl=component');

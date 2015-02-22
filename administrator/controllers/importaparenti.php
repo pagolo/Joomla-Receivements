@@ -49,9 +49,11 @@ class ReceivementsControllerImportaParenti extends JControllerForm
                 if ( strtolower(JFile::getExt($filename)) == 'csv') {
                         if ( JFile::upload($src, $dest) ) {
                                 //do import & redirect
-                                if (!$model->doImport($jform, $dest)) 
+                                if (!$model->doImport($jform, $dest)) { 
                                         $this->setRedirect('index.php?option=com_receivements&view=importaparenti&layout=error&msg=COM_RECEIVEMENTS_IMPORT_ERROR&tmpl=component');
-                                $this->setRedirect('index.php?option=com_receivements&view=importaparenti&layout=response&tmpl=component');
+                                } else {
+                                        $this->setRedirect('index.php?option=com_receivements&view=importaparenti&layout=response&tmpl=component');
+                                }
                         } else {
                                 //Redirect and throw an error message
                                 $this->setRedirect('index.php?option=com_receivements&view=importaparenti&layout=error&msg=COM_RECEIVEMENTS_NO_UPLOAD_FILE&tmpl=component');

@@ -21,9 +21,9 @@ $listOrder = $this->state->get('list.ordering');
 $listDirn = $this->state->get('list.direction');
 $canOrder = $user->authorise('core.edit.state', 'com_receivements');
 $saveOrder = $listOrder == 'a.ordering';
-
+$forcedLogin = ReceivementsFrontendHelper::getForcedLogin();
 ?>
-
+<?php if ($forcedLogin) : ?>
 <form action="<?php echo JRoute::_('index.php?option=com_receivements&view=parenti'); ?>" method="post" name="adminForm" id="adminForm">
     <fieldset id="filter-bar">
         <div class="filter-search fltlft">
@@ -124,3 +124,6 @@ $saveOrder = $listOrder == 'a.ordering';
         <?php echo JHtml::_('form.token'); ?>
     </div>
 </form>
+<?php else : ?>
+<div class="warning"><?php echo JText::_('COM_RECEIVEMENTS_ONLY_FORCED_LOGIN') ?></div>
+<?php endif; ?>

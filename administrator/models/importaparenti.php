@@ -105,7 +105,10 @@ class ReceivementsModelImportaParenti extends JModelAdmin
                 else if (!in_array ($this->x('USERNAME'), $headers)) {
                         return false;
                 }
-                // TODO: check for correct columns in cvs file
+                // CHECK if wrong import file
+                if (!in_array ($this->x('RELATIONSHIP'), $headers)) {
+                        return false;
+                }
 
                 $filedata = array();
                 while (!feof($fh))

@@ -56,6 +56,12 @@ class ReceivementsViewParenti extends JView {
 
         JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_PARENTI'), 'parents.png');
 
+        if (!ReceivementsFrontendHelper::getForcedLogin()) {
+                if ($canDo->get('core.admin')) {
+                    JToolBarHelper::preferences('com_receivements');
+                }
+                return;
+        }
         //Check if the form exists before showing the add/edit buttons
         $formPath = JPATH_COMPONENT_ADMINISTRATOR . DS . 'views' . DS . 'parente';
         if (file_exists($formPath)) {
