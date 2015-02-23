@@ -185,22 +185,26 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                         $_materia = $this->x('MATTER');
                         $materia = $row->$_materia;
                         $materia_id = ReceivementsHelper::idFromName($materia, '#__receivements_cattedre', 'materie');
+                        if (!$materia_id && !empty($materia)) 
+                                $materia_id = ReceivementsHelper::InsertField($materia, '#__receivements_cattedre', 'materie');
 
-                        if (!$materia_id) $materia_id = ReceivementsHelper::InsertField($materia, '#__receivements_cattedre', 'materie');
                         $_sede = $this->x('SITE');
                         $sede = $row->$_sede;
                         $sede_id = ReceivementsHelper::idFromName($sede, '#__receivements_sedi', 'sede');
-                        if (!$sede_id) $sede_id = ReceivementsHelper::InsertField($sede, '#__receivements_sedi', 'sede');
+                        if (!$sede_id  && !empty($sede)) 
+                                $sede_id = ReceivementsHelper::InsertField($sede, '#__receivements_sedi', 'sede');
 
                         $_classi = $this->x('CLASSES');
                         $classi = $row->$_classi;
                         $nomi_classi = explode(',', $classi);
                         $ids_classi = array();
-                        foreach($nomi_classi as $classe) {
-                                $classe = trim($classe);
+                        foreach($nomi_classi as $_classe) {
+                                $classe = trim($_classe);
                                 $classe_id = ReceivementsHelper::idFromName($classe, '#__receivements_classi', 'classe');
-                                if (!$classe_id) $classe_id = ReceivementsHelper::InsertField($classe, '#__receivements_classi', 'classe');
-                                $ids_classi[] = $classe;//$classe_id;
+                                if (!$classe_id && !empty($classe)) {
+                                        $classe_id = ReceivementsHelper::InsertField($classe, '#__receivements_classi', 'classe');
+                                }
+                                $ids_classi[] = $classe;
                         }
                         $classi_finale = implode(',', $ids_classi);
 
