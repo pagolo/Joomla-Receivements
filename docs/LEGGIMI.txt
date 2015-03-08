@@ -71,5 +71,5 @@ ricevimento; in inizio e fine l'ora di inizio e fine del ricevimento, CATEGORI-
 CAMENTE nel formato hh:mm; in sede la sede in cui si riceve.
 
 ----------------
-Per finire desidero ringraziare Roberto Bisceglia, senza il cui paziente
+Per finire desidero ringraziare il prof. Roberto Bisceglia, senza il cui paziente
 e competente supporto questo pacchetto non esisterebbe.

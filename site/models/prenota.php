@@ -178,6 +178,17 @@ class ReceivementsModelPrenota extends JModelForm
         {
             $db		= $this->getDbo();
             
+            // security check
+            if (ReceivementsFrontendHelper::getForcedLogin()) {
+                $user_id = JFactory::getUser()->get('id');
+                $nome = $data['nome'];                
+                $db->setQuery('SELECT COUNT(*) FROM #__receivements_parenti WHERE utente = '.$db->Quote($user_id).' AND studente = '.$db->Quote($nome));
+                $res = $db->loadResult();
+                if (empty($res)) {
+                    return false;
+                }
+            }
+            
             foreach ($data['ricevimenti'] as $i => $dt)
             {
                 $totale_ric = 0;
