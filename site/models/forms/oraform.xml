@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset>
+	<fieldset name="main_fieldset">
 
 		<field 
 			name="id"
@@ -21,11 +21,8 @@
             /> 
 
        <field name="classi" type="classes"
-            readonly="true"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_CLASSI"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_CLASSI" 
-                
-                
                  /> 
 
        <field name="giorno" type="list"
@@ -46,7 +43,6 @@
         </field> 
 
        <field name="inizio" type="settime" class="inputbox"
-            readonly="true"
             label="COM_RECEIVEMENTS_START"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_INIZIO" 
          default="08:00:00" 
@@ -54,7 +50,6 @@
         filter="safehtml" /> 
 
        <field name="fine" type="settime" class="inputbox"
-            readonly="true"
             label="COM_RECEIVEMENTS_FINISH"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_FINE" 
          default="09:00:00" 

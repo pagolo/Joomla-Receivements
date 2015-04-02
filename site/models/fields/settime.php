@@ -39,13 +39,17 @@ class JFormFieldSetTime extends JFormFieldText
 		$html = array();
         
         	$html[] = parent::getInput();
-        	$html[] = '<a class="modal my_field" rel="{handler: \'iframe\', size: {x: 175, y: 110}}" style="border:none" title="';
+        	$html[] = '<script type="text/javascript">';
+        	$html[] = '/* <![CDATA[ */';
+                $html[] = 'document.write("';
+        	$html[] = '<a class=\"modal my_field\" rel=\"{handler: \'iframe\', size: {x: 175, y: 110}}\" style=\"border:none\" title=\"';
         	$html[] = JText::_('COM_RECEIVEMENTS_SELECT_TIME');
-                $html[] = '" href="/index.php?option=com_receivements&view=oraform&layout=settime&tmpl=component&parent=';
-                $html[] = $this->id;
-                $html[] = '">';
-        	$html[] = '<img style="padding:0px;height:120%" src="' . JURI::base(true) . '/components/com_receivements/assets/icons/pen.png' . '" alt="pen_icon">';
-        	$html[] = "</a>";
+                $html[] = '\" href=\"'.JRoute::_('index.php?option=com_receivements&amp;view=oraform&amp;layout=settime&amp;tmpl=component&amp;parent='.$this->id);
+                $html[] = '\">';
+        	$html[] = '<img style=\"padding:0px;height:120%\" src=\"' . JURI::base(true) . '/components/com_receivements/assets/icons/pen.png' . '\" alt=\"pen_icon\" />';
+        	$html[] = '</a>");';
+        	$html[] = '/* ]]> */';
+                $html[] = '</script>';
         
 		return implode($html);
 	}

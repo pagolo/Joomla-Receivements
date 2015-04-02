@@ -78,6 +78,10 @@ body.white fieldset {
     width: 120px;
     float: right;
 }
+body.white .button:hover {
+  color: #ffffff;
+  background: #224e96;
+}
 
 #jform_rules-lbl{
     display:none;

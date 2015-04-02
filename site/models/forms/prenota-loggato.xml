@@ -20,7 +20,7 @@
 
                 <field
 		        name="classe"
-		        type="text" class="inputbox" readonly="true"
+		        type="text" class="inputbox"
                         label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_CLASSE"
                         description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_CLASSE" 
                         /> 
@@ -34,7 +34,6 @@
                 <field name="parentela" type="list"
                         label="COM_RECEIVEMENTS_FORM_LBL_PARENTELA"
                         description="COM_RECEIVEMENTS_FORM_DESC_PARENTELA" 
-                        readonly="true" 
                         option_on="Yes"
                         option_off="Yes">
                                 <option value="*">COM_RECEIVEMENTS_PARENT</option>

@@ -24,20 +24,6 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 //JForm::addFieldPath(JPATH_COMPONENT . '/models/fields');
 ?>
 
-<script type="text/javascript">
-
-    getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
-        jQuery(document).ready(function() {
-            jQuery('#form-ora').submit(function(event) {
-                
-            });
-
-            
-        });
-    });
-
-</script>
-
 <div class="front-end-edit">
     <?php if (!empty($this->item->id)): ?>
         <h1><?php echo JText::_('COM_RECEIVEMENTS_EDIT_RECEIVEMENT_HOUR')?></h1>
@@ -45,8 +31,8 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         <h1><?php echo JText::_('COM_RECEIVEMENTS_CREATE_RECEIVEMENT_HOUR')?></h1>
     <?php endif; ?>
 
-    <form id="form-ora" action="<?php echo JRoute::_('index.php?option=com_receivements&task=ora.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
-        <fieldset addfieldpath="/components/com_ricevimenti/models/fields" class='panelform' style='border-width:1px; width:500px; height:110%'>
+    <form id="form-ora" action="" method="post" class="form-validate">
+        <fieldset class='panelform' style='border-width:1px; width:500px; height:110%'>
                 <legend><?php echo JFactory::getUser()->name; ?></legend>
             		<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
                         <?php echo $this->form->getInput('id_docente'); ?>
@@ -90,6 +76,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 				<tr>
 				<td colspan = '2' style='text-align:center'><hr />
                                 <button type="submit" class="validate"><span><?php echo JText::_('JSAVE'); ?></span></button>
+                                <a class="button" href="<?php echo JRoute::_('', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
 				</td>
 				</tr>
 			</table>
@@ -100,3 +87,12 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         </fieldset>
     </form>
 </div>
+<script type="text/javascript">
+getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
+$(document).ready(function(){
+  $('#jform_classi').prop('readonly', true);
+  $('#jform_inizio').prop('readonly', true);
+  $('#jform_fine').prop('readonly', true);
+  });
+});
+</script>  

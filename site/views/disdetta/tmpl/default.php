@@ -11,6 +11,9 @@ defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
+// Import CSS
+$document = JFactory::getDocument();
+$document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/form.css');
 ?>
 
 <?php if (empty($this->data)) : ?>
@@ -29,7 +32,7 @@ JHtml::_('behavior.tooltip');
         <input type="hidden" id="jform_email" name="jform[email]" value="<?php echo $this->data['email']?>" />
         <input type="hidden" id="jform_use_email" name="jform[use_email]" value="<?php echo $this->data['use_email']?>" />
         <button type="submit"><?php echo JText::_('COM_RECEIVEMENTS_REMOVE')?></button>
-        <button class="cancel-button" onclick="window.location.href = '<?php echo JRoute::_('index.php', false, 2); ?>';" type="button"><?php echo JText::_('JCANCEL'); ?></button>
+        <a class="button" href="<?php echo JRoute::_('index.php', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
         <input type="hidden" name="option" value="com_receivements" />
         <input type="hidden" name="task" value="disdetta.remove" />
         <?php echo JHtml::_('form.token'); ?>

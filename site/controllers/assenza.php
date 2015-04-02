@@ -91,14 +91,27 @@ class ReceivementsControllerAssenza extends ReceivementsController {
             }
 
             $input = $app->input;
-            $jform = $input->get('jform', array(), 'ARRAY');
+            $jform = &$input->get('jform', array(), 'ARRAY');
+            $id = $jform['id'];
+            $app->setUserState('com_receivements.edit.assenza.id', $id);
 
             // Save the data in the session.
+            /*
+            $id = (int) $app->getUserState('com_receivements.edit.assenza.id');
+            if ($id == 0) {
+                $jform['inizio'] = $jform['fine'] = null;
+            } else {
+                $jform['inizio'] = $jform['inizio.back'];
+                $jform['fine'] = $jform['fine.back'];
+            }
             $app->setUserState('com_receivements.edit.assenza.data', $jform, array());
+            */
+            //$app->setUserState('com_receivements.edit.assenza.data', null);
 
             // Redirect back to the edit screen.
-            $id = (int) $app->getUserState('com_receivements.edit.assenza.id');
-            $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=assenza&layout=edit&id=' . $id, false));
+            $id = $jform['id']; //(int) $app->getUserState('com_receivements.edit.assenza.id');
+            $app->setUserState('com_receivements.edit.assenza.id', $id);
+            $this->setRedirect('index.php?option=com_receivements&view=assenza&layout=edit&id=' . $id);
             return false;
         }
 

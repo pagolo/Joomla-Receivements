@@ -7,8 +7,9 @@ JHTML::_('behavior.modal');
 JHTML::_('script', 'system/multiselect.js', false, true);
 // Import CSS
 $document = JFactory::getDocument();
-$document->addStyleSheet('components/com_receivements/assets/css/list.css');
-$document->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js');
+$document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/form.css');
+$document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/list.css');
+$document->addScript(JUri::base() . 'components/com_receivements/assets/js/form.js');
 //Load admin language file
 $lang = JFactory::getLanguage();
 $lang->load('', JPATH_ADMINISTRATOR);
@@ -18,27 +19,34 @@ $showClass = $class === '*' || empty($class);
 ?>
 <h1><?php echo JText::_('COM_RECEIVEMENTS').' '.($class==='*'? '' : $class); ?></h1>
 
-<form action="" method="post" name="publicForm">
-		<div class="filter-select fltlft">
-			<select name="filter_day" class="inputbox" onchange="setTask('');this.form.submit();">
+<form id="primo" action="<?php echo 'index.php?option=com_receivements&amp;view=ricevimenti' ?>" method="post">
+	<div>
+        		<select name="filter_day" class="inputbox" onchange="this.form.submit();">
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_DAYS');?></option>
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getWeekDayOptions(), 'value', 'text', $this->state->get('filter.giorno'));?>
 			</select>
-			<select name="filter_class" class="inputbox" onchange="setTask('');this.form.submit();">
+			<select name="filter_class" class="inputbox" onchange="this.form.submit();">
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_CLASSES');?></option>
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getClassesOptions(), 'text', 'text', $class);?>
 			</select>
-			<select name="filter_site" class="inputbox" onchange="setTask('');this.form.submit();">
+			<select name="filter_site" class="inputbox" onchange="this.form.submit();">
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_SITES');?></option>
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getSitesOptions(), 'value', 'text', $this->state->get('filter.sede'));?>
 			</select>
+			<button type="submit" style="display:none"><?php echo JText::_('JSUBMIT')?></button>
+        <input type="hidden" name="task" value="" />
+        </div>
+</form>
+
+<form id="secondo" action="<?php echo 'index.php?option=com_receivements&amp;task=ricevimenti.init_booking' ?>" method="post">
 <?php if ($canBook) : ?>
-			<button type="submit" onclick="setTask('ricevimenti.init_booking')"><?php echo JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
-                        <a class="button modal" rel="{handler: 'iframe', size: {x: 640, y: 400}}" href="index.php?option=com_receivements&view=prenotazioni&tmpl=component"><?php echo JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></a> 
+                        <div>
+			<button name="do_book" value="1" type="submit"><?php echo JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
+                        <a class="button modal" rel="{handler: 'iframe', size: {x: 640, y: 400}}" href="index.php?option=com_receivements&view=prenotazioni&tmpl=component"><?php echo JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></a>
+                        </div> 
 <?php else : ?>
                         <em><?php echo JText::_('COM_RECEIVEMENTS_PLEASE_LOGIN')?></em>
 <?php endif; ?>
-		</div>
 		<div class="clr"><br /></div>
 	<table class='front-end-list'>
 		<thead>
@@ -93,7 +101,7 @@ $showClass = $class === '*' || empty($class);
 		</tbody>
 	</table>
         <div>
-        <input id="task" type="hidden" name="task" value="" />
+        <input id="task" type="hidden" name="task" value="ricevimenti.init_booking" />
         <input type="hidden" name="boxchecked" value="0"/>
         <?php echo JHtml::_('form.token'); ?>
         </div>

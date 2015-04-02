@@ -13,4 +13,11 @@ class ReceivementsModelClassi extends JModelList
         $query->from('#__receivements_classi');
         return $query;
     }
+    public function getItems() {
+        $limit = $this->getState('list.limit');
+        $this->setState('list.limit', 0);
+        $return = parent::getItems();
+        $this->setState('list.limit', $limit);
+        return $return;
+    }
 }

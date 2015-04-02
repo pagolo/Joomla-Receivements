@@ -18,25 +18,9 @@ JHtml::_('behavior.formvalidation');
 $lang = JFactory::getLanguage();
 $lang->load('com_receivements', JPATH_ADMINISTRATOR);
 $doc = JFactory::getDocument();
-$doc->addStyleSheet(JUri::base() . '/components/com_receivements/assets/css/form.css');
-$doc->addStyleSheet(JUri::base() . '/components/com_receivements/assets/css/list.css');
-$doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js');
-//JForm::addFieldPath(JPATH_COMPONENT . '/models/fields');
+$doc->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/form.css');
+$doc->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/list.css');
 ?>
-
-<script type="text/javascript">
-
-    getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
-        jQuery(document).ready(function() {
-            jQuery('#form-assenza').submit(function(event) {
-                
-            });
-
-            
-        });
-    });
-
-</script>
 
 <div class="front-end-edit">
     <?php if (!empty($this->item->id)): ?>
@@ -47,8 +31,8 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         <h1><?php echo JText::_('COM_RECEIVEMENTS_CREATE_ASSENZA')?></h1>
     <?php endif; ?>
 
-    <form id="form-assenza" action="<?php echo JRoute::_('index.php?option=com_receivements&task=assenza.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
-        <fieldset addfieldpath="/components/com_ricevimenti/models/fields" class='panelform' style='border-width:1px; width:500px; height:110%'>
+    <form id="form-assenza" action="<?php echo JRoute::_('index.php?option=com_receivements&task=assenza.save'); ?>" method="post" class="form-validate">
+        <fieldset class='panelform' style='border-width:1px; width:500px; height:110%'>
                 <legend><?php echo JFactory::getUser()->name; ?></legend>
             		<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
                         <?php echo $this->form->getInput('utente'); ?>
@@ -71,9 +55,9 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 				<td colspan = '2' style='text-align:center'><hr />
                                 <button type="submit" class="validate"><span><?php echo JText::_('JSAVE'); ?></span></button>
     <?php if (!empty($this->item->id)): ?>
-                                <button data-item-id="<?php echo $this->item->id; ?>" class="delete-button" type="button"><?php echo JText::_('COM_RECEIVEMENTS_ORE_DELETE'); ?></button>
+                                <a class="button btn" href="<?php echo JRoute::_('index.php?option=com_receivements&task=assenza.remove&id='.$this->item->id, false, 2); ?>"><?php echo JText::_('COM_RECEIVEMENTS_ORE_DELETE')?></a>
     <?php endif; ?>
-                                <button class="cancel-button" onclick="window.location.href = '<?php echo JRoute::_('index.php?option=com_receivements&task=assenze', false, 2); ?>';" type="button"><?php echo JText::_('JCANCEL'); ?></button>
+                                <a class="button btn" href="<?php echo JRoute::_('index.php?option=com_receivements&task=assenze', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a>
 				</td>
 				</tr>
 			</table>
@@ -84,25 +68,4 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         </fieldset>
     </form>
 </div>
-<script type="text/javascript">
-    if (typeof jQuery == 'undefined') {
-        var headTag = document.getElementsByTagName("head")[0];
-        var jqTag = document.createElement('script');
-        jqTag.type = 'text/javascript';
-        jqTag.src = '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js';
-        jqTag.onload = jQueryCode;
-        headTag.appendChild(jqTag);
-    } else {
-        jQueryCode();
-    }
 
-    function jQueryCode() {
-        jQuery('.delete-button').click(function () {
-            var item_id = jQuery(this).attr('data-item-id');
-            if (confirm("<?php echo JText::_('COM_RECEIVEMENTS_DELETE_MESSAGE'); ?>")) {
-                window.location.href = '<?php echo JRoute::_('index.php?option=com_receivements&task=assenza.remove&id=', false, 2) ?>' + item_id;
-            }
-        });
-    }
-
-</script>

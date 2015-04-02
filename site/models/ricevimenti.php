@@ -49,15 +49,14 @@ class ReceivementsModelRicevimenti extends JModelList
 	$this->setState('filter.giorno', $search);
         
 	// Load the filter "class".
-	if ($default_class && JRequest::getMethod()=='GET') $search = $default_class;
-	else $search = $this->getUserStateFromRequest($this->context.'.filter.classe', 'filter_class');
+	$search = $this->getUserStateFromRequest($this->context.'.filter.classe', 'filter_class');
+	if (!$search && $default_class) $search = $default_class;
 	$this->setState('filter.classe', $search);
         
-	// Load the filter "class".
+	// Load the filter "site".
 	$search = $this->getUserStateFromRequest($this->context.'.filter.sede', 'filter_site');
 	$this->setState('filter.sede', $search);
     }
-
     function getListQuery()
     {
         $db = JFactory::getDBO();

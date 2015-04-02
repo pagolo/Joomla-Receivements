@@ -245,8 +245,8 @@ class ReceivementsModelAssenza extends JModelForm
         }
 
         $table = $this->getTable();
-        $data['inizio'] = ReceivementsFrontendHelper::convertDateTo($data['inizio']);
-        $data['fine'] = ReceivementsFrontendHelper::convertDateTo($data['fine']);
+        $data['inizio'] = $data['inizio.back'] = ReceivementsFrontendHelper::convertDateTo($data['inizio']);
+        $data['fine'] = $data['fine.back'] = ReceivementsFrontendHelper::convertDateTo($data['fine']);
 
         if ($table->save($data) === true) {
             return $table->id;
@@ -254,7 +254,7 @@ class ReceivementsModelAssenza extends JModelForm
             return false;
         }
         
-	}
+    }
     
      function delete($data)
     {

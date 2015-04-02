@@ -56,7 +56,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         <?php endif; ?>
         <fieldset class="center">
                 <button type="submit"><?php echo JText::_('COM_RECEIVEMENTS_SEND_REQUEST')?></button>
-                <button class="cancel-button" onclick="window.location.href = '<?php echo JRoute::_('index.php?option=com_receivements&task=ricevimenti', false, 2); ?>';" type="button"><?php echo JText::_('JCANCEL'); ?></button>
+                <a class="button" href="<?php echo JRoute::_('index.php?option=com_receivements&task=ricevimenti', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
                 <input type="hidden" name="option" value="com_receivements" />
                 <input type="hidden" name="task" value="prenota.save" />
                 <?php echo JHtml::_('form.token'); ?>
@@ -65,10 +65,13 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         
 </div>
 
+
 <?php if (ReceivementsFrontendHelper::getForcedLogin()) : ?>
+
 <script type="text/javascript">
 getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
 $(document).ready(function(){
+  $("#jform_classe").prop("readonly", "readonly");
   $("#jform_nome").change(function(){
         var student = $("#jform_nome").val();
         var uri = 'index.php?option=com_receivements&view=ajax&layout=change-student&format=raw&student='+encodeURIComponent(student);
@@ -80,4 +83,5 @@ $(document).ready(function(){
 });
 });
 </script>
+
 <?php endif; ?>

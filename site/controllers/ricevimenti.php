@@ -21,19 +21,25 @@ class ReceivementsControllerRicevimenti extends ReceivementsController
 	 * Proxy for getModel.
 	 * @since	1.6
 	 */
-	public function &getModel($name = 'Ore', $prefix = 'ReceivementsModel')
-	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
-		return $model;
-	}
+    public function &getModel($name = 'Ricevimenti', $prefix = 'ReceivementsModel') {
+	$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+	return $model;
+    }
     public function init_booking() {
         $val = '';
         $addresses = JRequest::getVar('cid',false,'post', 'array');
-        foreach ($addresses as $address) {
-                if (!empty($address)) {
-                        if ($val != '') $val .= '.';
-                        $val .= $address;
+        if (JRequest::getVar('do_book',false,'post', 'int')) { // 'book selected items' button
+                foreach ($addresses as $address) {
+                        if (!empty($address)) {
+                                if ($val != '') $val .= '.';
+                                $val .= $address;
+                        }
                 }
+        } else { // rows limit selection
+                // List state information
+                $app = JFactory::getApplication();
+                $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'));
+                $this->getModel()->setState('list.limit', $limit);
         }
         if ($val === "") $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=ricevimenti'));
         else {
