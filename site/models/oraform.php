@@ -109,7 +109,7 @@ class ReceivementsModelOraForm extends JModelForm
     
 	public function getTable($type = 'Ora', $prefix = 'ReceivementsTable', $config = array())
 	{   
-        $this->addTablePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+        $this->addTablePath(JPATH_COMPONENT_ADMINISTRATOR.DIRECTORY_SEPARATOR.'tables');
         return JTable::getInstance($type, $prefix, $config);
 	}     
 

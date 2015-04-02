@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.modelform');
 jimport('joomla.event.dispatcher');
 
-require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
+require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'receivements.php';
 
 /**
  * Receivements model.
@@ -109,7 +109,7 @@ class ReceivementsModelAssenza extends JModelForm
     
 	public function getTable($type = 'Assenza', $prefix = 'ReceivementsTable', $config = array())
 	{   
-        $this->addTablePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+        $this->addTablePath(JPATH_COMPONENT_ADMINISTRATOR.DIRECTORY_SEPARATOR.'tables');
         return JTable::getInstance($type, $prefix, $config);
 	}     
 

@@ -10,7 +10,7 @@
 // No direct access.
 defined('_JEXEC') or die;
 
-require_once JPATH_COMPONENT . DS . 'controller.php';
+require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'controller.php';
 
 /**
  * Ore list controller class.

@@ -11,7 +11,7 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modeladmin');
-require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
+require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'receivements.php';
 
 /**
  * Receivements model.

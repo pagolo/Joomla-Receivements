@@ -49,7 +49,7 @@ class ReceivementsViewPrenotazioni extends JView {
      * @since	1.6
      */
     protected function addToolbar() {
-        require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
+        require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'receivements.php';
 
         $state = $this->get('State');
         $canDo = ReceivementsHelper::getActions($state->get('filter.category_id'));

@@ -40,7 +40,7 @@ class ReceivementsControllerImportaParenti extends JControllerForm
 
                 //Set up the source and destination of the file
                 $src = $file['tmp_name'];
-                $dest = JPATH_COMPONENT . DS . "assets" . DS . "csv" . DS . $filename;
+                $dest = JPATH_COMPONENT . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR . "csv" . DIRECTORY_SEPARATOR . $filename;
 
                 //get model
                 $model = $this->getModel();

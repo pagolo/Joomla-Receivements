@@ -24,7 +24,7 @@ class ReceivementsController extends JController {
      * @since	1.5
      */
     public function display($cachable = false, $urlparams = false) {
-        require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
+        require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'receivements.php';
 
         parent::display($cachable, $urlparams);
 

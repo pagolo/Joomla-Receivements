@@ -10,8 +10,8 @@
 // No direct access
 defined('_JEXEC') or die;
 
-require_once JPATH_COMPONENT . DS . 'controller.php';
-require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
+require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'controller.php';
+require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'receivements.php';
 
 /**
  * Prenota controller class.

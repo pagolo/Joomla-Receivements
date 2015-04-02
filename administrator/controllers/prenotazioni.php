@@ -15,7 +15,7 @@ jimport('joomla.application.component.controlleradmin');
 // include frontend helpers
 $language =& JFactory::getLanguage();
 $language->load('com_receivements', JPATH_SITE, $language->getTag(), true);
-require_once JPATH_SITE.DS.'components'.DS.'com_receivements'.DS.'helpers'.DS.'receivements.php';
+require_once JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_receivements'.DIRECTORY_SEPARATOR.'helpers'.DIRECTORY_SEPARATOR.'receivements.php';
 
 /**
  * Sedi list controller class.

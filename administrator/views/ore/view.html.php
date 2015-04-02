@@ -49,7 +49,7 @@ class ReceivementsViewOre extends JView {
      * @since	1.6
      */
     protected function addToolbar() {
-        require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'receivements.php';
+        require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'receivements.php';
 
         $state = $this->get('State');
         $canDo = ReceivementsHelper::getActions($state->get('filter.category_id'));
@@ -57,7 +57,7 @@ class ReceivementsViewOre extends JView {
         JToolBarHelper::title(JText::_('COM_RECEIVEMENTS_TITLE_ORE'), 'ore.png');
 
         //Check if the form exists before showing the add/edit buttons
-        $formPath = JPATH_COMPONENT_ADMINISTRATOR . DS . 'views' . DS . 'ora';
+        $formPath = JPATH_COMPONENT_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'ora';
         if (file_exists($formPath)) {
 
             if ($canDo->get('core.create')) {
