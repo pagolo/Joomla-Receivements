@@ -25,7 +25,7 @@ $saveOrder = $listOrder == 'a.ordering';
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_receivements&view=cattedre'); ?>" method="post" name="adminForm" id="adminForm">
-    <fieldset id="filter-bar">
+    <fieldset id="filter-bar" style="height:auto">
         <!--TODO: keep filter working...-->
         <div class="filter-search fltlft">
             <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
@@ -40,11 +40,11 @@ $saveOrder = $listOrder == 'a.ordering';
     </fieldset>
     <div class="clr"> </div>
 
-    <table class="adminlist">
+    <table class="table table-striped adminlist">
         <thead>
             <tr>
                 <th width="1%">
-                    <input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
+							<?php echo JHtml::_('grid.checkall'); ?>
                 </th>
                 
                 <?php if (isset($this->items[0]->state)) : ?>

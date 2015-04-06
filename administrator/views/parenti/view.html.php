@@ -78,7 +78,7 @@ class ReceivementsViewParenti extends JViewLegacy {
         JToolBarHelper::divider();
 //        JToolBarHelper::custom( 'ore.importadocenti', 'import-export.png', 'import-export.png', JText::_('COM_RECEIVEMENTS_IMPORT'), false, false );
         $import =
-        '<a class="toolbar button modal" rel="{handler: \'iframe\', size: {x: 600, y: 320}, onClose: function(){window.parent.document.location.reload(true)}}" '.
+        '<a class="toolbar btn btn-small button modal" rel="{handler: \'iframe\', size: {x: 600, y: 320}, onClose: function(){window.parent.document.location.reload(true)}}" '.
         ' href="index.php?option=com_receivements&amp;tmpl=component&amp;view=importaparenti">'.
         '<span title="'.JText::_('COM_RECEIVEMENTS_PARENTS_IMPORT').'" class="icon-32-import-export"></span>'.JText::_('COM_RECEIVEMENTS_IMPORT').'</a>';      
         $bar =& JToolBar::getInstance();

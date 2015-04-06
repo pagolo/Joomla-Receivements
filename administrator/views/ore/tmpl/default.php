@@ -9,6 +9,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
+JHtml::_('behavior.modal');
 JHtml::_('behavior.tooltip');
 JHTML::_('script', 'system/multiselect.js', false, true);
 // Import CSS
@@ -24,7 +25,7 @@ $saveOrder = $listOrder == 'a.ordering';
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_receivements&view=ore'); ?>" method="post" name="adminForm" id="adminForm">
-    <fieldset id="filter-bar">
+    <fieldset id="filter-bar" style="height:auto">
         <div class="filter-search fltlft">
             <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
             <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('Search'); ?>" />
@@ -38,11 +39,11 @@ $saveOrder = $listOrder == 'a.ordering';
     </fieldset>
     <div class="clr"> </div>
 
-    <table class="adminlist">
+    <table class="table table-striped adminlist">
         <thead>
             <tr>
                 <th width="1%">
-                    <input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
+							<?php echo JHtml::_('grid.checkall'); ?>
                 </th>
                 
                 <?php if (isset($this->items[0]->id)) : ?>

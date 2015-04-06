@@ -56,7 +56,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         <?php endif; ?>
         <fieldset class="center">
                 <button type="submit"><?php echo JText::_('COM_RECEIVEMENTS_SEND_REQUEST')?></button>
-                <a class="button" href="<?php echo JRoute::_('index.php?option=com_receivements&task=ricevimenti', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
+                <a class="button btn btn-small" href="<?php echo JRoute::_('index.php?option=com_receivements&task=ricevimenti', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
                 <input type="hidden" name="option" value="com_receivements" />
                 <input type="hidden" name="task" value="prenota.save" />
                 <?php echo JHtml::_('form.token'); ?>

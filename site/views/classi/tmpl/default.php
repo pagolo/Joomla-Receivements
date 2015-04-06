@@ -6,6 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 // Import CSS
 $document = JFactory::getDocument();
 $document->addStyleSheet('components/com_receivements/assets/css/list.css');
+$document->addScript('media/system/js/core.js');
 //Load admin language file
 $lang = JFactory::getLanguage();
 $lang->load('', JPATH_ADMINISTRATOR);
@@ -16,7 +17,9 @@ $lang->load('', JPATH_ADMINISTRATOR);
 		<table style="width:auto" class="front-end-list">
 			<thead>
 				<tr>
-					<th><input type="checkbox" name="toggle" value="" onclick="checkAll(this);Implosion(this.form);" /></th>
+					<th>
+                                        <input type="checkbox" name="toggle" value="" onclick="Joomla.checkAll(this);Implosion(this.form);" />
+                                        </th>
 					<th>CLASSE</th>
 				</tr>
 			</thead>
@@ -27,7 +30,7 @@ $lang->load('', JPATH_ADMINISTRATOR);
 		{
 		      $checked    = JHTML::_( 'grid.id', $i, $row->classe );
 ?>
-				<tr class="row">
+				<tr>
 					<td><?php echo $checked?></td>
 					<td><?php echo $row->classe?></td>
 				</tr>

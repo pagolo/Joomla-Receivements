@@ -51,7 +51,7 @@ $showClass = $class === '*' || empty($class);
 	<table class='front-end-list'>
 		<thead>
 			<tr>
-				<th><input type="checkbox" name="toggle" value="" title="<?php echo JText::_('COM_RECEIVEMENTS_SELECT_ALL')?>" onclick="checkAll(this)" /></th>
+				<th><input type="checkbox" name="toggle" value="" title="<?php echo JText::_('COM_RECEIVEMENTS_SELECT_ALL')?>" onclick="Joomla.checkAll(this)" /></th>
 				<th><?php echo JText::_('COM_RECEIVEMENTS_TEACHER')?></th>
 				<th><?php echo JText::_('COM_RECEIVEMENTS_MATTERS')?></th>
 <?php if ($showClass) : ?>
@@ -75,7 +75,7 @@ $showClass = $class === '*' || empty($class);
 		{
 		      $checked    = JHTML::_( 'grid.id', $i, $row->id );
 ?>
-			<tr class="row">
+			<tr>
 				<td style="text-align:center"><?php echo $checked?></td>
 <?php if ($canBook) : ?>
 				<td><a href="index.php?option=com_receivements&view=prenota&id=<?php echo $row->id?>" title="<?php echo JText::_('COM_RECEIVEMENTS_PLEASE_BOOK')?>"><?php echo $this->escape($row->name)?></a></td>

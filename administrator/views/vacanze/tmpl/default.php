@@ -27,8 +27,7 @@ require_once JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'co
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_receivements&view=vacanze'); ?>" method="post" name="adminForm" id="adminForm">
-    <fieldset id="filter-bar">
-        <!--TODO: keep filter working...-->
+    <fieldset id="filter-bar" style="height:auto">
         <div class="filter-search fltlft">
             <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
             <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('Search'); ?>" />
@@ -40,13 +39,13 @@ require_once JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'co
         
 
     </fieldset>
-    <div class="clr"> </div>
+   <div class="clr clearfix"> </div>
 
-    <table class="adminlist">
+    <table class="table table-striped adminlist">
         <thead>
             <tr>
                 <th width="1%">
-                    <input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
+							<?php echo JHtml::_('grid.checkall'); ?>
                 </th>
                 
                 <?php if (isset($this->items[0]->state)) : ?>

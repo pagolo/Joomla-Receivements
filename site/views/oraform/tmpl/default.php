@@ -76,7 +76,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 				<tr>
 				<td colspan = '2' style='text-align:center'><hr />
                                 <button type="submit" class="validate"><span><?php echo JText::_('JSAVE'); ?></span></button>
-                                <a class="button" href="<?php echo JRoute::_('', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
+                                <a class="button btn btn-small" href="<?php echo JRoute::_('', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
 				</td>
 				</tr>
 			</table>

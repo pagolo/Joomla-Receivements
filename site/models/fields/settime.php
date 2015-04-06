@@ -37,12 +37,18 @@ class JFormFieldSetTime extends JFormFieldText
 	{
 		// Initialize variables.
 		$html = array();
+                $v = new JVersion();
+                if ($v->RELEASE[0] == '3') {
+                        $x = 480; $y = 140;
+                } else {
+                        $x = 175; $y = 110;
+                }
         
         	$html[] = parent::getInput();
         	$html[] = '<script type="text/javascript">';
         	$html[] = '/* <![CDATA[ */';
                 $html[] = 'document.write("';
-        	$html[] = '<a class=\"modal my_field\" rel=\"{handler: \'iframe\', size: {x: 175, y: 110}}\" style=\"border:none\" title=\"';
+        	$html[] = '<a class=\"modal my_field\" rel=\"{handler: \'iframe\', size: {x: '.$x.', y: '.$y.'}}\" style=\"border:none\" title=\"';
         	$html[] = JText::_('COM_RECEIVEMENTS_SELECT_TIME');
                 $html[] = '\" href=\"'.JRoute::_('index.php?option=com_receivements&amp;view=oraform&amp;layout=settime&amp;tmpl=component&amp;parent='.$this->id);
                 $html[] = '\">';
