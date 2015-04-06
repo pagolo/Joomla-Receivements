@@ -15,7 +15,7 @@ jimport('joomla.application.component.view');
 /**
  * View to remove appointment
  */
-class ReceivementsViewAjax extends JView {
+class ReceivementsViewAjax extends JViewLegacy {
     /**
      * Display the view
      */

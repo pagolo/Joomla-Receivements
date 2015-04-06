@@ -15,7 +15,7 @@ jimport('joomla.application.component.modelform');
 /**
  * Receivements model.
  */
-class ReceivementsModelAgenda extends JModel
+class ReceivementsModelAgenda extends JModelLegacy
 {
         protected $data = null;
 

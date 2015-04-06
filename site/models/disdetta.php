@@ -19,7 +19,7 @@ jimport('joomla.application.component.model');
  * @package    Receivements
  * @subpackage Models
  */
-class ReceivementsModelDisdetta extends JModel
+class ReceivementsModelDisdetta extends JModelLegacy
 {
     /**
      * Gets the Data.

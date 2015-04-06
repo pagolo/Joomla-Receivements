@@ -10,7 +10,7 @@
 // No direct access
 defined('_JEXEC') or die;
 
-class ReceivementsController extends JController {
+class ReceivementsController extends JControllerLegacy {
 
     /**
      * Method to display a view.

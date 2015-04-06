@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controller');
 
-class ReceivementsController extends JController {
+class ReceivementsController extends JControllerLegacy {
 
     /**
      * Method to display a view.

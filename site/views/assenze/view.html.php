@@ -8,7 +8,7 @@ jimport('joomla.application.component.view');
 /**
  * HTML View class for the HelloWorld Component
  */
-class ReceivementsViewAssenze extends JView
+class ReceivementsViewAssenze extends JViewLegacy
 {
     protected $state;
     protected $items;

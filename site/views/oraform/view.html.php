@@ -15,7 +15,7 @@ jimport('joomla.application.component.view');
 /**
  * View to edit
  */
-class ReceivementsViewOraform extends JView {
+class ReceivementsViewOraform extends JViewLegacy {
 
     protected $state;
     protected $item;

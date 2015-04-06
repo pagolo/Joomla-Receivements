@@ -15,7 +15,7 @@ jimport('joomla.application.component.view');
 /**
  * View class for a list of Receivements.
  */
-class ReceivementsViewOre extends JView {
+class ReceivementsViewOre extends JViewLegacy {
 
     protected $items;
     protected $pagination;

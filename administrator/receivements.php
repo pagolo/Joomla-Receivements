@@ -20,6 +20,6 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_receivements'))
 // Include dependancies
 jimport('joomla.application.component.controller');
 
-$controller = JController::getInstance('Receivements');
+$controller = JControllerLegacy::getInstance('Receivements');
 $controller->execute(JFactory::getApplication()->input->get('task'));
 $controller->redirect();

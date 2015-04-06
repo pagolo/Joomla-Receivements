@@ -15,7 +15,7 @@ jimport('joomla.application.component.view');
 /**
  * View to agenda
  */
-class ReceivementsViewGiornaliero extends JView {
+class ReceivementsViewGiornaliero extends JViewLegacy {
     protected $data;
     protected $date;
     protected $form;

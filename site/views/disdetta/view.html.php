@@ -15,7 +15,7 @@ jimport('joomla.application.component.view');
 /**
  * View to remove appointment
  */
-class ReceivementsViewDisdetta extends JView {
+class ReceivementsViewDisdetta extends JViewLegacy {
     protected $data;
     protected $result;
     /**

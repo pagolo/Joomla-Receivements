@@ -8,7 +8,7 @@ jimport('joomla.application.component.view');
 /**
  * HTML View class for the HelloWorld Component
  */
-class ReceivementsViewCalendario extends JView
+class ReceivementsViewCalendario extends JViewLegacy
 {
     protected $state;
     protected $items;
