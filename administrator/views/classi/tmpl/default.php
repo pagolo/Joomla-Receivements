@@ -43,7 +43,7 @@ $saveOrder = $listOrder == 'a.ordering';
         <thead>
             <tr>
                 <th width="1%">
-							<?php echo JHtml::_('grid.checkall'); ?>
+							<input type="checkbox" name="checkall-toggle" value="" onclick="Joomla.checkAll(this)" />
                 </th>
                 
                 <?php if (isset($this->items[0]->state)) : ?>
