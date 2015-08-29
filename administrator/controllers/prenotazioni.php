@@ -34,7 +34,8 @@ class ReceivementsControllerPrenotazioni extends JControllerAdmin
     
         public function email_delete() {
                 $model = $this->getModel();
-                $array = JRequest::getVar( 'cid', array(0), 'post', 'array' );
+                $app = JFactory::getApplication();
+                $array = $app->input->post->get('cid', array(), 'array');
                 $table = $model->getTable();
                 foreach($array as $booking_id) {
                         $data = $model->getBookingData($booking_id);
@@ -45,7 +46,6 @@ class ReceivementsControllerPrenotazioni extends JControllerAdmin
                         }
                 }
                 $message = count($array) == 1 ? 'COM_RECEIVEMENTS_ITEM_DELETED_SUCCESSFULLY' : 'COM_RECEIVEMENTS_ITEMS_DELETED_SUCCESSFULLY';
-                $app = JFactory::getApplication();
                 $app->enqueueMessage(JText::_($message), 'message');
                 //$this->setRedirect(JRoute::_('index.php?option=com_receivements&view=prenotazioni'));
                 $this->setRedirect('index.php?option=com_receivements&view=prenotazioni');

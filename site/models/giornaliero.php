@@ -25,7 +25,13 @@ class ReceivementsModelGiornaliero extends JModelForm
 	public function getData($id = null)
 	{
 	        $app = JFactory::getApplication();
-	        $data = JRequest::getVar('jform','','post','array');
+		$t = explode ('.', JVERSION);
+		if ($t[0] >= 3) {
+                        $all = $app->input->post->getArray();
+                        $data = $all['jform'];
+                } else {
+                        $data = JRequest::getVar('jform', array(), 'post', 'array');
+                }
 	        if (!isset($data['data'])) {
 	               $data['data'] = ReceivementsFrontendHelper::convertDateFrom('now','d-m-Y');
                 }

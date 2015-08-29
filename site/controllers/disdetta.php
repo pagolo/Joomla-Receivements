@@ -22,7 +22,14 @@ class ReceivementsControllerDisdetta extends ReceivementsController {
                 // Check for request forgeries.
                 JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-                $a = JRequest::getVar('jform', array(), 'post', 'array');
+                $app = JFactory::getApplication();
+		$t = explode ('.', JVERSION);
+		if ($t[0] >= 3) {
+                        $all = $app->input->post->getArray();
+                        $a = $all['jform'];
+                } else {
+                        $a = JRequest::getVar('jform', array(), 'post', 'array');
+                }
                 $status = 'not_ok';
                 $db = JFactory::getDBO();
                 $query = 'DELETE FROM #__receivements_prenotazioni WHERE id = '.$db->Quote($a['id']);

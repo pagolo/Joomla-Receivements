@@ -33,7 +33,8 @@ class ReceivementsControllerVacanze extends JControllerAdmin
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		// Initialise variables.
-		$ids	= JRequest::getVar('cid', array(), '', 'array');
+                $app = JFactory::getApplication();
+                $array = $app->input->post->get('cid', array(), 'array');
 
 		if (empty($ids))
 		{

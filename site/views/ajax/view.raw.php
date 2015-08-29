@@ -21,8 +21,9 @@ class ReceivementsViewAjax extends JViewLegacy {
      */
     public function display($tpl = null)
     {
-        if (JRequest::getVar('layout', '', 'get', 'string') == 'change-student') {
-                $student_name = JRequest::getVar('student', '', 'get', 'string');
+        $app = JFactory::getApplication();
+        if ($app->input->get->get('layout', '', 'string') == 'change-student') {
+                $student_name = $app->input->get->get('student', '', 'string');
                 $user_id = JFactory::getUser()->get('id');
                 $data = ReceivementsAjaxHelper::changeStudent($user_id, $student_name);
                 if (!empty($data)) {

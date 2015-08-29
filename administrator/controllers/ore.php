@@ -33,7 +33,8 @@ class ReceivementsControllerOre extends JControllerAdmin
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		// Initialise variables.
-		$ids	= JRequest::getVar('cid', array(), '', 'array');
+		$input = JFactory::getApplication()->input;
+		$ids	= $input->post->get('cid', array(), 'array');
 
 		if (empty($ids))
 		{
@@ -64,7 +65,8 @@ class ReceivementsControllerOre extends JControllerAdmin
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		// Initialise variables.
-		$ids	= JRequest::getVar('cid', array(), '', 'array');
+		$input = JFactory::getApplication()->input;
+		$ids	= $input->post->get('cid', array(), 'array');
 
 		if (empty($ids))
 		{

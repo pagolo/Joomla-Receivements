@@ -27,8 +27,9 @@ class ReceivementsControllerRicevimenti extends ReceivementsController
     }
     public function init_booking() {
         $val = '';
-        $addresses = JRequest::getVar('cid',false,'post', 'array');
-        if (JRequest::getVar('do_book',false,'post', 'int')) { // 'book selected items' button
+        $app = JFactory::getApplication();
+        $addresses = $app->input->post->get('cid', false, 'array');
+        if ($app->input->post->get('do_book', false, 'int')) { // 'book selected items' button
                 foreach ($addresses as $address) {
                         if (!empty($address)) {
                                 if ($val != '') $val .= '.';
@@ -37,13 +38,12 @@ class ReceivementsControllerRicevimenti extends ReceivementsController
                 }
         } else { // rows limit selection
                 // List state information
-                $app = JFactory::getApplication();
                 $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'));
                 $this->getModel()->setState('list.limit', $limit);
         }
         if ($val === "") $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=ricevimenti'));
         else {
-                JFactory::getApplication()->setUserState('com_receivements.init.prenota.id', $val);
+                $app->setUserState('com_receivements.init.prenota.id', $val);
                 $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=prenota'));
         }
     }

@@ -33,7 +33,7 @@ class ReceivementsViewPrenota extends JViewLegacy {
 
         $this->state = $this->get('State');
         $this->form  = $this->get('Form');
-        if (JRequest::getVar('layout', '', 'get', 'string') == 'confirmation') {
+        if ($app->input->get->get('layout', '', 'string') == 'confirmation') {
                 $this->data = $app->getUserState('com_receivements.booking.data', array());
         }
         

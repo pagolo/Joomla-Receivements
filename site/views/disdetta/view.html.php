@@ -27,8 +27,8 @@ class ReceivementsViewDisdetta extends JViewLegacy {
         $pathway = $app->getPathway();
         $pathway->addItem(JText::_('COM_RECEIVEMENTS_DO_REMOVE'));
 
-        if (JRequest::getVar('layout', '', 'get', 'string') == 'result') {
-                $this->result = JRequest::getVar('status', '', 'get', 'string');
+        if ($app->input->get->get('layout', '', 'string') == 'result') {
+                $this->result = $app->input->get->get('status', '', 'string');
         } else {
                 $this->data = $this->get('Data');
         }

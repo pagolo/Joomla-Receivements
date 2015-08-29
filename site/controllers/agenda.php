@@ -25,9 +25,9 @@ class ReceivementsControllerAgenda extends ReceivementsController {
                 // JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
                 // get booking ids
-                $id = JRequest::getVar('id','','get','string');
-                $id_agenda = JRequest::getVar('agenda','','get','string');
-                $app	= JFactory::getApplication();
+                $app = JFactory::getApplication();
+                $id = $app->input->get('id','','string');
+                $id_agenda = $app->input->get('agenda','','string');
                 $app->setUserState('com_receivements.agenda.open', $id_agenda);
                 $model = $this->getModel('Agenda', 'ReceivementsModel');
                 if ($send_email === true) {

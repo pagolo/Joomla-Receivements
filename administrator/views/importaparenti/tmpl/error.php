@@ -10,7 +10,9 @@
 defined('_JEXEC') or die;
 
 // message
-$message_trans = JRequest::getVar('msg', '', 'get', 'string');
+$app = JFactory::getApplication();
+$message_trans = $app->input->get->get('msg', '', 'string');
+//$message_trans = JRequest::getVar('msg', '', 'get', 'string');
 ?>
 
 <fieldset style="font-size:1.4em">

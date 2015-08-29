@@ -25,7 +25,13 @@ class ReceivementsControllerPrenota extends ReceivementsController {
                 $model = $this->getModel('Prenota', 'ReceivementsModel');
                 $form = $model->getForm();
 		// Get the user data.
-		$requestData = JRequest::getVar('jform', array(), 'post', 'array');
+		$t = explode ('.', JVERSION);
+		if ($t[0] >= 3) {
+                        $all = $app->input->post->getArray();
+                        $requestData = $all['jform'];
+                } else {
+                        $requestData = JRequest::getVar('jform', array(), 'post', 'array');
+                }
 		// validate data...
 		$data	= $model->validate($form, $requestData);
 
