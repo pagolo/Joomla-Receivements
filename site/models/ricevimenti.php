@@ -41,7 +41,7 @@ class ReceivementsModelRicevimenti extends JModelList
         $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'));
         $this->setState('list.limit', $limit);
 
-        $limitstart = $app->input->getInt('limitstart', 0);
+        $limitstart = $app->getUserState('com_receivements.list.start', 0);
         $this->setState('list.start', $limitstart);
         
 	// Load the filter "day".

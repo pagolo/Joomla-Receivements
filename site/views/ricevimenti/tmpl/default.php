@@ -38,7 +38,7 @@ $showClass = $class === '*' || empty($class);
         </div>
 </form>
 
-<form id="secondo" action="<?php echo 'index.php?option=com_receivements&amp;task=ricevimenti.init_booking' ?>" method="post">
+<form id="adminForm" name="adminForm" action="<?php echo 'index.php?option=com_receivements&amp;task=ricevimenti.init_booking' ?>" method="post">
 <?php if ($canBook) : ?>
                         <div>
 			<button name="do_book" value="1" type="submit"><?php echo JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
@@ -103,6 +103,7 @@ $showClass = $class === '*' || empty($class);
         <div>
         <input id="task" type="hidden" name="task" value="ricevimenti.init_booking" />
         <input type="hidden" name="boxchecked" value="0"/>
+        <input type="hidden" name="view" value="ricevimenti" />
         <?php echo JHtml::_('form.token'); ?>
         </div>
 </form>

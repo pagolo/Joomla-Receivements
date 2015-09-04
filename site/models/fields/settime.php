@@ -37,12 +37,15 @@ class JFormFieldSetTime extends JFormFieldText
 	{
 		// Initialize variables.
 		$html = array();
+		/*
                 $v = new JVersion();
                 if ($v->RELEASE[0] == '3') {
                         $x = 480; $y = 140;
                 } else {
                         $x = 175; $y = 110;
                 }
+                */
+                $x = 175; $y = 110;
         
         	$html[] = parent::getInput();
         	$html[] = '<script type="text/javascript">';
