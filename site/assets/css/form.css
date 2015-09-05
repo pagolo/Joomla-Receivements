@@ -15,6 +15,9 @@ body.white fieldset {
 .select_rcv li {
     height: 1.8em;
     list-style: none;
+    display:block;
+    float:left;
+    width:100%;
 }
 .ul_rcv {
     margin-left: 60px !important;
