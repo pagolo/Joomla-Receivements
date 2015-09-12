@@ -40,8 +40,8 @@ class ReceivementsControllerRicevimenti extends ReceivementsController
                 // List state information
                 $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'));
                 $this->getModel()->setState('list.limit', $limit);
-        	  $limitstart = $app->input->getInt('limitstart', 0, 'uint');
-		  $app->setUserState('com_receivements.list.start', $limitstart);
+        	$limitstart = $app->input->getInt('limitstart', 0, 'uint');
+		$app->setUserState('com_receivements.list.start', $limitstart);
         }
         if ($val === "") $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=ricevimenti'));
         else {

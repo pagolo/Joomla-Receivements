@@ -44,6 +44,13 @@ class ReceivementsModelRicevimenti extends JModelList
         $limitstart = $app->getUserState('com_receivements.list.start', 0);
         $this->setState('list.start', $limitstart);
         
+        $schoolgroup = ReceivementsFrontendHelper::getSchoolsGroup();
+        if (!(empty($schoolgroup))) {
+		// Load the filter "school".
+		$search = $this->getUserStateFromRequest($this->context.'.filter.scuola', 'filter_school');
+		$this->setState('filter.scuola', $search);
+        }
+        
 	// Load the filter "day".
 	$search = $this->getUserStateFromRequest($this->context.'.filter.giorno', 'filter_day');
 	$this->setState('filter.giorno', $search);
@@ -57,18 +64,29 @@ class ReceivementsModelRicevimenti extends JModelList
 	$search = $this->getUserStateFromRequest($this->context.'.filter.sede', 'filter_site');
 	$this->setState('filter.sede', $search);
     }
+
     function getListQuery()
     {
         $db = JFactory::getDBO();
+        $schoolgroup = ReceivementsFrontendHelper::getSchoolsGroup();
+        $search = $this->getState('filter.scuola');
         $query = $db->getQuery(true);
-        $query->select('o.id,u.name,c.materie,s.sede,classi,giorno,inizio');
+        $query->select('DISTINCT o.id,u.name,c.materie,s.sede,classi,giorno,inizio');
         $query->from('#__receivements_ore AS o');
-        $query->join('LEFT', $db->quoteName('#__users', 'u') . ' ON (' . $db->quoteName('id_docente') . ' = ' . $db->quoteName('u.id') . ')');
+	$query->join('LEFT', $db->quoteName('#__users', 'u') . ' ON (' . $db->quoteName('id_docente') . ' = ' . $db->quoteName('u.id') . ')');
+        if (!(empty($schoolgroup)) && $search != '*' && $search != '0' && $search != false) {
+		$query->join('LEFT', $db->quoteName('#__user_usergroup_map', 'g') . ' ON (' . $db->quoteName('id_docente') . ' = ' . $db->quoteName('g.user_id') . ')');
+	}
         $query->join('LEFT', $db->quoteName('#__receivements_cattedre', 'c') . ' ON (' . $db->quoteName('cattedra') . ' = ' . $db->quoteName('c.id') . ')');
         $query->join('LEFT', $db->quoteName('#__receivements_sedi', 's') . ' ON (' . $db->quoteName('o.sede') . ' = ' . $db->quoteName('s.id') . ')');
         $query->where('o.attiva <> ' . $db->Quote('0'));
         $query->order('u.name');
-        
+
+        // Filter by search in school
+        if (!(empty($schoolgroup)) && $search != '*' && $search != '0' && $search != false) {
+		$query->where(' g.group_id = ' . $db->Quote($search));
+        }
+
         // Filter by search in day
         $search = $this->getState('filter.giorno');
         if ((!empty($search) || $search === '0') && $search != -1 && $search != '*') {

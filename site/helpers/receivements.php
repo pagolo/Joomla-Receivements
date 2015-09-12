@@ -24,6 +24,29 @@ class ReceivementsFrontendHelper
         }
         
 	static
+	function getSchoolOptions()
+	{
+		// Build the filter options.
+		$parent_group = ReceivementsFrontendHelper::getSchoolsGroup();
+		if (empty($parent_group)) return false;
+		$db = JFactory::getDbo();
+		$parent_group_id = ReceivementsFrontendHelper::getGroupId($parent_group, $db);
+		if ($parent_group_id === false) return false;
+		
+		$db->setQuery('SELECT a.id AS value, a.title AS text' . ' FROM #__usergroups AS a' . ' WHERE parent_id = ' . $parent_group_id  . ' ORDER BY a.title ASC');
+		$options = $db->loadObjectList();
+
+		// Check for a database error.
+
+		if ($db->getErrorNum()) {
+			JError::raiseNotice(500, $db->getErrorMsg());
+			return null;
+		}
+
+		return $options;
+	}
+
+	static
 	function getWeekDayOptions()
 	{
 
@@ -144,6 +167,25 @@ class ReceivementsFrontendHelper
                 return (empty($groupname) ? 'Studenti' : $groupname); 
         }
         
+	function getSchoolsGroup()
+	{
+	        $app = JFactory::getApplication();
+                $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
+                return $params->get('schools_group');
+        }
+
+        static
+	function getGroupId($groupName, $db) {
+		$db->setQuery($db->getQuery(true)
+		    ->select('id')
+		    ->from("#__usergroups")
+		    ->where('title = ' . $db->Quote($groupName))
+		);
+		$groups = $db->loadObjectList();
+		if (count($groups)) return $groups[0]->id;
+		return false; // return false if group name not found
+	}
+
 	static
 	function getForcedLogin()
 	{

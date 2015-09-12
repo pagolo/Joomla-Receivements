@@ -27,6 +27,13 @@
                         description="COM_RECEIVEMENTS_STUDENTS_DESC"
                         default="Studenti"
                 />
+                <field
+                        name="schools_group"
+                        type="text"
+                        label="COM_RECEIVEMENTS_SCHOOLS_LBL"
+                        description="COM_RECEIVEMENTS_SCHOOLS_DESC"
+                        default=""
+                />
 		<field
 			name="pre_booking"
 			type="list"

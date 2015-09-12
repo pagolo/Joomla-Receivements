@@ -31,7 +31,7 @@ $document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/
         <input type="hidden" id="jform_name" name="jform[name]" value="<?php echo $this->data['name']?>" />
         <input type="hidden" id="jform_email" name="jform[email]" value="<?php echo $this->data['email']?>" />
         <input type="hidden" id="jform_use_email" name="jform[use_email]" value="<?php echo $this->data['use_email']?>" />
-        <button type="submit"><?php echo JText::_('COM_RECEIVEMENTS_REMOVE')?></button>
+        <button type="submit"><?php echo JText::_('COM_RECEIVEMENTS_REMOVE_BOOKING')?></button>
         <a class="button" href="<?php echo JRoute::_('index.php', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
         <input type="hidden" name="option" value="com_receivements" />
         <input type="hidden" name="task" value="disdetta.remove" />
