@@ -21,7 +21,7 @@ $showClass = $class === '*' || empty($class);
 
 <form id="primo" action="<?php echo 'index.php?option=com_receivements&amp;view=ricevimenti' ?>" method="post">
 	<div>
-<?php if (!(empty(ReceivementsFrontendHelper::getSchoolsGroup()))) : ?>
+<?php if (ReceivementsFrontendHelper::getSchoolsGroup()) : ?>
 			<select name="filter_school" class="inputbox school-select" onchange="this.form.submit();">
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_SCHOOLS');?></option>
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getSchoolOptions(), 'value', 'text', $this->state->get('filter.scuola'));?>
