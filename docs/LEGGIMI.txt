@@ -1,8 +1,8 @@
 Receivements for Joomla
 -----------------------
-versione 0.5.6 (RC version)
+versione 1.0.0
 licenza  GPL 2
-data     23/02/2015
+data     16/09/2015
 autore   P. Bozzo
 email    pagolo.bozzo AT gmail.com
 
@@ -10,8 +10,7 @@ CARATTERISTICHE
 ---------------
 Software per gestire, tramite Joomla, i colloqui dei genitori con i docenti in
 una scuola italiana. Richiede la presenza dei docenti come utenti Joomla.
-L'estensione funziona solo con Joomla 2.5. Si raccomanda di utilizzare la
-versione a cura di 'Porte aperte sul Web'. 
+L'estensione funziona sia con Joomla 2.5 che con Joomla 3.x.
 Nel backend:
 - Gestione delle ore di appuntamento, dei genitori/studenti (opzionale), delle
 classi, delle materie, dei giorni di sospensione del ricevimento.
