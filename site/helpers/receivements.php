@@ -6,6 +6,21 @@
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
  * @author      Paolo Bozzo - pagolo.bozzo AT gmail.com - http://dbfweb.com
  */
+ 
+class ReceivementsRoute extends JRoute
+{
+	static
+	function _($url, $x, $sche) 
+	{
+		$base = JUri::base();
+		$par = parent::_($url, $x , $sche);
+		if (strncmp($base, $par, strlen($base)) == 0) {
+			$par = substr($par, strlen($base));
+		}
+		return $par;
+	}
+}
+
 defined('_JEXEC') or die;
 class ReceivementsFrontendHelper
 

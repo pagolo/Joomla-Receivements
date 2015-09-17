@@ -53,11 +53,11 @@ $doc->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/list.
 				</tr>
 				<tr>
 				<td colspan = '2' style='text-align:center'><hr />
-                                <button type="submit" class="validate"><span><?php echo JText::_('JSAVE'); ?></span></button>
+                                <button type="submit" class="validate button btn"><span><?php echo JText::_('JSAVE'); ?></span></button>
     <?php if (!empty($this->item->id)): ?>
-                                <a class="button btn" href="<?php echo JRoute::_('index.php?option=com_receivements&task=assenza.remove&id='.$this->item->id, false, 2); ?>"><?php echo JText::_('COM_RECEIVEMENTS_ORE_DELETE')?></a>
+                                <a class="button btn" href="<?php echo ReceivementsRoute::_('index.php?option=com_receivements&task=assenza.remove&id='.$this->item->id, false, 2); ?>"><?php echo JText::_('COM_RECEIVEMENTS_ORE_DELETE')?></a>
     <?php endif; ?>
-                                <a class="button btn" href="<?php echo JRoute::_('index.php?option=com_receivements&task=assenze', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a>
+                                <a class="button btn" href="<?php echo ReceivementsRoute::_('index.php?option=com_receivements&task=assenze', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a>
 				</td>
 				</tr>
 			</table>

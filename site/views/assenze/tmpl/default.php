@@ -16,7 +16,7 @@ $lang->load('', JPATH_ADMINISTRATOR);
 <h1><?php echo JText::_('COM_RECEIVEMENTS_ASSENZE') . ' (' . JFactory::getUser()->name . ')'?></h1>
 
 <form action="" method="post">
-        <div><a class="button btn" href="<?php echo JRoute::_('index.php?option=com_receivements&task=assenza&id=0', false, 2); ?>"><?php echo JText::_('COM_RECEIVEMENTS_ADD_ITEM')?></a></div>
+        <div><a class="button btn" href="<?php echo ReceivementsRoute::_('index.php?option=com_receivements&task=assenza&id=0', false, 2); ?>"><?php echo JText::_('COM_RECEIVEMENTS_ADD_ITEM')?></a></div>
 	<table class='front-end-list'>
 		<thead>
 			<tr>
@@ -36,7 +36,7 @@ $lang->load('', JPATH_ADMINISTRATOR);
 				<td><?php echo ReceivementsFrontendHelper::convertDateFrom($row->fine)?></td>
 				<td><em><?php echo $row->descrizione?></em></td>
 				<td>
-        			<a class="button btn" href="<?php echo JRoute::_('index.php?option=com_receivements&task=assenza&id=' . $row->id, false, 2); ?>"><?php echo JText::_('COM_RECEIVEMENTS_ORE_EDIT')?></a>
+        			<a class="button btn" href="<?php echo ReceivementsRoute::_('index.php?option=com_receivements&task=assenza&id=' . $row->id, false, 2); ?>"><?php echo JText::_('COM_RECEIVEMENTS_ORE_EDIT')?></a>
                                 </td>
 			</tr>
 <?php
