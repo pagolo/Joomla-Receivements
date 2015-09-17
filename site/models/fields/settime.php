@@ -45,7 +45,7 @@ class JFormFieldSetTime extends JFormFieldText
                         $x = 175; $y = 110;
                 }
                 */
-                $x = 175; $y = 110;
+                $x = 175; $y = 140;
         
         	$html[] = parent::getInput();
         	$html[] = '<script type="text/javascript">';

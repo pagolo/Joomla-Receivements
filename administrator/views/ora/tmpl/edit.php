@@ -15,6 +15,11 @@ JHtml::_('behavior.keepalive');
 // Import CSS
 $document = JFactory::getDocument();
 $document->addStyleSheet('components/com_receivements/assets/css/receivements.css');
+
+//frontend strings
+$language =& JFactory::getLanguage();
+$language->load('com_receivements', JPATH_SITE, $language->getTag(), true);
+
 ?>
 <script type="text/javascript">
     function getScript(url,success) {

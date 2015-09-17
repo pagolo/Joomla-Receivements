@@ -10,11 +10,11 @@
 defined('_JEXEC') or die;
 ?>
 
-  <table style="border:none !important;text-align:center">
-  <tr><td><button onclick="increment('h',1,23)">+</button></td><td><button onclick="increment('m',5,55)">+</button></td></tr>
-  <tr><td><?php echo JText::_('COM_RECEIVEMENTS_HOURS')?><br /><input type="text" size="4" id="h" readonly="readonly" value="08" style="text-align:center" /></td>
-  <td><?php echo JText::_('COM_RECEIVEMENTS_MINUTES')?><br /><input type="text" size="4" readonly="readonly" id="m" value="00" style="text-align:center" /></td></tr>
-  <tr><td><button onclick="decrement('h',1,23)">-</button></td><td><button onclick="decrement('m',5,55)">-</button></td></tr>
+  <table style="border:none !important;text-align:center;width:100%;height:100%;font-size:8pt">
+  <tr><td><button style="font-size:8pt" onclick="increment('h',1,23)">+</button></td><td><button style="font-size:8pt" onclick="increment('m',5,55)">+</button></td></tr>
+  <tr><td><?php echo JText::_('COM_RECEIVEMENTS_HOURS')?><br /><input type="text" size="4" id="h" readonly="readonly" value="08" style="text-align:center;width:30px;font-size:8pt" /></td>
+  <td><?php echo JText::_('COM_RECEIVEMENTS_MINUTES')?><br /><input type="text" size="4" readonly="readonly" id="m" value="00" style="text-align:center;width:30px;font-size:8pt" /></td></tr>
+  <tr><td><button style="font-size:8pt" onclick="decrement('h',1,23)">-</button></td><td><button style="font-size:8pt" onclick="decrement('m',5,55)">-</button></td></tr>
   </table>
 <script type="text/javascript">
 var qs = (function(a) {
