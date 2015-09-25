@@ -16,6 +16,7 @@ $doc = JFactory::getDocument();
 $doc->addStyleSheet(JUri::base() . '/components/com_receivements/assets/css/form.css');
 $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js');
 ?>
+<h1><?php echo JText::_('COM_RECEIVEMENTS_AGENDA'); ?></h1>
 
 <?php if (!empty($this->data)) : ?>
 
