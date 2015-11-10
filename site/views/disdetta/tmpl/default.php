@@ -20,7 +20,7 @@ $document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/
         <em><strong><?php echo JText::_('COM_RECEIVEMENTS_BOOKING_NOT_FOUND')?></strong></em>
 <?php else : ?>
         <div class="front-end-edit">
-        <form action="<?php echo JRoute::_('index?option=com_receivements&task=disdetta.remove')?>" id="form-remove" method="post" class="form-validate">
+        <form action="<?php echo JRoute::_('index.php?option=com_receivements&task=disdetta.remove')?>" id="form-remove" method="post" class="form-validate">
         <fieldset>
         <legend><?php echo JText::_('COM_RECEIVEMENTS_REMOVE_BOOKING')?></legend>
         <?php echo JText::sprintf('COM_RECEIVEMENTS_REALLY_REALLY_DELETE',$this->data['name'],ReceivementsFrontendHelper::convertDateFrom($this->data['data'], 'd/m/Y H:i'))?><br />&nbsp;<br />

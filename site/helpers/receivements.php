@@ -272,7 +272,7 @@ class ReceivementsFrontendHelper
         
         static
         function createUndoAddress($guid) {
-                return JUri::base() . 'index?option=com_receivements&view=disdetta&guid=' . $guid;
+                return JUri::base() . 'index.php?option=com_receivements&view=disdetta&guid=' . $guid;
         }
 }
 

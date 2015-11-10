@@ -48,8 +48,8 @@ $showClass = $class === '*' || empty($class);
 <form id="adminForm" name="adminForm" action="<?php echo 'index.php?option=com_receivements&amp;task=ricevimenti.init_booking' ?>" method="post">
 <?php if ($canBook) : ?>
                         <div>
-			<button name="do_book" value="1" type="submit"><?php echo JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
-                        <a class="button modal" rel="{handler: 'iframe', size: {x: 640, y: 400}}" href="index.php?option=com_receivements&view=prenotazioni&tmpl=component"><?php echo JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></a>
+			<button name="do_book" class="button btn" value="1" type="submit"><?php echo JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>
+                        <a class="button btn modal" rel="{handler: 'iframe', size: {x: 640, y: 400}}" href="index.php?option=com_receivements&view=prenotazioni&tmpl=component"><?php echo JText::_('COM_RECEIVEMENTS_YOUR_BOOKINGS')?></a>
                         </div> 
 <?php else : ?>
                         <em><?php echo JText::_('COM_RECEIVEMENTS_PLEASE_LOGIN')?></em>
