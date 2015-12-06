@@ -6,6 +6,8 @@
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
  * @author      Paolo Bozzo - pagolo.bozzo AT gmail.com - http://dbfweb.com
  */
+  
+defined('_JEXEC') or die;
  
 class ReceivementsRoute extends JRoute
 {
@@ -21,9 +23,7 @@ class ReceivementsRoute extends JRoute
 	}
 }
 
-defined('_JEXEC') or die;
 class ReceivementsFrontendHelper
-
 {
         static
         function buildReceivementCell($text, &$view, $len = 12, $expand = false) {
@@ -114,7 +114,7 @@ class ReceivementsFrontendHelper
 	{
 		$myDate = JFactory::getDate($date);
 		$format = JText::_($fmt_str);
-		return JHTML::_('date', $myDate, $format);
+		return JHTML::_('date', $myDate, $format, 'UTC');
 	}
 
 	static
