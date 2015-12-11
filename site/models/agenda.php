@@ -41,6 +41,7 @@ class ReceivementsModelAgenda extends JModelLegacy
                         $oid = $this->data->ore['id'];
                         $query->where('id_ore = ' . $db->Quote($oid));
                         $query->where('data > NOW()');
+                        $query->where('totale_ric > 0');
                         $query->order('data ASC');
                         $db->setQuery($query);
                         $this->data->agenda = $db->loadAssocList();
