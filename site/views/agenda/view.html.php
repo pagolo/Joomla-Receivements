@@ -18,6 +18,7 @@ jimport('joomla.application.component.view');
 class ReceivementsViewAgenda extends JViewLegacy {
     protected $data;
     protected $agenda_open;
+    protected $agenda_old;
 
     /**
      * Display the view
@@ -31,8 +32,9 @@ class ReceivementsViewAgenda extends JViewLegacy {
         $this->data = $this->get('Data');
         $app	= JFactory::getApplication();
         $this->agenda_open = $app->getUserState('com_receivements.agenda.open');
+        $this->agenda_old = $app->getUserState('com_receivements.agenda.old');
         $app->setUserState('com_receivements.agenda.open', 0);
-        
+         
         parent::display($tpl);
     }//function
 }

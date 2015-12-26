@@ -42,4 +42,14 @@ class ReceivementsControllerAgenda extends ReceivementsController {
         public function email_delete() {
                 $this->delete(true);
         }
+        public function effettuati() {
+                $app	= JFactory::getApplication();
+                $app->setUserState('com_receivements.agenda.old', true);
+                $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=agenda', false));
+        }
+        public function prossimi() {
+                $app	= JFactory::getApplication();
+                $app->setUserState('com_receivements.agenda.old', false);
+                $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=agenda', false));
+        }
 }

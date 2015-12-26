@@ -22,6 +22,8 @@ class ReceivementsModelAgenda extends JModelLegacy
         public function getData()
         {
 		if ($this->data === null) {
+      $app	= JFactory::getApplication();
+      $agenda_old = $app->getUserState('com_receivements.agenda.old');
 			$this->data	= new stdClass();
                         $db = JFactory::getDBO();
                         $query = $db->getQuery(true);
@@ -40,7 +42,10 @@ class ReceivementsModelAgenda extends JModelLegacy
                         $query->from('#__receivements_agenda');
                         $oid = $this->data->ore['id'];
                         $query->where('id_ore = ' . $db->Quote($oid));
-                        $query->where('data > NOW()');
+                        if ($agenda_old)
+                                $query->where('data < NOW()');
+                        else
+                                $query->where('data >= NOW()');
                         $query->where('totale_ric > 0');
                         $query->order('data ASC');
                         $db->setQuery($query);

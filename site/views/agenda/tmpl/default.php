@@ -18,6 +18,15 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 ?>
 <h1><?php echo JText::_('COM_RECEIVEMENTS_AGENDA'); ?></h1>
 
+<span><strong><?php echo $this->agenda_old? JText::_('COM_RECEIVEMENTS_AGENDA_OLD') : JText::_('COM_RECEIVEMENTS_AGENDA_NEW'); ?></strong></span>
+<br /><em><?php echo JText::_('COM_RECEIVEMENTS_AGENDA_GOTO'); ?></em>
+<?php if ($this->agenda_old) : ?>
+<a href=<?php echo JRoute::_('index.php?option=com_receivements&task=agenda.prossimi'); ?>><?php echo JText::_('COM_RECEIVEMENTS_AGENDA_NEW'); ?></a>
+<?php else : ?>
+<a href=<?php echo JRoute::_('index.php?option=com_receivements&task=agenda.effettuati'); ?>><?php echo JText::_('COM_RECEIVEMENTS_AGENDA_OLD'); ?></a>
+<?php endif; ?>
+<br />&nbsp;<br />
+
 <?php if (!empty($this->data)) : ?>
 
 <fieldset>
@@ -35,8 +44,10 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
                 <?php foreach($day['nested'] as $ii => $booking) : ?>
                         <li>
                         <?php echo $booking['nome'].', '.$booking['classe'].' ('.JText::_($booking['parentela']).')'; ?>
+                        <?php if (!($this->agenda_old)) : ?>
                         <input title="<?php echo JText::_('COM_RECEIVEMENTS_DELETE_AND_SEND_EMAIL')?>" onclick="if (confirm('<?php echo JText::_('COM_RECEIVEMENTS_REALLY_DELETE_AND_SEND_EMAIL')?>')) window.location.href='<?php echo JRoute::_('index.php?option=com_receivements&task=agenda.email_delete&agenda='.$booking['id_agenda'].'&id='.$booking['id'],false,2)?>'" type="image"  style='vertical-align: bottom' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/email-delete.png';?>" alt="show" />
-                        <input title="<?php echo JText::_('COM_RECEIVEMENTS_DELETE_AND_NO_EMAIL')?>" onclick="if (confirm('<?php echo JText::_('COM_RECEIVEMENTS_REALLY_DELETE_AND_NO_EMAIL')?>')) window.location.href='<?php echo JRoute::_('index.php?option=com_receivements&task=agenda.delete&agenda='.$booking['id_agenda'].'&id='.$booking['id'],false,2)?>'" type="image"  style='vertical-align: bottom' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/delete.png';?>" alt="show" />
+                        <?php endif; ?>
+                        <input title="<?php echo JText::_($this->agenda_old? 'COM_RECEIVEMENTS_DELETE_THIS': 'COM_RECEIVEMENTS_DELETE_AND_NO_EMAIL')?>" onclick="if (confirm('<?php echo JText::_('COM_RECEIVEMENTS_REALLY_DELETE_AND_NO_EMAIL')?>')) window.location.href='<?php echo JRoute::_('index.php?option=com_receivements&task=agenda.delete&agenda='.$booking['id_agenda'].'&id='.$booking['id'],false,2)?>'" type="image"  style='vertical-align: bottom' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/delete.png';?>" alt="show" />
                         </li>
                 <?php endforeach ?>
                 </ul>
