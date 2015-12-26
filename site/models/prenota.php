@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     0.5.0
+ * @version     1.0.5
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
@@ -121,6 +121,10 @@ class ReceivementsModelPrenota extends JModelForm
 	       if ($mytest === false) return false;
 	       return $return;
         }
+        private function GetMaxReceivements($db, $teacher_id) {
+          $db->setQuery('SELECT max_app FROM #__receivements_ore WHERE id_docente = ' . $teacher_id);
+          return $db->loadResult();
+        }
         private function ExistAgendaRecord($db, $dt, &$totale_ric, &$id)
         {
                 //$qdate = $db->Quote(substr($dt['datetime'],0,10));// get only date no time
@@ -189,7 +193,7 @@ class ReceivementsModelPrenota extends JModelForm
                 }
             }
             
-            foreach ($data['ricevimenti'] as $i => $dt)
+            foreach ($data['ricevimenti'] as $i => &$dt)
             {
                 $totale_ric = 0;
                 $agenda_id = null;
@@ -212,6 +216,8 @@ class ReceivementsModelPrenota extends JModelForm
                     return false;
                 }
                 //echo $totale_ric;
+                $dt['ric_numero'] = $totale_ric;
+                $dt['ric_totale'] = $this->GetMaxReceivements($db, $dt['teacher_id']);
                 // inviare sms
                 /*
                 if (db.GetVar("sms_enabled") == "on" && dt.TeacherSms && !(String.IsNullOrEmpty(dt.TeacherPhone)))

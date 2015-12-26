@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version     0.5.0
+ * @version     1.0.5
  * @package     com_receivements
  * @copyright   Copyright (C) 2014. Tutti i diritti riservati.
  * @license     GNU General Public License versione 2 o successiva; vedi LICENSE.txt
