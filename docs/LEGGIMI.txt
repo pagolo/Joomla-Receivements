@@ -1,10 +1,10 @@
 Receivements for Joomla
 -----------------------
-versione 1.0.0
+versione 1.0.5
 licenza  GPL 2
-data     16/09/2015
+data     27/12/2015
 autore   P. Bozzo
-email    pagolo.bozzo AT gmail.com
+email    pagolo.bozzo CHIOCCIOLA gmail.com
 
 CARATTERISTICHE
 ---------------
@@ -44,6 +44,12 @@ Docente).
 E' ALTRESI' IMPORTANTE assegnare al gruppo Docenti i permessi di creazione,
 Modifica e cancellazione all'interno dell'estensione Ricevimenti.
 
+VIDEO
+-----
+Si segnala qui anche la disponibilità di un ottimo video introduttivo a cura di
+Liberato Mazzotta, docente dell'Istituto Comprensivo di Oderzo, all'indirizzo
+https://youtu.be/8_8ZdebIkUg
+
 OPZIONALE
 ---------
 Sempre nella scheda Ricevimenti delle opzioni è possibile attivare "Login
@@ -68,7 +74,13 @@ In materia inserire le materie insegnate; in classi la lista delle classi
 separate da virgola; in giorno il giorno della settimana dell'ora di
 ricevimento; in inizio e fine l'ora di inizio e fine del ricevimento, CATEGORI-
 CAMENTE nel formato hh:mm; in sede la sede in cui si riceve.
+Se si preferisce che siano gli insegnanti ad inserire la propria ora di
+ricevimento è possibile farlo impostando l'importazione secondo l'esempio
+del file "docenti-no-ore.csv".
 
 ----------------
 Per finire desidero ringraziare il prof. Roberto Bisceglia, senza il cui paziente
 e competente supporto questo pacchetto non esisterebbe.
+Ringrazio anche gli webmaster Daniele Chidichimo (I.C. San Nilo di Grottaferrata)
+e Liberato Mazzotta (I.C. di Oderzo) per la segnalazione di bug e per gli utili
+suggerimenti.
