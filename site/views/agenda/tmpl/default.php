@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
+JHTML::_('behavior.modal');
 
 $doc = JFactory::getDocument();
 $doc->addStyleSheet(JUri::base() . '/components/com_receivements/assets/css/form.css');
@@ -48,6 +49,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
                         <input title="<?php echo JText::_('COM_RECEIVEMENTS_DELETE_AND_SEND_EMAIL')?>" onclick="if (confirm('<?php echo JText::_('COM_RECEIVEMENTS_REALLY_DELETE_AND_SEND_EMAIL')?>')) window.location.href='<?php echo JRoute::_('index.php?option=com_receivements&task=agenda.email_delete&agenda='.$booking['id_agenda'].'&id='.$booking['id'],false,2)?>'" type="image"  style='vertical-align: bottom' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/email-delete.png';?>" alt="show" />
                         <?php endif; ?>
                         <input title="<?php echo JText::_($this->agenda_old? 'COM_RECEIVEMENTS_DELETE_THIS': 'COM_RECEIVEMENTS_DELETE_AND_NO_EMAIL')?>" onclick="if (confirm('<?php echo JText::_('COM_RECEIVEMENTS_REALLY_DELETE_AND_NO_EMAIL')?>')) window.location.href='<?php echo JRoute::_('index.php?option=com_receivements&task=agenda.delete&agenda='.$booking['id_agenda'].'&id='.$booking['id'],false,2)?>'" type="image"  style='vertical-align: bottom' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/delete.png';?>" alt="show" />
+                        <a class="modal" href="<?php echo JRoute::_('index.php?option=com_receivements&tmpl=component&view=nota&id='.$booking['id'],false,2)?>" title="" rel="{handler: 'iframe', size: {x: 400, y: 360},onClose:function(){var js =window.location.reload();}}"><img class="hasTip" title="<?php echo JText::_('COM_RECEIVEMENTS_NOTE') . '::<pre><big>' . $this->escape($booking['nota']) . '</pre></big>' ?>" style="height:17px;border:none;" src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/pen.png';?>" /></a>
                         </li>
                 <?php endforeach ?>
                 </ul>

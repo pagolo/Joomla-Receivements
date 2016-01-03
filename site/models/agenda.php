@@ -56,7 +56,7 @@ class ReceivementsModelAgenda extends JModelLegacy
                         }
                         foreach($this->data->agenda as $i => $day) {
                                 $query = $db->getQuery(true);
-                                $query->select('p.id,id_agenda,parentela,email,nome,c.classe');
+                                $query->select('p.id,id_agenda,parentela,email,nome,c.classe,nota');
                                 $query->from('#__receivements_prenotazioni AS p');
                                 $query->join('LEFT', '#__receivements_classi AS c ON (p.id_classe = c.id)');
                                 $query->where('id_agenda = ' . $db->Quote($day['id']));
@@ -95,5 +95,15 @@ class ReceivementsModelAgenda extends JModelLegacy
                         $result = $db->execute();
                 }
                 return $result;
-        }    
+        }
+        public function updateNote($id, $note) {
+                if (JFactory::getUser()->authorise('core.edit', 'com_receivements') !== true) {
+                        JError::raiseError(403, JText::_('JERROR_ALERTNOAUTHOR'));
+                        return false;
+                }
+                $db = JFactory::getDBO();
+                $query = 'UPDATE #__receivements_prenotazioni SET nota = '.$db->Quote($note).' WHERE id = '.$db->Quote($id);
+                $db->setQuery($query);
+                return $db->execute();
+        }
 }
