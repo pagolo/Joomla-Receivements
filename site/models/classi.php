@@ -11,6 +11,7 @@ class ReceivementsModelClassi extends JModelList
         $query = $db->getQuery(true);
         $query->select('id,classe');
         $query->from('#__receivements_classi');
+        $query->order('classe');
         return $query;
     }
     public function getItems() {
