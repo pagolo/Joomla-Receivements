@@ -7,9 +7,9 @@
     <author>Paolo Bozzo</author>
     <authorEmail>info@dbfweb.com</authorEmail>
     <authorUrl>http://dbfweb.com</authorUrl>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <description></description>
-    
+
     <install> <!-- Runs on install -->
         <sql>
             <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
@@ -20,6 +20,11 @@
             <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
         </sql>
     </uninstall>
+    <update> <!-- Runs on update --> 
+        <schemas> 
+            <schemapath type="mysql">sql/updates/mysql</schemapath> 
+        </schemas> 
+    </update>
 
     <files folder="site">
         <filename>index.html</filename>
@@ -33,7 +38,6 @@
         <folder>assets</folder>
     </files>
     <languages folder="languages/site">
-        
 			<language tag="en-GB">en-GB/en-GB.com_receivements.ini</language>
 			<language tag="it-IT">it-IT/it-IT.com_receivements.ini</language>
     </languages>
@@ -70,5 +74,4 @@
             <folder>views</folder>
         </files>
     </administration>
-    
 </extension>
