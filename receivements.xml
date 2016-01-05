@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5" method="upgrade">
+    <name>com_receivements</name>
+    <creationDate>February 2015</creationDate>
+    <copyright>Copyright (C) 2015. Tutti i diritti riservati.</copyright>
+    <license>GNU General Public License versione 2 o successiva; vedi LICENSE.txt</license>
+    <author>Paolo Bozzo</author>
+    <authorEmail>info@dbfweb.com</authorEmail>
+    <authorUrl>http://dbfweb.com</authorUrl>
+    <version>1.0.7</version>
+    <description></description>
+
+    <install> <!-- Runs on install -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall> <!-- Runs on uninstall -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+    <update> <!-- Runs on update --> 
+	    <schemas> 
+		    <schemapath type="mysql">sql/updates/mysql</schemapath> 
+	    </schemas> 
+    </update>
+
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>receivements.php</filename>
+        <filename>controller.php</filename>
+        <filename>router.php</filename>
+        <folder>views</folder>
+        <folder>models</folder>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
+        <folder>assets</folder>
+    </files>
+    <languages folder="languages/site">
+			<language tag="en-GB">en-GB/en-GB.com_receivements.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_receivements.ini</language>
+    </languages>
+    <administration>
+        <languages folder="languages/administrator">
+            
+			<language tag="en-GB">en-GB/en-GB.com_receivements.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_receivements.sys.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_receivements.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_receivements.sys.ini</language>
+        </languages>
+        <menu img="components/com_receivements/assets/images/s_com_receivements.png" >COM_RECEIVEMENTS</menu>
+        <submenu>
+			<menu link="option=com_receivements&amp;view=prenotazioni" view="prenotazioni" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Prenotazioni">COM_RECEIVEMENTS_TITLE_PRENOTAZIONI</menu>
+			<menu link="option=com_receivements&amp;view=parenti" view="parenti" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Parenti">COM_RECEIVEMENTS_TITLE_PARENTI</menu>
+			<menu link="option=com_receivements&amp;view=ore" view="ore" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Ore">COM_RECEIVEMENTS_TITLE_ORE</menu>
+			<menu link="option=com_receivements&amp;view=sedi" view="sedi" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Sedi">COM_RECEIVEMENTS_TITLE_SEDI</menu>
+			<menu link="option=com_receivements&amp;view=cattedre" view="cattedre" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Cattedre">COM_RECEIVEMENTS_TITLE_CATTEDRE</menu>
+			<menu link="option=com_receivements&amp;view=classi" view="classi" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Classi">COM_RECEIVEMENTS_TITLE_CLASSI</menu>
+			<menu link="option=com_receivements&amp;view=vacanze" view="vacanze" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Calendario">COM_RECEIVEMENTS_TITLE_CALENDARIO</menu>
+        </submenu>
+        <files folder="administrator">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>receivements.php</filename>
+            <folder>controllers</folder>
+            <folder>assets</folder>
+            <folder>helpers</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files>
+    </administration>
+</extension>
