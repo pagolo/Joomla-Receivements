@@ -1,8 +1,8 @@
 Receivements for Joomla
 -----------------------
-versione 1.0.5
+versione 1.0.7
 licenza  GPL 2
-data     27/12/2015
+data     08/01/2016
 autore   P. Bozzo
 email    pagolo.bozzo CHIOCCIOLA gmail.com
 
@@ -43,6 +43,13 @@ E' importante anche specificare il livello di accesso (3.1: Public, gli altri
 Docente).
 E' ALTRESI' IMPORTANTE assegnare al gruppo Docenti i permessi di creazione,
 Modifica e cancellazione all'interno dell'estensione Ricevimenti.
+
+MAILING LIST
+------------
+E' stata creata una mailing list per distribuire informazioni e suggerimenti
+a coloro che utilizzano questo software. Per iscriversi, andare sul link:
+https://groups.google.com/forum/?hl=it#!forum/ricevimenti-joomla
+oppure inviare una email all'indirizzo specificato sopra.
 
 VIDEO
 -----

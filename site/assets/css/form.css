@@ -4,6 +4,7 @@ body.white fieldset {
 }
 .tip {
    float: left;
+   color: #000;
    background: #ffc;
    border: 1px solid #D4D5AA;
    padding: 5px;

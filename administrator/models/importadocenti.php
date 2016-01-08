@@ -159,7 +159,7 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                                         if ($userid) $data->users_existing++;
                                 }
                                 if (!$userid) {
-                                        $user = ReceivementsHelper::createUser($username, $row->$password,$name,  $row->$email, ReceivementsFrontendHelper::getTeachersGroup(), false);
+                                        $user = ReceivementsHelper::createUser($username, $row->$password, $name,  $row->$email, ReceivementsFrontendHelper::getTeachersGroup(), false);
                                         if ($user == null) {
                                                 $data->users_failed++;
                                                 continue; // TODO accodare avviso
