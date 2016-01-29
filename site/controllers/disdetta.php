@@ -31,11 +31,8 @@ class ReceivementsControllerDisdetta extends ReceivementsController {
                         $a = JRequest::getVar('jform', array(), 'post', 'array');
                 }
                 $status = 'not_ok';
-                $db = JFactory::getDBO();
-                $query = 'DELETE FROM #__receivements_prenotazioni WHERE id = '.$db->Quote($a['id']);
-                $db->setQuery($query);
-                $result = $db->execute();
-                if ($result) {  // successfully deleted
+                $model = $this->getModel('Disdetta', 'ReceivementsModel');
+                if ($model->deleteBooking($a) == TRUE) {
                         if ($a['use_email']) {
                                 ReceivementsEmailHelper::sendDeletionEmailToTeacher($a);
                         }

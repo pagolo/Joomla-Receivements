@@ -25,6 +25,7 @@ $document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/
         <legend><?php echo JText::_('COM_RECEIVEMENTS_REMOVE_BOOKING')?></legend>
         <?php echo JText::sprintf('COM_RECEIVEMENTS_REALLY_REALLY_DELETE',$this->data['name'],ReceivementsFrontendHelper::convertDateFrom($this->data['data'], 'd/m/Y H:i'))?><br />&nbsp;<br />
         <input type="hidden" id="jform_id" name="jform[id]" value="<?php echo $this->data['id']?>" />
+        <input type="hidden" id="jform_id_agenda" name="jform[id_agenda]" value="<?php echo $this->data['id_agenda']?>" />
         <input type="hidden" id="jform_student" name="jform[student]" value="<?php echo $this->data['student']?>" />
         <input type="hidden" id="jform_classe" name="jform[classe]" value="<?php echo $this->data['classe']?>" />
         <input type="hidden" id="jform_data" name="jform[data]" value="<?php echo $this->data['data']?>" />
