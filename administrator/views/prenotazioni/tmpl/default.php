@@ -121,7 +121,7 @@ require_once JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'co
                     <th class="nowrap left">
                         <?php
                         $orderby = ReceivementsFrontendHelper::getForcedLogin() ? 'u2.name' : 'p.email';
-                        echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_PARENT', $orderby, $listDirn, $listOrder);
+                        echo JHtml::_('grid.sort', 'COM_RECEIVEMENTS_REQUESTER', $orderby, $listDirn, $listOrder);
                         ?>
                     </th>
                 <?php endif; ?>
@@ -214,7 +214,7 @@ require_once JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'co
                     <?php if (isset($this->items[0]->email)) { ?>
                         <td class="left">
 			     <a href="mailto:<?php echo $this->escape($item->email); ?>" title="<?php echo JText::_('COM_RECEIVEMENTS_CLICK_TO_SEND_EMAIL');?>">
-                             <?php echo $item->genitore? $this->escape($item->genitore) : $this->escape($item->email) ?>
+                             <?php echo ($item->genitore && ReceivementsFrontendHelper::getForcedLogin())? $this->escape($item->genitore) : $this->escape($item->email) ?>
                              </a>
                         </td>
                     <?php } ?>
