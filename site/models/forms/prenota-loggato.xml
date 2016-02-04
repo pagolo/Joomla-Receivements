@@ -28,7 +28,7 @@
                 <field name="email" type="text" class="inputbox"
                         label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_EMAIL"
                         description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_EMAIL" 
-                        readonly="true" 
+                        readonly="true" validate="email"
                         />
 
                 <field name="parentela" type="list"

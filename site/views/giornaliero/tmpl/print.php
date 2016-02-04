@@ -13,14 +13,9 @@ JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
 
 ?>
-
-<form id="form-giornaliero" action="<?php echo JRoute::_('index.php?option=com_receivements&view=giornaliero'); ?>" method="post" class="form-validate">
-        <?php echo $this->form->getLabel('data'); ?>
-        <?php echo $this->form->getInput('data'); ?>
-        <button type="submit"><?php echo JText::_('COM_RECEIVEMENTS_GO'); ?></button>
-        <button name="jform[print]" onclick="javascript:this.form.action = '<?php echo JRoute::_('index.php?option=com_receivements&view=giornaliero&tmpl=component&print=1'); ?>';return true;" type="submit"><?php echo JText::_('COM_RECEIVEMENTS_PRINT_PAGE'); ?></button>
-</form>
-<hr />
+<a href="<?php echo JRoute::_('index.php?option=com_receivements&view=giornaliero'); ?>" title="<?php echo JText::_('COM_RECEIVEMENTS_BACK'); ?>"><?php echo JText::_('COM_RECEIVEMENTS_BACK'); ?></a>
+<a href="#" onclick="window.print(); return false;"><?php echo JText::_('COM_RECEIVEMENTS_PRINT'); ?></a>
+<br />&nbsp;
 <fieldset>
         <legend>
         <?php echo JText::_('COM_RECEIVEMENTS_OF_DAY') . $this->date; ?>
@@ -35,7 +30,7 @@ JHtml::_('behavior.tooltip');
                 <li>
                 <?php echo JText::sprintf('COM_RECEIVEMENTS_AGENDA_ITEM',$item['name'],$item['sede'],substr($item['inizio'],0,5)); ?>
                 <ol>
-                <?php foreach($item['lista'] as $appointment) : ?>
+                <?php foreach($item[lista] as $appointment) : ?>
                         <li>
                         <?php echo JText::sprintf('COM_RECEIVEMENTS_APPOINTMENT_ITEM',$appointment['studente'],$appointment['classe']); ?>
                         </li>

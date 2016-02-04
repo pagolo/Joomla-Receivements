@@ -34,6 +34,9 @@ class ReceivementsViewGiornaliero extends JViewLegacy {
         $this->date = $this->data['data'];
         $this->form = $this->get('Form');
         $this->items= $this->get('Items');
+//print_r($this->data);exit;
+        if (isset($this->data['print']))
+                $this->setLayout('default:print');
         
         parent::display($tpl);
     }//function
