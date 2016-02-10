@@ -50,6 +50,7 @@ class ReceivementsModelGiornaliero extends JModelForm
                 $query->join('LEFT', '#__users u ON (u.id = o.id_docente)');
                 $query->join('LEFT', '#__receivements_sedi s ON (s.id = o.sede)');
                 $query->where('DATE(data) = '.$db->Quote($this->date));
+                $query->where('totale_ric > 0');
                 $db->setQuery($query);
                 $items = $db->loadAssocList();
 		foreach ($items as $i => $item) {

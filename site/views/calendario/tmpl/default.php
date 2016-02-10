@@ -28,7 +28,7 @@ $lang->load('', JPATH_ADMINISTRATOR);
 		foreach ($this->items as &$row)
 		{
 ?>
-			<tr class="row">
+			<tr>
 				<td><?php echo ReceivementsFrontendHelper::convertDateFrom($row->inizio)?></td>
 				<td><?php echo ReceivementsFrontendHelper::convertDateFrom($row->fine)?></td>
 				<td><em><?php echo $row->descrizione?></em></td>
