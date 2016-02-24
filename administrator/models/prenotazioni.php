@@ -91,13 +91,13 @@ class ReceivementsModelPrenotazioni extends JModelList {
         if ($from === null) $from = JText::_('COM_RECEIVEMENTS_TODAY');
         if (!empty($from)) {
             if ($from == JText::_('COM_RECEIVEMENTS_TODAY')) {
-                $query->where('a.data >= NOW()');
+                $query->where('DATE(a.data) >= DATE(NOW())');
             } else {
                 // TODO: check $from format
                 $myDate = JFactory::getDate($from);
                 $format = JText::_('Y-m-d');
                 $outdate = JHTML::_('date', $myDate, $format);
-                $query->where('a.data >= '.$db->Quote($outdate));
+                $query->where('DATE(a.data) >= '.$db->Quote($outdate));
             }
         }
 

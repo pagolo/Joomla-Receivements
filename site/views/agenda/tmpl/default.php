@@ -26,9 +26,12 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 <?php else : ?>
 <a href=<?php echo JRoute::_('index.php?option=com_receivements&task=agenda.effettuati'); ?>><?php echo JText::_('COM_RECEIVEMENTS_AGENDA_OLD'); ?></a>
 <?php endif; ?>
-<br />&nbsp;<br />
 
 <?php if (!empty($this->data)) : ?>
+<form id="form-agenda-print" action="<?php echo JRoute::_('index.php?option=com_receivements&view=agenda'); ?>" method="post">
+        <button name="jform[print]" onclick="javascript:this.form.action = '<?php echo JRoute::_('index.php?option=com_receivements&view=agenda&tmpl=component&print=1&layout=print'); ?>';return true;" type="submit"><?php echo JText::_('COM_RECEIVEMENTS_PRINT_PAGE'); ?></button>
+</form>
+<br />&nbsp;<br />
 
 <fieldset>
         <legend>

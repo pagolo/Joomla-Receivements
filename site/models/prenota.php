@@ -103,6 +103,16 @@ class ReceivementsModelPrenota extends JModelForm
                 }
                 return true;
         }
+	protected function myTestEmail($mailto)
+	{
+                $config	= JFactory::getConfig();
+                $mailfrom = $config->get('mailfrom');
+                $success = ReceivementsEmailHelper::verifyEmail($mailto, $mailfrom, $error);
+                if (!$success) {
+                        $this->setError($error);
+                }
+                return $success;
+        }
 	public function validate($form, $data)
 	{
 	       $ric = array();
@@ -119,6 +129,10 @@ class ReceivementsModelPrenota extends JModelForm
 	       $return = parent::validate($form, $data);
 	       $mytest = $this->myTest($data);
 	       if ($mytest === false) return false;
+               if (ReceivementsFrontendHelper::getEmailVerification()) {
+        	       $mytest = $this->myTestEmail($data['email']);
+	               if ($mytest === false) return false;
+               }
 	       return $return;
         }
         private function GetMaxReceivements($db, $teacher_id) {

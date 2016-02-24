@@ -8,7 +8,7 @@ jimport('joomla.application.component.view');
 /**
  * HTML View class for the HelloWorld Component
  */
-class ReceivementsViewRicevimenti extends JViewLegacy
+class ReceivementsViewPrenotazioni_Tutte extends JViewLegacy
 {
     protected $items;
     protected $pagination;
@@ -17,9 +17,9 @@ class ReceivementsViewRicevimenti extends JViewLegacy
         // Overwriting JView display method
         function display($tpl = null) 
         {
-                $this->items = $this->get('Items');
-                $this->pagination = $this->get('Pagination');
-		$this->state = $this->get('State');
+        $this->state = $this->get('State');
+        $this->items = $this->get('Items');
+        $this->pagination = $this->get('Pagination');
  
                 // Display the view
                 parent::display($tpl);

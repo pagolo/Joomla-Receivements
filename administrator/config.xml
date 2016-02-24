@@ -6,6 +6,11 @@
                         label="COM_RECEIVEMENTS_FORCED_LOGIN_LBL"
                         description="COM_RECEIVEMENTS_FORCED_LOGIN_DESC" 
                 />
+                <field 
+                        name="verify_email" type="checkbox" value="1" default="1"                
+                        label="COM_RECEIVEMENTS_EMAIL_VERIFICATION"
+                        description="COM_RECEIVEMENTS_CHECK_EMAIL_EXISTS" 
+                />
                 <field
                         name="parents_group"
                         type="text"

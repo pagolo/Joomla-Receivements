@@ -62,6 +62,29 @@ class ReceivementsFrontendHelper
 	}
 
 	static
+	function getTeachersOptions()
+	{
+		// Build the filter options.
+		$teachers_group = ReceivementsFrontendHelper::getTeachersGroup();
+		if (empty($teachers_group)) return false;
+		$db = JFactory::getDbo();
+		$teachers_group_id = ReceivementsFrontendHelper::getGroupId($teachers_group, $db);
+		if ($teachers_group_id === false) return false;
+		
+		$db->setQuery('SELECT a.user_id AS value, b.name AS text FROM #__user_usergroup_map AS a LEFT JOIN #__users AS b ON a.user_id = b.id WHERE a.group_id = ' . $teachers_group_id  . ' ORDER BY b.name ASC');
+		$options = $db->loadObjectList();
+
+		// Check for a database error.
+
+		if ($db->getErrorNum()) {
+			JError::raiseNotice(500, $db->getErrorMsg());
+			return null;
+		}
+
+		return $options;
+	}
+
+	static
 	function getWeekDayOptions()
 	{
 
@@ -208,6 +231,15 @@ class ReceivementsFrontendHelper
                 $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
                 $params_array = $params->toArray();
                 return (isset($params_array['forced_login'])? $params_array['forced_login'] : 0); 
+        }
+        
+	static
+	function getEmailVerification()
+	{
+	        $app = JFactory::getApplication();
+                $params = $app->isAdmin() ? JComponentHelper::getParams('com_receivements') : $app->getParams();
+                $params_array = $params->toArray();
+                return (isset($params_array['verify_email'])? $params_array['verify_email'] : 1); 
         }
         
 	static
@@ -408,5 +440,68 @@ class ReceivementsEmailHelper
 
 		$return = $mailer->Send();
                 return $return;		
+        }
+        /**
+         * derived from example by Sam Battat
+         * https://github.com/hbattat
+         */ 
+        function verifyEmail($toemail, $fromemail, &$error) {
+	       $email_arr = explode("@", trim($toemail));
+	       $domain = array_slice($email_arr, -1);
+	       $domain = $domain[0];
+	       if( "IPv6:" == substr($domain, 0, strlen("IPv6:")) ) {
+	               $domain = substr($domain, strlen("IPv6") + 1);
+	       }
+	       $mxhosts = array();
+	       if( filter_var($domain, FILTER_VALIDATE_IP) )
+	               $mx_ip = $domain;
+	       else
+	               getmxrr($domain, $mxhosts, $mxweight);
+	       if(!empty($mxhosts) )
+	               $mx_ip = $mxhosts[array_search(min($mxweight), $mxhosts)];
+	       else {
+	               if( filter_var($domain, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ) {
+		              $record_a = dns_get_record($domain, DNS_A);
+		      }
+	               elseif( filter_var($domain, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) ) {
+		              $record_a = dns_get_record($domain, DNS_AAAA);
+		      }
+		      if( !empty($record_a) )
+		              $mx_ip = $record_a[0]['ip'];
+		      else {
+		              $error = sprintf(JText::_('COM_RECEIVEMENTS_CANT_FIND_MAIL_SERVER'), $domain);
+		              return ( false );
+		      }
+	       }
+	
+	       $connect = @fsockopen($mx_ip, 25); 
+	       if($connect){ 
+		      if(preg_match("/^220/i", $out = fgets($connect, 1024))){
+			     fputs ($connect , "HELO $mx_ip\r\n"); 
+			     $out = fgets ($connect, 1024);
+ 
+			     fputs ($connect , "MAIL FROM: <$fromemail>\r\n"); 
+			     $from = fgets ($connect, 1024); 
+			     fputs ($connect , "RCPT TO: <$toemail>\r\n"); 
+			     $to = fgets ($connect, 1024);
+			     fputs ($connect , "QUIT"); 
+			     fclose($connect);
+			     if(!preg_match("/^250/i", $from)){
+			             $result = false;
+                                     $error = sprintf(JText::_('COM_RECEIVEMENTS_MAIL_DOES_NOT_EXIST'), $fromemail);
+			     } elseif(!preg_match("/^250/i", $to)) {
+			             $result = false;
+                                     $error = sprintf(JText::_('COM_RECEIVEMENTS_MAIL_DOES_NOT_EXIST'), $toemail);
+                             }
+			     else{
+				    $result = true;
+			     }
+		      } 
+	       }
+	       else{
+		      $result = false;
+		      $error = JText::_('COM_RECEIVEMENTS_CANT_CONNECT_TO_MAIL_SERVER');
+	       }
+	       return $result;
         }
 }
