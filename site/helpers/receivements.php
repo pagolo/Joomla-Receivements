@@ -487,8 +487,11 @@ class ReceivementsEmailHelper
 			     fputs ($connect , "QUIT"); 
 			     fclose($connect);
 			     if(!preg_match("/^250/i", $from)){
+                                     return true;
+                                     /*
 			             $result = false;
-                                     $error = sprintf(JText::_('COM_RECEIVEMENTS_MAIL_DOES_NOT_EXIST'), $fromemail);
+                                     $error = JText::_('COM_RECEIVEMENTS_MAIL_SENDER_NOT_ACCEPTED');
+                                     */
 			     } elseif(!preg_match("/^250/i", $to)) {
 			             $result = false;
                                      $error = sprintf(JText::_('COM_RECEIVEMENTS_MAIL_DOES_NOT_EXIST'), $toemail);

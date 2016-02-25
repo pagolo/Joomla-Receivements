@@ -2,12 +2,12 @@
 <extension type="component" version="2.5" method="upgrade">
     <name>com_receivements</name>
     <creationDate>February 2015</creationDate>
-    <copyright>Copyright (C) 2015. Tutti i diritti riservati.</copyright>
+    <copyright>Copyright (C) 2015-2016. Tutti i diritti riservati.</copyright>
     <license>GNU General Public License versione 2 o successiva; vedi LICENSE.txt</license>
     <author>Paolo Bozzo</author>
     <authorEmail>info@dbfweb.com</authorEmail>
     <authorUrl>http://dbfweb.com</authorUrl>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <description></description>
 
     <install> <!-- Runs on install -->

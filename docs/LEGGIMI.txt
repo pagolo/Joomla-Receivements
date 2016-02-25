@@ -1,8 +1,8 @@
 Receivements for Joomla
 -----------------------
-versione 1.0.7
+versione 1.2.0
 licenza  GPL 2
-data     08/01/2016
+data     25/02/2016
 autore   P. Bozzo
 email    pagolo.bozzo CHIOCCIOLA gmail.com
 
@@ -38,6 +38,8 @@ Costruzione del menù:
    3.2 Ora di ricevimento
    3.3 Giorni di assenza
    3.4 Agenda del docente
+   3.5 Ricevimenti del giorno
+   3.6 Elenco prenotazioni
 Le voci sono recuperabili dalla lista di voci sotto il titolo 'Ricevimenti'.
 E' importante anche specificare il livello di accesso (3.1: Public, gli altri
 Docente).
@@ -53,15 +55,29 @@ oppure inviare una email all'indirizzo specificato sopra.
 
 VIDEO
 -----
-Si segnala qui anche la disponibilità di un ottimo video introduttivo a cura di
-Liberato Mazzotta, docente dell'Istituto Comprensivo di Oderzo, all'indirizzo
-https://youtu.be/8_8ZdebIkUg
+Si segnala qui anche la disponibilità di alcuni ottimi video introduttivi.
+Uno a cura del prof. Liberato Mazzotta all'indirizzo https://youtu.be/8_8ZdebIkUg 
+e altri due a cura del prof. Roberto Bisceglia rispettivamente rivolti ai docenti
+(https://youtu.be/NkGqYt--QQw) e ai genitori (https://youtu.be/qaOdhEGJiwk).
 
 OPZIONALE
 ---------
 Sempre nella scheda Ricevimenti delle opzioni è possibile attivare "Login
 richiesto per prenotare". La presenza degli utenti-genitori può essere risolta
 con l'apposita importazione (per il formato consultare il file genitori.csv).
+
+DALLA VERSIONE 1.2.0
+--------------------
+Nella stessa scheda delle opzione è possibile disattivare una nuova 
+caratteristica, la verifica dell'esistenza della email del richiedente.
+Se l'opzione è attivata, al momento dell'invio della richiesta di colloquio
+viene verificata l'esistenza della email specificata. Se il server è collocato
+nell'edificio della scuola, potrà accadere che la verifica si limiti ad
+accertare l'esistenza e la disponibilità del server di posta, ma normalmente
+verificherà anche l'esistenza dell'utente.
+Oltre a questo è ora disponibile una pagina di stampa per l'agenda del docente
+e una pagina con la lista di tutte le prenotazioni ricercabili per data,
+per docente e classe dello studente.
 
 IMPORTAZIONE DEI DOCENTI
 ------------------------
