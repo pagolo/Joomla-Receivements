@@ -13,7 +13,7 @@ $document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/
 ?>
 <h1><?php echo JText::_('COM_RECEIVEMENTS_BOOKINGS_ALL')?></h1>
 
-<form id="primo" action="<?php echo JRoute::_('index.php?option=com_receivements&amp;view=prenotazioni_tutte') ?>" method="post">
+<form id="primo" name="primo" action="<?php echo JRoute::_('index.php?option=com_receivements&amp;view=prenotazioni_tutte') ?>" method="post">
         <div class="filter-search">
             <div style="float:left">
             <label id="filter_from-lbl" for="filter_from"><?php echo JText::_('COM_RECEIVEMENTS_FROM'); ?></label>
@@ -64,7 +64,7 @@ $document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/
             <br />&nbsp;
             </div>
 </form>
-
+<form id="adminForm" name="adminForm" action="<?php echo JRoute::_('index.php?option=com_receivements&amp;task=prenotazioni_tutte.change') ?>" method="post">
     <table class="front-end-list">
         <thead>
             <tr>
@@ -116,3 +116,4 @@ $document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/
             <?php endforeach; ?>
         </tbody>
     </table>
+</form>

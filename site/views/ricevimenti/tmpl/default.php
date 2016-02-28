@@ -19,7 +19,7 @@ $showClass = $class === '*' || empty($class);
 ?>
 <h1><?php echo JText::_('COM_RECEIVEMENTS').' '.($class==='*'? '' : $class); ?></h1>
 
-<form id="primo" action="<?php echo 'index.php?option=com_receivements&amp;view=ricevimenti' ?>" method="post">
+<form id="primo" action="<?php echo JRoute::_('index.php?option=com_receivements&amp;view=ricevimenti') ?>" method="post">
 	<div>
 <?php if (ReceivementsFrontendHelper::getSchoolsGroup()) : ?>
 			<select name="filter_school" class="inputbox school-select" onchange="this.form.submit();">
@@ -45,7 +45,7 @@ $showClass = $class === '*' || empty($class);
         </div>
 </form>
 
-<form id="adminForm" name="adminForm" action="<?php echo 'index.php?option=com_receivements&amp;task=ricevimenti.init_booking' ?>" method="post">
+<form id="adminForm" name="adminForm" action="<?php echo JRoute::_('index.php?option=com_receivements&amp;task=ricevimenti.init_booking') ?>" method="post">
 <?php if ($canBook) : ?>
                         <div>
 			<button name="do_book" class="button btn" value="1" type="submit"><?php echo JText::_('COM_RECEIVEMENTS_BOOK_SELECTED')?></button>

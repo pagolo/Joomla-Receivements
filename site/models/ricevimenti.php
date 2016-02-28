@@ -41,8 +41,9 @@ class ReceivementsModelRicevimenti extends JModelList
         $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'));
         $this->setState('list.limit', $limit);
 
-        $limitstart = $app->getUserState('com_receivements.list.start', 0);
-        $this->setState('list.start', $limitstart);
+        $start = JRequest::getVar('start', 0, '', 'int');
+        if ($start == 0) $start = $app->getUserStateFromRequest('com_receivements.list.start', 'start', 0);
+        $this->setState('list.start', $start);
         
         $schoolgroup = ReceivementsFrontendHelper::getSchoolsGroup();
         if (!(empty($schoolgroup))) {
