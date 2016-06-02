@@ -33,17 +33,19 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 </form>
 <br />&nbsp;<br />
 
+<?php foreach($this->data->ore as $iii => $ore) : ?>
+<?php if (empty($ore)) continue; ?>
 <fieldset>
         <legend>
-        <?php echo JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_'.$this->data->ore['giorno']).' '.JText::_('COM_RECEIVEMENTS_HOURS').' '.substr($this->data->ore['inizio'],0,5); ?>
+        <?php echo $ore['title']; ?>
         </legend>
         <ul>
-        <?php foreach($this->data->agenda as $i => $day) : ?>
+        <?php foreach($ore['agenda'] as $i => $day) : ?>
                 <li style="list-style:none">
                 <input id="show_<?php echo $i?>" onclick="recv_show(<?php echo $i?>)" type="image"  style='vertical-align: bottom;<?php echo $day['id']==$this->agenda_open?'display:none':'display:inline'?>' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/plus.gif';?>" alt="show" />
                 <input id="hide_<?php echo $i?>" onclick="recv_hide(<?php echo $i?>)" type="image" style='vertical-align: bottom;<?php echo $day['id']==$this->agenda_open?'display:inline':'display:none'?>' src="<?php echo JURI::base(true) . '/components/com_receivements/assets/icons/minus.gif';?>" alt="hide" />
                 <?php echo ReceivementsFrontendHelper::convertDateFrom($day['data'], 'l, d/m/Y H:i'); ?>
-                (<?php echo JText::plural('COM_RECEIVEMENTS_ONTOTAL',$day['totale_ric'],$this->data->ore['max_app']); ?>)
+                (<?php echo JText::plural('COM_RECEIVEMENTS_ONTOTAL',$day['totale_ric'],$ore['max_app']); ?>)
                 <ul id="nested_<?php echo $i?>" style="padding: 0px 50px;<?php echo $day['id']==$this->agenda_open?'display:block':'display:none'?>;">
                 <?php foreach($day['nested'] as $ii => $booking) : ?>
                         <li>
@@ -60,5 +62,6 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         <?php endforeach ?>
         </ul>
 </fieldset>
+<?php endforeach ?>
 
 <?php endif; ?>

@@ -17,15 +17,17 @@ JHtml::_('behavior.tooltip');
 <a href="<?php echo JRoute::_('index.php?option=com_receivements&view=agenda'); ?>" title="<?php echo JText::_('COM_RECEIVEMENTS_BACK'); ?>"><?php echo JText::_('COM_RECEIVEMENTS_BACK'); ?></a>
 <a href="#" onclick="window.print(); return false;"><?php echo JText::_('COM_RECEIVEMENTS_PRINT'); ?></a>
 <br />&nbsp;
+<?php foreach($this->data->ore as $iii => $ore) : ?>
+<?php if (empty($ore)) continue; ?>
 <fieldset>
         <legend>
-        <?php echo JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_'.$this->data->ore['giorno']).' '.JText::_('COM_RECEIVEMENTS_HOURS').' '.substr($this->data->ore['inizio'],0,5); ?>
+        <?php echo $ore['title']; ?>
         </legend>
         <ul>
-        <?php foreach($this->data->agenda as $i => $day) : ?>
+        <?php foreach($ore['agenda'] as $i => $day) : ?>
                 <li>
                 <?php echo ReceivementsFrontendHelper::convertDateFrom($day['data'], 'l, d/m/Y H:i'); ?>
-                (<?php echo JText::plural('COM_RECEIVEMENTS_ONTOTAL',$day['totale_ric'],$this->data->ore['max_app']); ?>)
+                (<?php echo JText::plural('COM_RECEIVEMENTS_ONTOTAL',$day['totale_ric'],$ore['max_app']); ?>)
                 <ol>
                 <?php foreach($day['nested'] as $ii => $booking) : ?>
                         <li>
@@ -40,3 +42,4 @@ JHtml::_('behavior.tooltip');
         <?php endforeach; ?>
         </ul>
 </fieldset>
+<?php endforeach; ?>

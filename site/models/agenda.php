@@ -22,46 +22,72 @@ class ReceivementsModelAgenda extends JModelLegacy
         public function getData()
         {
 		if ($this->data === null) {
-      $app	= JFactory::getApplication();
-      $agenda_old = $app->getUserState('com_receivements.agenda.old');
+                        $app	= JFactory::getApplication();
+                        $agenda_old = $app->getUserState('com_receivements.agenda.old');
 			$this->data	= new stdClass();
                         $db = JFactory::getDBO();
                         $query = $db->getQuery(true);
-                        $query->select('id,giorno,inizio,max_app');
+                        $query->select('id,una_tantum,giorno,inizio,max_app');
                         $query->from('#__receivements_ore');
                         $uid = JFactory::getUser()->get('id');
                         $query->where('id_docente = ' . $db->Quote($uid));
                         $db->setQuery($query);
-                        $this->data->ore = $db->loadAssoc();
+                        $this->data->ore = $db->loadAssocList();
+/*
                         if (empty($this->data->ore)) {
                                 $this->data = null;
                                 return false;
                         }
-                        $query = $db->getQuery(true);
-                        $query->select('id,totale_ric,data');
-                        $query->from('#__receivements_agenda');
-                        $oid = $this->data->ore['id'];
-                        $query->where('id_ore = ' . $db->Quote($oid));
-                        if ($agenda_old)
-                                $query->where('data < NOW()');
-                        else
-                                $query->where('data >= NOW()');
-                        $query->where('totale_ric > 0');
-                        $query->order('data ASC');
-                        $db->setQuery($query);
-                        $this->data->agenda = $db->loadAssocList();
-                        if (empty($this->data->agenda)) {
-                                //$this->data = null;
-                                return $this->data;
-                        }
-                        foreach($this->data->agenda as $i => $day) {
+*/
+                        foreach($this->data->ore as &$ore) {
+                                if ($ore['una_tantum']) {
+                                        $query = $db->getQuery(true);
+                                        $query->select('titolo');
+                                        $query->from('#__receivements_generali');
+                                        $uid = $ore['una_tantum'];
+                                        $query->where('id = ' . $db->Quote($uid));
+                                        if ($agenda_old)
+                                                $query->where('data < NOW()');
+                                        else
+                                                $query->where('data >= NOW()');
+                                        $db->setQuery($query);
+                                        $res = $db->loadAssoc();
+                                        if (empty($res)) {
+                                                $ore = array();
+                                                continue;
+                                        }
+                                        $ore['title'] = $res['titolo'];
+                                } else {
+                                        $ore['title'] = JText::_('COM_RECEIVEMENTS_WEEKLY');
+                                }
                                 $query = $db->getQuery(true);
-                                $query->select('p.id,id_agenda,parentela,email,nome,c.classe,nota');
-                                $query->from('#__receivements_prenotazioni AS p');
-                                $query->join('LEFT', '#__receivements_classi AS c ON (p.id_classe = c.id)');
-                                $query->where('id_agenda = ' . $db->Quote($day['id']));
+                                $query->select('id,totale_ric,data');
+                                $query->from('#__receivements_agenda');
+                                $oid = $ore['id'];
+                                $query->where('id_ore = ' . $db->Quote($oid));
+                                if ($agenda_old)
+                                        $query->where('data < NOW()');
+                                else
+                                        $query->where('data >= NOW()');
+                                $query->where('totale_ric > 0');
+                                $query->order('data ASC');
                                 $db->setQuery($query);
-                                $this->data->agenda[$i]['nested'] = $db->loadAssocList();
+                                $ore['agenda'] = $db->loadAssocList();
+                                /*
+                                if (empty($ore['agenda'])) {
+                                        //$this->data = null;
+                                        return $this->data;
+                                }
+                                */
+                                foreach($ore['agenda'] as $i => &$day) {
+                                        $query = $db->getQuery(true);
+                                        $query->select('p.id,id_agenda,parentela,email,nome,c.classe,nota');
+                                        $query->from('#__receivements_prenotazioni AS p');
+                                        $query->join('LEFT', '#__receivements_classi AS c ON (p.id_classe = c.id)');
+                                        $query->where('id_agenda = ' . $db->Quote($day['id']));
+                                        $db->setQuery($query);
+                                        $day['nested'] = $db->loadAssocList();
+                                }
                         }
 		}
                 return $this->data;
