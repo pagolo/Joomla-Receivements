@@ -84,6 +84,24 @@ class ReceivementsFrontendHelper
 		return $options;
 	}
 
+        static
+	function getTypesOptions()
+	{
+		$db = JFactory::getDbo();
+		
+		$db->setQuery('SELECT id AS value, titolo AS text FROM #__receivements_generali WHERE data > NOW() ORDER BY data ASC');
+		$options = $db->loadObjectList();
+
+		// Check for a database error.
+
+		if ($db->getErrorNum()) {
+			JError::raiseNotice(500, $db->getErrorMsg());
+			return null;
+		}
+
+		return $options;
+	}
+
 	static
 	function getWeekDayOptions()
 	{

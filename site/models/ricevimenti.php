@@ -12,6 +12,7 @@ class ReceivementsModelRicevimenti extends JModelList
                 'classi', 'a.classi',
                 'giorno', 'a.giorno',
                 'sede', 'a.sede',
+                'una_tantum', 'a.una_tantum',
             );
         }
         parent::__construct($config);
@@ -64,6 +65,17 @@ class ReceivementsModelRicevimenti extends JModelList
 	// Load the filter "site".
 	$search = $this->getUserStateFromRequest($this->context.'.filter.sede', 'filter_site');
 	$this->setState('filter.sede', $search);
+        
+	// Load the filter "type".
+	$search = $this->getUserStateFromRequest($this->context.'.filter.type', 'filter_type');
+        if (empty($search)) $search = 0;
+	$this->setState('filter.type', $search);
+        if ($search > 0) {
+                $db = $this->getDBO();
+                $db->setQuery('SELECT data FROM #__receivements_generali WHERE id = '.$db->Quote($search));
+                $temp = $db->loadAssoc();
+                $app->setUserState('com_receivements.booking.date', empty($temp) ? null : $temp['data']);
+        }
     }
 
     function getListQuery()
@@ -72,7 +84,7 @@ class ReceivementsModelRicevimenti extends JModelList
         $schoolgroup = ReceivementsFrontendHelper::getSchoolsGroup();
         $search = $this->getState('filter.scuola');
         $query = $db->getQuery(true);
-        $query->select('DISTINCT o.id,u.name,c.materie,s.sede,classi,giorno,inizio');
+        $query->select('DISTINCT o.id,u.name,c.materie,s.sede,una_tantum,classi,giorno,inizio');
         $query->from('#__receivements_ore AS o');
 	$query->join('LEFT', $db->quoteName('#__users', 'u') . ' ON (' . $db->quoteName('id_docente') . ' = ' . $db->quoteName('u.id') . ')');
         if (!(empty($schoolgroup)) && $search != '*' && $search != '0' && $search != false) {
@@ -103,6 +115,9 @@ class ReceivementsModelRicevimenti extends JModelList
         if (!empty($search) && $search != '0' && $search != '*') {
                 $query->where(' o.sede = ' . $db->Quote($search));
         }
+        // Filter by search in type
+        $search = $this->getState('filter.type');
+        $query->where(' o.una_tantum = ' . $db->Quote($search));
 
         return $query;
     }

@@ -11,11 +11,16 @@ $document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/
 $document->addStyleSheet(JUri::base() . 'components/com_receivements/assets/css/list.css');
 $document->addScript(JUri::base() . 'components/com_receivements/assets/js/form.js');
 //Load admin language file
+$app = JFactory::getApplication();
 $lang = JFactory::getLanguage();
 $lang->load('', JPATH_ADMINISTRATOR);
 $canBook = ReceivementsFrontendHelper::canBook();
 $class = $this->state->get('filter.classe');
 $showClass = $class === '*' || empty($class);
+if ($this->state->get('filter.type')) {
+        $rawdate = $app->getUserState('com_receivements.booking.date', null);
+        $translated_date = ReceivementsFrontendHelper::convertDateFrom($rawdate);
+}
 ?>
 <h1><?php echo JText::_('COM_RECEIVEMENTS').' '.($class==='*'? '' : $class); ?></h1>
 
@@ -39,6 +44,10 @@ $showClass = $class === '*' || empty($class);
 			<select name="filter_site" class="inputbox" onchange="this.form.submit();">
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_SITES');?></option>
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getSitesOptions(), 'value', 'text', $this->state->get('filter.sede'));?>
+			</select>
+			<select name="filter_type" class="inputbox" onchange="this.form.submit();">
+				<option value="0"><?php echo JText::_('COM_RECEIVEMENTS_WEEKLY');?></option>
+				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getTypesOptions(), 'value', 'text', $this->state->get('filter.type'));?>
 			</select>
 			<button type="submit" style="display:none"><?php echo JText::_('JSUBMIT')?></button>
         <input type="hidden" name="task" value="" />
@@ -95,8 +104,12 @@ $showClass = $class === '*' || empty($class);
 <?php endif; ?>
 				<td><?php echo $row->sede?></td>
 				<td>
-                                <?php 
-                                echo JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_' . $row->giorno);
+                                <?php
+                                if ($row->una_tantum == 0) {
+                                        echo JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_' . $row->giorno);
+                                } else {
+                                        echo $translated_date;
+                                }
                                 echo '&nbsp;'  . substr($row->inizio,0,5);
                                 ?>
                                 </td>
