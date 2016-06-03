@@ -135,8 +135,8 @@ class ReceivementsModelPrenota extends JModelForm
                }
 	       return $return;
         }
-        private function GetMaxReceivements($db, $teacher_id) {
-          $db->setQuery('SELECT max_app FROM #__receivements_ore WHERE id_docente = ' . $teacher_id);
+        private function GetMaxReceivements($db, $ora_id) {
+          $db->setQuery('SELECT max_app FROM #__receivements_ore WHERE id = ' . $ora_id);
           return $db->loadResult();
         }
         private function ExistAgendaRecord($db, $dt, &$totale_ric, &$id)
@@ -231,7 +231,7 @@ class ReceivementsModelPrenota extends JModelForm
                 }
                 //echo $totale_ric;
                 $dt['ric_numero'] = $totale_ric;
-                $dt['ric_totale'] = $this->GetMaxReceivements($db, $dt['teacher_id']);
+                $dt['ric_totale'] = $this->GetMaxReceivements($db, $dt['ora_id']);
                 // inviare sms
                 /*
                 if (db.GetVar("sms_enabled") == "on" && dt.TeacherSms && !(String.IsNullOrEmpty(dt.TeacherPhone)))

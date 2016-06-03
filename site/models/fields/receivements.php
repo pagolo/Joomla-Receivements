@@ -34,6 +34,7 @@ class JFormFieldReceivements extends JFormField
 	{
 		// Initialize variables.
 		$html = array();
+                $app = JFactory::getApplication();
 
 		// Initialize some field attributes.
 		$class = $this->element['class'] ? ' class="select_rcv ' . (string) $this->element['class'] . '"' : ' class="select_rcv"';
@@ -42,28 +43,33 @@ class JFormFieldReceivements extends JFormField
 		$html[] = '<fieldset id="' . $this->id . '" ' . $class . ' >';
                 $html[] = '<legend>' . JText::_($this->element['label']) . '</legend>';
 		$html[] = '<ul ' . $class . '>';
-		$ids = JFactory::getApplication()->getUserState('com_receivements.init.prenota.id');
+		$ids = $app->getUserState('com_receivements.init.prenota.id');
 		$re = '^(' . str_replace('.', '|', $ids) . ')$';
 		$db = JFactory::getDBO();
-        	$query = 'SELECT o.id, o.id_docente, o.email AS use_email, o.inizio, o.fine, o.giorno, u.name, u.email FROM #__receivements_ore AS o LEFT JOIN #__users AS u ON ( u.id = o.id_docente ) WHERE (o.id REGEXP '.$db->Quote($re).')';
+        	$query = 'SELECT o.id, o.id_docente, o.una_tantum, o.email AS use_email, o.inizio, o.fine, o.giorno, u.name, u.email FROM #__receivements_ore AS o LEFT JOIN #__users AS u ON ( u.id = o.id_docente ) WHERE (o.id REGEXP '.$db->Quote($re).')';
 	
 		// Set the query and get the result list.
 		$db->setQuery($query);
 		$items = $db->loadObjectlist();
 		$count = 0;
+                
+                $booking_date = $app->getUserState('com_receivements.booking.date', null);
 		
 		foreach ($items as $i => $_item)
 		{
 		        $this->item = $_item;
-        		$options = (array) $this->getOptions();
-        		if (empty($options)) continue;
+                        if ($_item->una_tantum) $this->item->mydate = $booking_date;
+        		else { $options = (array) $this->getOptions(); if (empty($options)) continue;}
         		$count++;
-		        $html[] = '<li><div style="float:left;width:60%;height:1em">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_' . $_item->giorno) . ' ' . substr($_item->inizio,0,5) . '/' . substr($_item->fine,0,5) . '</div><div>';
-			$html[] = JHtml::_('select.genericlist', $options, 'jform[ricevimenti_'.$i.']', '', 'value', 'text', 'jform_ricevimenti_'.$i);
+                        if ($_item->una_tantum) $html[] = '<li><div style="float:left;width:60%;height:1em">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . ReceivementsFrontendHelper::convertDateFrom($booking_date, 'DATE_FORMAT_LC') . '</div><div>'; 
+		        else $html[] = '<li><div style="float:left;width:60%;height:1em">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_' . $_item->giorno) . ' ' . substr($_item->inizio,0,5) . '/' . substr($_item->fine,0,5) . '</div><div>';
+                        if ($_item->una_tantum) $html[] = $this->getUnaTantum($i);
+			else $html[] = JHtml::_('select.genericlist', $options, 'jform[ricevimenti_'.$i.']', '', 'value', 'text', 'jform_ricevimenti_'.$i);
 			$html[] = '<input type="hidden" name="jform[ricevimenti_user_'.$i.']" value="'.$_item->id_docente.'" id="jform_ricevimenti_user_'.$i.'" />';
 			$html[] = '<input type="hidden" name="jform[ricevimenti_name_'.$i.']" value="'.$_item->name.'" id="jform_ricevimenti_name_'.$i.'" />';
 			$html[] = '<input type="hidden" name="jform[ricevimenti_email_'.$i.']" value="'.($_item->use_email? $_item->email : '').'" id="jform_ricevimenti_email_'.$i.'" />';
 			$html[] = '<input type="hidden" name="jform[ricevimenti_ora_'.$i.']" value="'.$_item->id.'" id="jform_ricevimenti_ora_'.$i.'" />';
+			$html[] = '<input type="hidden" name="jform[ricevimenti_una_'.$i.']" value="'.$_item->una_tantum.'" id="jform_ricevimenti_una_'.$i.'" />';
 			$html[] = '</div></li>';
 		}
 		$html[] = '</ul>';
@@ -101,4 +107,8 @@ class JFormFieldReceivements extends JFormField
                 }
 		return $options;
 	}
+        protected function getUnaTantum($i) {
+		$start =  ReceivementsFrontendHelper::convertDateTo($this->item->mydate) . ' ' . $this->item->inizio;  // convert to datetime
+                return '<input type="hidden" name="jform[ricevimenti_'.$i.']" value="'.$start.'" id="jform_ricevimenti_'.$i.'" />';
+        }
 }
