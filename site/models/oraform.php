@@ -30,26 +30,27 @@ class ReceivementsModelOraForm extends JModelForm
 	 */
 	protected function populateState()
 	{
-		$app = JFactory::getApplication('com_receivements');
+	$app = JFactory::getApplication('com_receivements');
 
-		// Load state from the request userState on edit or from the passed variable on default
+	// Load state from the request userState on edit or from the passed variable on default
         if (JFactory::getApplication()->input->get('layout') == 'edit') {
             $id = JFactory::getApplication()->getUserState('com_receivements.edit.ora.id');
+            if ($id == null) $id = JFactory::getApplication()->input->get('id');
         } else {
             $id = JFactory::getApplication()->input->get('id');
             JFactory::getApplication()->setUserState('com_receivements.edit.ora.id', $id);
         }
 		$this->setState('ora.id', $id);
 
-		// Load the parameters.
+	// Load the parameters.
         $params = $app->getParams();
         $params_array = $params->toArray();
         if(isset($params_array['item_id'])){
             $this->setState('ora.id', $params_array['item_id']);
         }
-		$this->setState('params', $params);
+	$this->setState('params', $params);
 
-	}
+        }
         
 
 	/**
@@ -61,20 +62,25 @@ class ReceivementsModelOraForm extends JModelForm
 	 */
 	public function &getData($id = null)
 	{
-	        $id = JFactory::getUser()->id;
+	        //$id = JFactory::getUser()->id;
 		if ($this->_item === null)
 		{
 			$this->_item = false;
 
+                        $key = 'id';
 			if (empty($id)) {
 				$id = $this->getState('ora.id');
+			}
+			if (empty($id)) {
+                	        $id = JFactory::getUser()->id;
+                                $key = 'id_docente';
 			}
 
 			// Get a level row instance.
 			$table = $this->getTable();
 
 			// Attempt to load the row.
-			if ($table->load($id, true, 'id_docente'))
+			if ($table->load($id, true, $key))
 			{
                 
                 $user = JFactory::getUser();

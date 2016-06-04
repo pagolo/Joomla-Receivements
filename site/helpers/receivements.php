@@ -166,6 +166,17 @@ class ReceivementsFrontendHelper
 		return JHTML::_('date', $myDate, $format);
 	}
 
+        static
+        function getSingleDate($id)
+        {
+                $db = JFactory::getDbo();
+                $query = 'SELECT data FROM #__receivements_generali WHERE id = ' . $id;
+                $db->setQuery($query);
+                $rawdate = $db->loadResult();
+                $translated_date = ReceivementsFrontendHelper::convertDateFrom($rawdate, 'DATE_FORMAT_LC');
+                return $translated_date;
+        }
+
 	static
 	function getGUID()
 	{

@@ -27,7 +27,7 @@ class ReceivementsControllerOraForm extends ReceivementsController {
 
         // Get the previous edit id (if any) and the current edit id.
         $previousId = (int) $app->getUserState('com_receivements.edit.ora.id');
-        $editId = JFactory::getApplication()->input->getInt('id', null, 'array');
+        $editId = $app->input->getInt('id', null, 'array');
 
         // Set the user id for the user to edit in the session.
         $app->setUserState('com_receivements.edit.ora.id', $editId);
@@ -64,7 +64,7 @@ class ReceivementsControllerOraForm extends ReceivementsController {
         $model = $this->getModel('OraForm', 'ReceivementsModel');
 
         // Get the user data.
-        $data = JFactory::getApplication()->input->get('jform', array(), 'array');
+        $data = $app->input->get('jform', array(), 'array');
 
         // Validate the posted data.
         $form = $model->getForm();
@@ -128,10 +128,11 @@ class ReceivementsControllerOraForm extends ReceivementsController {
 
         // Redirect to the list screen.
         $this->setMessage(JText::_('COM_RECEIVEMENTS_ITEM_SAVED_SUCCESSFULLY'));
-        $menu = JFactory::getApplication()->getMenu();
-        $item = $menu->getActive();
-        $url = (empty($item->link) ? 'index.php?option=com_receivements&view=oraform' : $item->link);
-        $this->setRedirect(JRoute::_($url, false));
+        //$menu = JFactory::getApplication()->getMenu();
+        //$item = $menu->getActive();
+        //$url = (empty($item->link) ? 'index.php?option=com_receivements&view=oraform' : $item->link);
+        //$this->setRedirect(JRoute::_($url, false));
+        $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=oraform&layout=edit&id=' . $data['id'], false));
 
         // Flush the data from the session.
         $app->setUserState('com_receivements.edit.ora.data', null);

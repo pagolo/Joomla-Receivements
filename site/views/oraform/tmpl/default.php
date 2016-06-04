@@ -34,9 +34,13 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
     <form id="form-ora" action="" method="post" class="form-validate">
         <fieldset class='panelform' style='border-width:1px; width:500px; height:110%'>
                 <legend><?php echo JFactory::getUser()->name; ?></legend>
-            		<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
-                        <?php echo $this->form->getInput('id_docente'); ?>
+           		<input type="hidden" name="jform[una_tantum]" value="<?php echo $this->item->una_tantum; ?>" />
+                         <?php echo $this->form->getInput('id_docente'); ?>
                         <table class='front-end-list'>
+                                <tr>
+				<td class="ora-edit-label" style='width:20%'><?php echo $this->form->getLabel('id'); ?></td>
+				<td class="ora-edit"><?php echo $this->form->getInput('id'); ?></td>
+				</tr>
                                 <tr>
 				<td class="ora-edit-label" style='width:20%'><?php echo $this->form->getLabel('cattedra'); ?></td>
 				<td class="ora-edit"><?php echo $this->form->getInput('cattedra'); ?></td>
@@ -47,7 +51,11 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 				</tr>
                                 <tr>
 				<td class="ora-edit-label"><?php echo $this->form->getLabel('giorno'); ?></td>
+<?php if ($this->item->una_tantum == 0) : ?>
 				<td class="ora-edit"><?php echo $this->form->getInput('giorno'); ?></td>
+<?php else : ?>
+				<td class="ora-edit"><?php echo ReceivementsFrontendHelper::getSingleDate($this->item->una_tantum); ?></td>
+<?php endif; ?>
 				</tr>
                                 <tr>
 				<td class="ora-edit-label"><?php echo $this->form->getLabel('inizio'); ?></td>
@@ -76,7 +84,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 				<tr>
 				<td colspan = '2' style='text-align:center'><hr />
                                 <button type="submit" class="validate button btn"><span><?php echo JText::_('JSAVE'); ?></span></button>
-                                <a class="button btn btn-small" href="<?php echo JRoute::_('', false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
+                                <a class="button btn btn-small" href="<?php echo JRoute::_(JURI::base(), false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
 				</td>
 				</tr>
 			</table>
@@ -93,6 +101,7 @@ $(document).ready(function(){
   $('#jform_classi').prop('readonly', true);
   $('#jform_inizio').prop('readonly', true);
   $('#jform_fine').prop('readonly', true);
+  $('#jform_id').attr('onchange', 'document.location.href="<?php echo JURI::base()?>?option=com_receivements&task=oraform.edit&id="+this.value');
   });
 });
 </script>  

@@ -2,15 +2,20 @@
 <form>
 	<fieldset name="main_fieldset">
 
-		<field 
-			name="id"
-                        default="0" 
-			type="hidden" />
+        	<field
+		        name="id"
+		        type="receivinghours"
+            label="COM_RECEIVEMENTS_TITLE_ORE"
+            /> 
 
                 <field
                         name="id_docente"
                         type="createdby"
                         />
+                        
+                <field
+                        name="una_tantum"
+                        type="hidden" />
 
 	<field
 	    name="cattedra"
@@ -29,7 +34,7 @@
                 
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_GIORNO"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_GIORNO" 
-                
+            showon="una_tantum:0"    
                 
                 
             option_on="Yes"
@@ -56,29 +61,14 @@
          required="true" 
         filter="safehtml" /> 
 
-       <field name="max_app" type="list" class="inputbox"
-        
+       <field name="max_app" type="number" class="inputbox"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_MAX_APP"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_MAX_APP" 
             default="6"
-        
-        
+            min = "1"    
+            max = "100"
+            required = "true"
         > 
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
         </field>
 
 		<field

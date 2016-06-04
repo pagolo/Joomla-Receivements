@@ -31,6 +31,7 @@ class ReceivementsModelAgenda extends JModelLegacy
                         $query->from('#__receivements_ore');
                         $uid = JFactory::getUser()->get('id');
                         $query->where('id_docente = ' . $db->Quote($uid));
+                        $query->order('una_tantum ASC');
                         $db->setQuery($query);
                         $this->data->ore = $db->loadAssocList();
 /*
