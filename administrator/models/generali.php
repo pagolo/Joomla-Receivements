@@ -14,7 +14,7 @@ jimport('joomla.application.component.modellist');
 /**
  * Methods supporting a list of Receivements records.
  */
-class ReceivementsModelOre extends JModelList {
+class ReceivementsModelGenerali extends JModelList {
 
     /**
      * Constructor.
@@ -27,17 +27,8 @@ class ReceivementsModelOre extends JModelList {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
                 'id', 'a.id',
-                'name', 'u.name',
-                'id_docente', 'a.id_docente',
-                'classi', 'a.classi',
-                'giorno', 'a.giorno',
-                'inizio', 'a.inizio',
-                'fine', 'a.fine',
-                'max_app', 'a.max_app',
-                'sede', 's.sede',
-                'email', 'a.email',
-                'attiva', 'a.attiva',
-
+                'titolo', 'a.titolo',
+                'descrizione', 'a.descrizione',
             );
         }
 
@@ -67,7 +58,7 @@ class ReceivementsModelOre extends JModelList {
         $this->setState('params', $params);
 
         // List state information.
-        parent::populateState('a.id,u.name', 'asc');
+        parent::populateState('a.id,a.titolo', 'asc');
     }
 
     /**
@@ -100,13 +91,9 @@ class ReceivementsModelOre extends JModelList {
         $db = $this->getDbo();
         $query = $db->getQuery(true);
 
-        // Select the required fields from the table.
-        $query->select('a.*,g.data,u.name,s.sede,c.materie');
-        $query->from('`#__receivements_ore` AS a');
-        $query->join('LEFT', $db->quoteName('#__receivements_cattedre', 'c') . ' ON (' . $db->quoteName('a.cattedra') . ' = ' . $db->quoteName('c.id') . ')');
-        $query->join('LEFT', $db->quoteName('#__users', 'u') . ' ON (' . $db->quoteName('a.id_docente') . ' = ' . $db->quoteName('u.id') . ')');        
+        $query->select('a.id,a.titolo,a.descrizione,a.data,a.inizio,a.fine,s.sede,a.attiva');
+        $query->from('`#__receivements_generali` AS a');
         $query->join('LEFT', $db->quoteName('#__receivements_sedi', 's') . ' ON (' . $db->quoteName('a.sede') . ' = ' . $db->quoteName('s.id') . ')');        
-        $query->join('LEFT', $db->quoteName('#__receivements_generali', 'g') . ' ON (' . $db->quoteName('a.una_tantum') . ' = ' . $db->quoteName('g.id') . ')');        
         
 
         // Filter by search in title
@@ -117,15 +104,15 @@ class ReceivementsModelOre extends JModelList {
             } else {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
                 $conditions = array( 
-                        $db->quoteName('u.name') . ' LIKE ' . $search,  
-                        $db->quoteName('a.classi') . ' LIKE ' . $search,
-                        $db->quoteName('s.sede') . ' LIKE ' . $search,
-                        $db->quoteName('c.materie') . ' LIKE ' . $search,
-                        // TODO add weekday and dates
+                        $db->quoteName('a.titolo') . ' LIKE ' . $search,  
+                        $db->quoteName('a.descrizione') . ' LIKE ' . $search,
                 ); 
                 $query->where($conditions, 'OR'); 
             }
         }
+
+        
+
 
         // Add the list ordering clause.
         $orderCol = $this->state->get('list.ordering');
@@ -142,4 +129,5 @@ class ReceivementsModelOre extends JModelList {
         
         return $items;
     }
+
 }

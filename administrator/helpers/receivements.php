@@ -78,6 +78,16 @@ class ReceivementsHelper {
 
         		JSubMenuHelper::addEntry(
 
+			JText::_('COM_RECEIVEMENTS_TITLE_GENERALI'),
+
+			'index.php?option=com_receivements&view=generali',
+
+			$vName == 'generali'
+
+		);
+
+        		JSubMenuHelper::addEntry(
+
 			JText::_('COM_RECEIVEMENTS_TITLE_SEDI'),
 
 			'index.php?option=com_receivements&view=sedi',

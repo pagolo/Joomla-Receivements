@@ -7,6 +7,15 @@
             description="JGLOBAL_FIELD_ID_DESC" /> 
 
                 <field
+                        name="una_tantum"
+		        type="sql"
+		        query="SELECT id AS value, titolo AS una_tantum FROM #__receivements_generali ORDER BY id"
+                        label="COM_RECEIVEMENTS_RECEIVEMENT"
+                        >
+                        <option value="0">COM_RECEIVEMENTS_WEEKLY</option>
+                </field>
+
+                <field
 			name="id_docente"
 			type="usersingroup"
 			group_name="teachers_group"
@@ -64,30 +73,16 @@
                                                      required="true" 
                                                     filter="safehtml" /> 
 
-       <field name="max_app" type="list" class="inputbox"
-            default="6"
+       <field name="max_app" type="number" class="inputbox"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_MAX_APP"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_MAX_APP" 
-        
-                                                    filter="safehtml" 
-        
+            default="6"
+            min = "1"    
+            max = "100"
+            required = "true"
         > 
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
         </field>
+
 
 		<field
 		        name="sede"

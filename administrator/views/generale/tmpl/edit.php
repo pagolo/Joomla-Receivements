@@ -15,11 +15,6 @@ JHtml::_('behavior.keepalive');
 // Import CSS
 $document = JFactory::getDocument();
 $document->addStyleSheet('components/com_receivements/assets/css/receivements.css');
-
-//frontend strings
-$language =& JFactory::getLanguage();
-$language->load('com_receivements', JPATH_SITE, $language->getTag(), true);
-
 ?>
 <script type="text/javascript">
     function getScript(url,success) {
@@ -47,14 +42,14 @@ $language->load('com_receivements', JPATH_SITE, $language->getTag(), true);
 
             Joomla.submitbutton = function(task)
             {
-                if (task == 'ora.cancel') {
-                    Joomla.submitform(task, document.getElementById('ora-form'));
+                if (task == 'generale.cancel') {
+                    Joomla.submitform(task, document.getElementById('generale-form'));
                 }
                 else{
                     
-                    if (task != 'ora.cancel' && document.formvalidator.isValid(document.id('ora-form'))) {
+                    if (task != 'generale.cancel' && document.formvalidator.isValid(document.id('generale-form'))) {
                         
-                        Joomla.submitform(task, document.getElementById('ora-form'));
+                        Joomla.submitform(task, document.getElementById('generale-form'));
                     }
                     else {
                         alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
@@ -65,37 +60,26 @@ $language->load('com_receivements', JPATH_SITE, $language->getTag(), true);
     });
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_receivements&layout=edit&id=' . (int) $this->item->id); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="ora-form" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_receivements&view=generale&layout=edit&id=' . (int) $this->item->id); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="generale-form" class="form-validate">
     <div class="width-60 fltlft">
         <fieldset class="adminform">
-            <legend><?php echo JText::_('COM_RECEIVEMENTS_LEGEND_ORA'); ?></legend>
+            <legend><?php echo JText::_('COM_RECEIVEMENTS_LEGEND_GENERALE'); ?></legend>
             <ul class="adminformlist">
-
-                				<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
-				<li><?php echo $this->form->getLabel('una_tantum'); ?>
-				<?php echo $this->form->getInput('una_tantum'); ?></li>
-				<li><?php echo $this->form->getLabel('id_docente'); ?>
-				<?php echo $this->form->getInput('id_docente'); ?></li>
-				<li><?php echo $this->form->getLabel('cattedra'); ?>
-				<?php echo $this->form->getInput('cattedra'); ?></li>
-				<li><?php echo $this->form->getLabel('classi'); ?>
-				<?php echo $this->form->getInput('classi'); ?></li>
-				<li><?php echo $this->form->getLabel('giorno'); ?>
-				<?php echo $this->form->getInput('giorno'); ?></li>
-				<li><?php echo $this->form->getLabel('inizio'); ?>
-				<?php echo $this->form->getInput('inizio'); ?></li>
-				<li><?php echo $this->form->getLabel('fine'); ?>
-				<?php echo $this->form->getInput('fine'); ?></li>
-				<li><?php echo $this->form->getLabel('max_app'); ?>
-				<?php echo $this->form->getInput('max_app'); ?></li>
-				<li><?php echo $this->form->getLabel('sede'); ?>
-				<?php echo $this->form->getInput('sede'); ?></li>
-				<li><?php echo $this->form->getLabel('email'); ?>
-				<?php echo $this->form->getInput('email'); ?></li>
-				<li><?php echo $this->form->getLabel('attiva'); ?>
-				<?php echo $this->form->getInput('attiva'); ?></li>
-
-
+                <input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+		<li><?php echo $this->form->getLabel('titolo'); ?>
+		<?php echo $this->form->getInput('titolo'); ?></li>
+		<li><?php echo $this->form->getLabel('descrizione'); ?>
+		<?php echo $this->form->getInput('descrizione'); ?></li>
+		<li><?php echo $this->form->getLabel('data'); ?>
+		<?php echo $this->form->getInput('data'); ?></li>
+		<li><?php echo $this->form->getLabel('inizio'); ?>
+		<?php echo $this->form->getInput('inizio'); ?></li>
+		<li><?php echo $this->form->getLabel('fine'); ?>
+		<?php echo $this->form->getInput('fine'); ?></li>
+		<li><?php echo $this->form->getLabel('sede'); ?>
+		<?php echo $this->form->getInput('sede'); ?></li>
+		<li><?php echo $this->form->getLabel('attiva'); ?>
+		<?php echo $this->form->getInput('attiva'); ?></li>
             </ul>
         </fieldset>
     </div>

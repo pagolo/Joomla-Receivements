@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+              <field name="id" type="text" default="0" label="COM_RECEIVEMENTS_FORM_LBL_ORA_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+
+       <field name="titolo" type="text" size="40"
+            label="COM_RECEIVEMENTS_FORM_LBL_TITOLO"
+            description="COM_RECEIVEMENTS_FORM_DESC_TITOLO" 
+            required="true"                
+                 /> 
+
+       <field name="descrizione" type="textarea" class="inputbox"
+            label="COM_RECEIVEMENTS_FORM_LBL_FRAZ_DESC"
+                                                    filter="safehtml" /> 
+
+       <field name="data" type="calendar" class="inputbox" format="%d-%m-%Y" default="NOW"
+            label="COM_RECEIVEMENTS_FORM_LBL_DATE"
+            description="COM_RECEIVEMENTS_FORM_DESC_DATE" 
+                                                     required="true" 
+                                                    filter="safehtml" /> 
+
+       <field name="inizio" type="settime" size="40" class="inputbox"
+            readonly="true"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_INIZIO"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_INIZIO" 
+                                                     default="14:00:00" 
+                                                     required="true" 
+                                                    filter="safehtml" /> 
+
+       <field name="fine" type="settime" size="40" class="inputbox"
+            readonly="true"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_FINE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_FINE" 
+                                                     default="17:00:00" 
+                                                     required="true" 
+                                                    filter="safehtml" /> 
+
+		<field
+		        name="sede"
+		        type="sql"
+		        query="SELECT id AS value, sede FROM #__receivements_sedi ORDER BY id"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_SEDE"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_SEDE" 
+                                                    filter="safehtml" /> 
+
+       <field name="attiva" type="checkbox" value="1" default="1"                
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_ATTIVA"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_ATTIVA" 
+            />
+
+	</fieldset>
+
+</form>
