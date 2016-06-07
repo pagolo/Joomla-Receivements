@@ -89,7 +89,7 @@ class ReceivementsFrontendHelper
 	{
 		$db = JFactory::getDbo();
 		
-		$db->setQuery('SELECT id AS value, titolo AS text FROM #__receivements_generali WHERE data > NOW() ORDER BY data ASC');
+		$db->setQuery('SELECT id AS value, titolo AS text FROM #__receivements_generali WHERE attiva = 1 AND data > CURDATE() + INTERVAL '.ReceivementsFrontendHelper::getPreBooking().' DAY ORDER BY data ASC');
 		$options = $db->loadObjectList();
 
 		// Check for a database error.

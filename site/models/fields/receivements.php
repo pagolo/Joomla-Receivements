@@ -50,7 +50,7 @@ class JFormFieldReceivements extends JFormField
 	
 		// Set the query and get the result list.
 		$db->setQuery($query);
-		$items = $db->loadObjectlist();
+		$items = $db->loadObjectList();
 		$count = 0;
                 
                 $booking_date = $app->getUserState('com_receivements.booking.date', null);
@@ -108,7 +108,12 @@ class JFormFieldReceivements extends JFormField
 		return $options;
 	}
         protected function getUnaTantum($i) {
+		$n = ReceivementsFrontendHelper::getPreBooking();
+		$par = 'today +' . $n . ' day';
+		$delayed = JFactory::getDate($par);  // today date plus n days
 		$start =  ReceivementsFrontendHelper::convertDateTo($this->item->mydate) . ' ' . $this->item->inizio;  // convert to datetime
+                $ref = JFactory::getDate($start);
+                if ($delayed > $ref) return " tempo scaduto!"; // @TODO: localized string
                 return '<input type="hidden" name="jform[ricevimenti_'.$i.']" value="'.$start.'" id="jform_ricevimenti_'.$i.'" />';
         }
 }

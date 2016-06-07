@@ -92,6 +92,7 @@ class ReceivementsModelRicevimenti extends JModelList
 	}
         $query->join('LEFT', $db->quoteName('#__receivements_cattedre', 'c') . ' ON (' . $db->quoteName('cattedra') . ' = ' . $db->quoteName('c.id') . ')');
         $query->join('LEFT', $db->quoteName('#__receivements_sedi', 's') . ' ON (' . $db->quoteName('o.sede') . ' = ' . $db->quoteName('s.id') . ')');
+//        $query->join('LEFT', $db->quoteName('#__receivements_generali', 't') . ' ON (' . $db->quoteName('una_tantum') . ' = ' . $db->quoteName('t.id') . ')');
         $query->where('o.attiva <> ' . $db->Quote('0'));
         $query->order('u.name');
 
@@ -118,6 +119,10 @@ class ReceivementsModelRicevimenti extends JModelList
         // Filter by search in type
         $search = $this->getState('filter.type');
         $query->where(' o.una_tantum = ' . $db->Quote($search));
+
+        $query->where('(o.una_tantum = 0 OR CURDATE() + INTERVAL '.ReceivementsFrontendHelper::getPreBooking().' DAY < DATE('.$db->Quote(ReceivementsFrontendHelper::convertDateTo(JFactory::getApplication()->getUserState('com_receivements.booking.date'))).'))');
+        
+        //echo $query;exit;
 
         return $query;
     }

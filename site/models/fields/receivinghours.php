@@ -49,7 +49,7 @@ class JFormFieldReceivingHours extends JFormFieldList
 		$db = JFactory::getDBO();
 		// Set the query and get the result list.
 		$db->setQuery($command);
-		$items = $db->loadObjectlist();
+		$items = $db->loadObjectList();
 
 		// Check for an error.
 		if ($db->getErrorNum())

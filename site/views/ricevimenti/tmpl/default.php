@@ -19,7 +19,7 @@ $class = $this->state->get('filter.classe');
 $showClass = $class === '*' || empty($class);
 if ($this->state->get('filter.type')) {
         $rawdate = $app->getUserState('com_receivements.booking.date', null);
-        $translated_date = ReceivementsFrontendHelper::convertDateFrom($rawdate);
+        $translated_date = ReceivementsFrontendHelper::convertDateFrom($rawdate, 'DATE_FORMAT_LC');
 }
 ?>
 <h1><?php echo JText::_('COM_RECEIVEMENTS').' '.($class==='*'? '' : $class); ?></h1>
