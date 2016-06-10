@@ -28,6 +28,8 @@ $doc->addScript(JUri::base() . 'components/com_receivements/assets/js/spin.min.j
 				<?php echo $this->form->getInput('separator'); ?></li>
 				<li><?php echo $this->form->getLabel('update'); ?>
 				<?php echo $this->form->getInput('update'); ?></li>
+				<li><?php echo $this->form->getLabel('una_tantum'); ?>
+				<?php echo $this->form->getInput('una_tantum'); ?></li>
 				<li><?php echo $this->form->getLabel('max_app'); ?>
 				<?php echo $this->form->getInput('max_app'); ?></li>
 				<li><?php echo $this->form->getLabel('username'); ?>

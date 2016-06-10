@@ -93,6 +93,10 @@ class ReceivementsModelPrenota extends JModelForm
 	{
                 $db	= $this->getDbo();
                 foreach ($data['ricevimenti'] as $i => $dt) {
+                        if (empty($dt['datetime'])) {
+                                $this->setError(JText::_('COM_RECEIVEMENTS_ERROR_NO_DATETIME'));
+                                return false;
+                        }
                         $query = 'SELECT COUNT(*) FROM #__receivements_prenotazioni p LEFT JOIN #__receivements_agenda a ON (p.id_agenda = a.id)  LEFT JOIN #__receivements_ore o ON (a.id_ore = o.id) WHERE (o.id = '.$dt['ora_id'].') AND (a.data = '.$db->Quote($dt['datetime']).') AND (p.nome = '.$db->Quote($data['nome']).') AND (p.email = '.$db->Quote($data['email']).')';
                         $db->setQuery($query);
                         $result = $db->loadResult();

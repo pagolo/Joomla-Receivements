@@ -169,6 +169,7 @@ class ReceivementsFrontendHelper
         static
         function getSingleDate($id)
         {
+                if (empty($id)) return '';
                 $db = JFactory::getDbo();
                 $query = 'SELECT data FROM #__receivements_generali WHERE id = ' . $id;
                 $db->setQuery($query);
@@ -347,6 +348,23 @@ class ReceivementsAjaxHelper
 	       $db->setQuery('SELECT c.classe, p.parentela FROM #__receivements_parenti p LEFT JOIN #__receivements_classi c ON (c.id = p.id_classe) WHERE utente = '.$db->Quote($user_id).' AND studente = '.$db->Quote($nome));
 	       return $db->loadAssoc();
 	}
+	static
+	function changeReceivement($id)
+	{
+	       $db = JFactory::getDBO();
+	       $db->setQuery('SELECT * FROM #__receivements_generali WHERE id = '.$db->Quote($id));
+               $dati = $db->loadAssoc();
+               if (isset($dati['data'])) $dati['giorno'] = ReceivementsFrontendHelper::convertDateFrom($dati['data'], 'DATE_FORMAT_LC');
+               return $dati;
+	}
+	static
+	function changeTeacher($id)
+	{
+	       $db = JFactory::getDBO();
+	       $db->setQuery('SELECT classi, cattedra FROM #__receivements_ore WHERE id_docente = '.$db->Quote($id));
+               $dati = $db->loadAssoc();
+               return $dati;
+	}        
 }
 
 class ReceivementsEmailHelper

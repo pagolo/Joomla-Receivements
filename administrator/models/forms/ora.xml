@@ -41,12 +41,8 @@
                  /> 
 
        <field name="giorno" type="list"
-                
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_GIORNO"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_GIORNO" 
-                
-                
-                
             option_on="Yes"
             option_off="Yes">
                 <option value="0">COM_RECEIVEMENTS_ORE_GIORNO_OPTION_0</option>

@@ -7,7 +7,7 @@
     <author>Paolo Bozzo</author>
     <authorEmail>info@dbfweb.com</authorEmail>
     <authorUrl>http://dbfweb.com</authorUrl>
-    <version>1.2.3</version>
+    <version>1.4.0-beta</version>
     <description></description>
 
     <install> <!-- Runs on install -->
@@ -54,6 +54,7 @@
 			<menu link="option=com_receivements&amp;view=prenotazioni" view="prenotazioni" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Prenotazioni">COM_RECEIVEMENTS_TITLE_PRENOTAZIONI</menu>
 			<menu link="option=com_receivements&amp;view=parenti" view="parenti" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Parenti">COM_RECEIVEMENTS_TITLE_PARENTI</menu>
 			<menu link="option=com_receivements&amp;view=ore" view="ore" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Ore">COM_RECEIVEMENTS_TITLE_ORE</menu>
+			<menu link="option=com_receivements&amp;view=generali" view="generali" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Generali">COM_RECEIVEMENTS_TITLE_GENERALI</menu>
 			<menu link="option=com_receivements&amp;view=sedi" view="sedi" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Sedi">COM_RECEIVEMENTS_TITLE_SEDI</menu>
 			<menu link="option=com_receivements&amp;view=cattedre" view="cattedre" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Cattedre">COM_RECEIVEMENTS_TITLE_CATTEDRE</menu>
 			<menu link="option=com_receivements&amp;view=classi" view="classi" img="components/com_receivements/assets/images/s_ore.png" alt="Receivements/Classi">COM_RECEIVEMENTS_TITLE_CLASSI</menu>

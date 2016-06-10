@@ -19,20 +19,23 @@
                 description="COM_RECEIVEMENTS_UPDATE_EXISTING_DESC"
                 />
         
-       <field name="max_app" type="list" class="inputbox"
-            label="COM_RECEIVEMENTS_MAX_APP"
-            description="COM_RECEIVEMENTS_MAX_APP_DESC" 
-            default="6"> 
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+                <field
+                        name="una_tantum"
+		        type="sql"
+		        query="SELECT id AS value, titolo AS una_tantum FROM #__receivements_generali ORDER BY id"
+                        label="COM_RECEIVEMENTS_RECEIVEMENT"
+                        >
+                        <option value="0">COM_RECEIVEMENTS_WEEKLY</option>
+                </field>
+
+       <field name="max_app" type="number" class="inputbox"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_MAX_APP"
+            description="COM_RECEIVEMENTS_FORM_DESC_ORA_MAX_APP" 
+            default="6"
+            min = "1"    
+            max = "100"
+            required = "true"
+        > 
         </field>
 
         <field name="name" type="list" default="lastfirst"

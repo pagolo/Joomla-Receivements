@@ -79,7 +79,7 @@ class ReceivementsViewGenerali extends JViewLegacy {
             } else if (isset($this->items[0])) {
                 //If this component does not use state then show a direct delete button as we can not trash
                 JToolBarHelper::divider();
-                JToolBarHelper::deleteList('', 'generali.delete', 'JTOOLBAR_DELETE');
+                JToolBarHelper::deleteList('COM_RECEIVEMENTS_REALLY_GEN_DELETE', 'generali.delete', 'JTOOLBAR_DELETE');
                 JToolBarHelper::divider();
             }
 

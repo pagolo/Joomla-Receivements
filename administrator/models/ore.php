@@ -29,6 +29,7 @@ class ReceivementsModelOre extends JModelList {
                 'id', 'a.id',
                 'name', 'u.name',
                 'id_docente', 'a.id_docente',
+                'una_tantum', 'a.una_tantum',
                 'classi', 'a.classi',
                 'giorno', 'a.giorno',
                 'inizio', 'a.inizio',
@@ -57,6 +58,9 @@ class ReceivementsModelOre extends JModelList {
         $search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
 
+        $search = $app->getUserStateFromRequest($this->context . '.filter.type', 'filter_type', -1);
+        $this->setState('filter.type', $search);
+
         $published = $app->getUserStateFromRequest($this->context . '.filter.state', 'filter_published', '', 'string');
         $this->setState('filter.state', $published);
 
@@ -67,7 +71,7 @@ class ReceivementsModelOre extends JModelList {
         $this->setState('params', $params);
 
         // List state information.
-        parent::populateState('a.id,u.name', 'asc');
+        parent::populateState('a.id,a.una_tantum,u.name', 'asc');
     }
 
     /**
@@ -107,7 +111,13 @@ class ReceivementsModelOre extends JModelList {
         $query->join('LEFT', $db->quoteName('#__users', 'u') . ' ON (' . $db->quoteName('a.id_docente') . ' = ' . $db->quoteName('u.id') . ')');        
         $query->join('LEFT', $db->quoteName('#__receivements_sedi', 's') . ' ON (' . $db->quoteName('a.sede') . ' = ' . $db->quoteName('s.id') . ')');        
         $query->join('LEFT', $db->quoteName('#__receivements_generali', 'g') . ' ON (' . $db->quoteName('a.una_tantum') . ' = ' . $db->quoteName('g.id') . ')');        
-        
+
+        // Filter by search in title
+        $search = $this->getState('filter.type');
+        if ($search != -1) {
+            $condition = $db->quoteName('a.una_tantum') . ' = ' . $db->quote($search);
+            $query->where($condition);
+        } 
 
         // Filter by search in title
         $search = $this->getState('filter.search');
@@ -116,14 +126,12 @@ class ReceivementsModelOre extends JModelList {
                 $query->where('a.id = ' . (int) substr($search, 3));
             } else {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
-                $conditions = array( 
-                        $db->quoteName('u.name') . ' LIKE ' . $search,  
-                        $db->quoteName('a.classi') . ' LIKE ' . $search,
-                        $db->quoteName('s.sede') . ' LIKE ' . $search,
-                        $db->quoteName('c.materie') . ' LIKE ' . $search,
-                        // TODO add weekday and dates
-                ); 
-                $query->where($conditions, 'OR'); 
+                $conditions = '(' .
+                        $db->quoteName('u.name') . ' LIKE ' . $search . ' OR ' . 
+                        $db->quoteName('a.classi') . ' LIKE ' . $search . ' OR ' .
+                        $db->quoteName('s.sede') . ' LIKE ' . $search . ' OR ' .
+                        $db->quoteName('c.materie') . ' LIKE ' . $search . ')';
+                $query->where($conditions); 
             }
         }
 
@@ -141,5 +149,21 @@ class ReceivementsModelOre extends JModelList {
         $items = parent::getItems();
         
         return $items;
+    }
+    
+    public function getOptions() {
+		$db = JFactory::getDbo();
+		
+		$db->setQuery('SELECT id AS value, titolo AS text FROM #__receivements_generali ORDER BY data ASC');
+		$options = $db->loadAssocList();
+
+		// Check for a database error.
+
+		if ($db->getErrorNum()) {
+			JError::raiseNotice(500, $db->getErrorMsg());
+			return null;
+		}
+                
+		return ($options);
     }
 }

@@ -30,10 +30,17 @@ require_once JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'co
 <form action="<?php echo JRoute::_('index.php?option=com_receivements&view=ore'); ?>" method="post" name="adminForm" id="adminForm">
     <fieldset id="filter-bar" style="height:auto">
         <div class="filter-search fltlft">
+            <label class="filter-search-lbl" for="filter_type"><?php echo JText::_('COM_RECEIVEMENTS_RECEIVEMENT'); ?></label>
+			<select name="filter_type" id="filter_type" class="inputbox" onchange="this.form.submit();">
+				<option value="-1"><?php echo JText::_('JALL');?></option>
+				<option value="0" <?php if ($this->state->get('filter.type')==0) echo 'selected="selected"'  ?>><?php echo JText::_('COM_RECEIVEMENTS_WEEKLY');?></option>
+				<?php echo JHtml::_('select.options', $this->options, 'value', 'text', $this->state->get('filter.type'));?>
+			</select>
+            <!--input type="text" name="filter_type" id="filter_type" value="<?php echo $this->escape($this->state->get('filter.type')); ?>" title="<?php echo JText::_('Search'); ?>" /-->
             <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
             <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('Search'); ?>" />
             <button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
-            <button type="button" onclick="document.id('filter_search').value = '';
+            <button type="button" onclick="document.id('filter_search').value = ''; document.id('filter_type').value = '';
                     this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
         </div>
 

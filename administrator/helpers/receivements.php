@@ -206,11 +206,17 @@ class ReceivementsHelper {
 
     }
 
-    public static function idFromName($name, $table, $field) {
+    public static function idFromName($name, $table, $field, $field2 = false, $name2 = false) {
 
 	$db = JFactory::getDbo();
 
-	$db->setQuery('SELECT id FROM '.$db->quoteName($table).' WHERE '.$db->quoteName($field).' = '.$db->Quote($name));
+        $command = 'SELECT id FROM '.$db->quoteName($table).' WHERE '.$db->quoteName($field).' = '.$db->Quote($name);
+        
+        if (!($field2 === false)) {
+                $command .= ' AND '.$db->quoteName($field2).' = '.$db->Quote($name2);
+        }
+        
+	$db->setQuery($command);
 
 	$return = $db->loadResult();
 

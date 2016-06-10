@@ -27,6 +27,7 @@ class ReceivementsViewOre extends JViewLegacy {
     public function display($tpl = null) {
         $this->state = $this->get('State');
         $this->items = $this->get('Items');
+        $this->options = $this->get('Options');
         $this->pagination = $this->get('Pagination');
 
         // Check for errors.

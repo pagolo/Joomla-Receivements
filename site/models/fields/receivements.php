@@ -113,7 +113,10 @@ class JFormFieldReceivements extends JFormField
 		$delayed = JFactory::getDate($par);  // today date plus n days
 		$start =  ReceivementsFrontendHelper::convertDateTo($this->item->mydate) . ' ' . $this->item->inizio;  // convert to datetime
                 $ref = JFactory::getDate($start);
-                if ($delayed > $ref) return " tempo scaduto!"; // @TODO: localized string
+                if ($delayed > $ref) 
+                        return JText::_('COM_RECEIVEMENTS_TIME_EXPIRED');
+                if (ReceivementsFrontendHelper::isDateAvailable($this->item->mydate, $this->item->id_docente, $this->item->id) < 1)
+                        return JText::_('COM_RECEIVEMENTS_NO_TEACHER');
                 return '<input type="hidden" name="jform[ricevimenti_'.$i.']" value="'.$start.'" id="jform_ricevimenti_'.$i.'" />';
         }
 }

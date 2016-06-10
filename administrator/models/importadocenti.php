@@ -67,9 +67,9 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                 $x=$y;
                 $y=$tmp;
         }
-        protected function saveHour($userid, $classi, $giorno, $inizio, $fine, $materia_id, $sede_id, $update, $max_app) {
+        protected function saveHour($userid, $classi, $giorno, $inizio, $fine, $materia_id, $sede_id, $update, $recv, $max_app) {
                 // TODO gestire eventuali errori
-                $hour_id = ReceivementsHelper::idFromName($userid, '#__receivements_ore', 'id_docente');
+                $hour_id = ReceivementsHelper::idFromName($userid, '#__receivements_ore', 'id_docente', 'una_tantum', $recv);
                 $db = $this->getDBO();
                 if ($hour_id) { // aggiorna i dati
                         if ($update) {
@@ -78,7 +78,7 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                         }
                         return false;
                 }
-                $db->setQuery('INSERT INTO #__receivements_ore (id_docente, classi, giorno, inizio, fine, max_app, cattedra, sede, email, attiva) VALUES ('.$db->Quote($userid).', '.$db->Quote($classi).', '.$db->Quote($giorno).', '.$db->Quote($inizio).', '.$db->Quote($fine).', '.$db->Quote($max_app).', '.$db->Quote($materia_id).', '.$db->Quote($sede_id).', TRUE, TRUE)');
+                $db->setQuery('INSERT INTO #__receivements_ore (id_docente, classi, una_tantum, giorno, inizio, fine, max_app, cattedra, sede, email, attiva) VALUES ('.$db->Quote($userid).', '.$db->Quote($classi).', '.$db->Quote($recv).', '.$db->Quote($recv==0?$giorno:'').', '.$db->Quote($inizio).', '.$db->Quote($fine).', '.$db->Quote($max_app).', '.$db->Quote($materia_id).', '.$db->Quote($sede_id).', TRUE, TRUE)');
                 return ($db->execute());
         }
         /**
@@ -98,6 +98,15 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                 $data->hours_failed = 0;
                 /* import users? */
                 $import_users = false;
+
+                /* una tantum stuff */
+                $una_tantum = false;
+                if ($input['una_tantum'] > 0) {
+	               $db = JFactory::getDBO();
+	               $db->setQuery('SELECT * FROM #__receivements_generali WHERE id = '.$db->Quote($input['una_tantum']));
+                       $una_tantum = $db->loadObject();
+                }
+
                 /* access to uploaded file */
                 $fh = fopen($filename, 'r');
                 $headers = fgetcsv($fh, 0, $input['separator']);
@@ -182,18 +191,22 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                                 $data->hours_failed++;
                                 continue; // TODO accodare avviso
 			   }
+
                         $_materia = $this->x('MATTER');
                         $materia = $row->$_materia;
                         $materia_id = ReceivementsHelper::idFromName($materia, '#__receivements_cattedre', 'materie');
                         if (!$materia_id && !empty($materia)) 
                                 $materia_id = ReceivementsHelper::InsertField($materia, '#__receivements_cattedre', 'materie');
 
-                        $_sede = $this->x('SITE');
-                        $sede = $row->$_sede;
-                        $sede_id = ReceivementsHelper::idFromName($sede, '#__receivements_sedi', 'sede');
-                        if (!$sede_id  && !empty($sede)) 
-                                $sede_id = ReceivementsHelper::InsertField($sede, '#__receivements_sedi', 'sede');
-
+                        if ($una_tantum) $sede_id = $una_tantum->sede;
+                        else {
+                                $_sede = $this->x('SITE');
+                                $sede = $row->$_sede;
+                                $sede_id = ReceivementsHelper::idFromName($sede, '#__receivements_sedi', 'sede');
+                                if (!$sede_id  && !empty($sede)) 
+                                        $sede_id = ReceivementsHelper::InsertField($sede, '#__receivements_sedi', 'sede');
+                        }
+                        
                         $_classi = $this->x('CLASSES');
                         $classi = $row->$_classi;
                         $nomi_classi = explode(',', $classi);
@@ -208,36 +221,43 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                         }
                         $classi_finale = implode(',', $ids_classi);
 
-                        $_giorno = $this->x('DAY');
-                        $giorno = $row->$_giorno;
-                        for ($ii = 0, $giorno_finale = -1; $ii < 6; $ii++) {
-                                if ($giorno == JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_'.$ii)) {
-                                        $giorno_finale = $ii;
-                                        break;
+                        if ($una_tantum) $giorno_finale = '';
+                        else {
+                                $_giorno = $this->x('DAY');
+                                $giorno = $row->$_giorno;
+                                for ($ii = 0, $giorno_finale = -1; $ii < 6; $ii++) {
+                                        if ($giorno == JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_'.$ii)) {
+                                                $giorno_finale = $ii;
+                                                break;
+                                        }
                                 }
-                        }
-                        if ($giorno_finale == -1) {
-                                $data->hours_failed++;
-                                continue; // TODO accodare avviso
+                                if ($giorno_finale == -1) {
+                                        $data->hours_failed++;
+                                        continue; // TODO accodare avviso
+                                }
                         }
 
                         $_inizio = $this->x('START');
-                        $inizio = $row->$_inizio;
-                        if (strlen($inizio) != 5 || $inizio[2] != ':') {
+                        if ($una_tantum) $inizio = $una_tantum->inizio;
+                        else $inizio = $row->$_inizio;
+                        if ($inizio[2] != ':') {
                                 $data->hours_failed++;
                                 continue; // TODO accodare avviso
                         }
-                        $inizio_finale = $inizio . ':00';
+                        if ($una_tantum)  $inizio_finale = $inizio;
+                        else $inizio_finale = $inizio . ':00';
 
                         $_fine = $this->x('END');
-                        $fine = $row->$_fine;
-                        if (strlen($fine) != 5 || $fine[2] != ':') {
+                        if ($una_tantum) $fine = $una_tantum->fine;
+                        else $fine = $row->$_fine;
+                        if ($fine[2] != ':') {
                                 $data->hours_failed++;
                                 continue; // TODO accodare avviso
                         }
-                        $fine_finale = $fine . ':00';
+                        if ($una_tantum)  $fine_finale = $fine;
+                        else $fine_finale = $fine . ':00';
 
-                        $success = $this->saveHour($userid, $classi_finale, $giorno_finale, $inizio_finale, $fine_finale, $materia_id, $sede_id, $input['update'], $input['max_app']);
+                        $success = $this->saveHour($userid, $classi_finale, $giorno_finale, $inizio_finale, $fine_finale, $materia_id, $sede_id, $input['update'], $input['una_tantum'], $input['max_app']);
                         if ($success) $data->hours_saved++;
                         else $data->hours_failed++;
                 }
