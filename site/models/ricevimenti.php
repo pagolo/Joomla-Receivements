@@ -72,15 +72,22 @@ class ReceivementsModelRicevimenti extends JModelList
 	$this->setState('filter.type', $search);
         if ($search > 0) {
                 $db = $this->getDBO();
-                $db->setQuery('SELECT data FROM #__receivements_generali WHERE id = '.$db->Quote($search));
-                $temp = $db->loadAssoc();
-                $app->setUserState('com_receivements.booking.date', empty($temp) ? null : $temp['data']);
+                $booking_date = ReceivementsFrontendHelper::getBookingDate($search);
+                $app->setUserState('com_receivements.booking.date', $booking_date);
         }
     }
 
     function getListQuery()
     {
         $db = JFactory::getDBO();
+        $app = JFactory::getApplication();
+        $booking_date = $app->getUserState('com_receivements.booking.date', null);
+        if (empty($booking_date)) { // refresh value
+                $search = $this->getState('filter.type');
+                $booking_date = ReceivementsFrontendHelper::getBookingDate($search);
+                $app->setUserState('com_receivements.booking.date', $booking_date);
+        }
+        
         $schoolgroup = ReceivementsFrontendHelper::getSchoolsGroup();
         $search = $this->getState('filter.scuola');
         $query = $db->getQuery(true);
@@ -120,7 +127,7 @@ class ReceivementsModelRicevimenti extends JModelList
         $search = $this->getState('filter.type');
         $query->where(' o.una_tantum = ' . $db->Quote($search));
 
-        $query->where('(o.una_tantum = 0 OR CURDATE() + INTERVAL '.ReceivementsFrontendHelper::getPreBooking().' DAY < DATE('.$db->Quote(ReceivementsFrontendHelper::convertDateTo(JFactory::getApplication()->getUserState('com_receivements.booking.date'))).'))');
+        $query->where('(o.una_tantum = 0 OR CURDATE() + INTERVAL '.ReceivementsFrontendHelper::getPreBooking().' DAY < DATE('.$db->Quote(ReceivementsFrontendHelper::convertDateTo($booking_date)).'))');
         
         //echo $query;exit;
 

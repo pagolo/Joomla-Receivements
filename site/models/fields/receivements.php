@@ -52,8 +52,11 @@ class JFormFieldReceivements extends JFormField
 		$db->setQuery($query);
 		$items = $db->loadObjectList();
 		$count = 0;
-                
-                $booking_date = $app->getUserState('com_receivements.booking.date', null);
+
+                if (!empty($items)) {
+                        $search = $items[0]->una_tantum;               
+                        $booking_date = ReceivementsFrontendHelper::getBookingDate($search);
+                }
 		
 		foreach ($items as $i => $_item)
 		{

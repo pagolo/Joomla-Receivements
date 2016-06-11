@@ -102,6 +102,23 @@ class ReceivementsFrontendHelper
 		return $options;
 	}
 
+        static
+	function getBookingDate($search)
+	{
+		$db = JFactory::getDbo();
+		
+                $db->setQuery('SELECT data FROM #__receivements_generali WHERE id = '.$db->Quote($search));
+                $booking_date = $db->loadResult();
+
+		// Check for a database error.
+		if ($db->getErrorNum()) {
+			JError::raiseNotice(500, $db->getErrorMsg());
+			return null;
+		}
+
+		return $booking_date;
+	}
+
 	static
 	function getWeekDayOptions()
 	{
