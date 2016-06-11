@@ -130,7 +130,10 @@ $language->load('com_receivements', JPATH_SITE, $language->getTag(), true);
 				<?php echo $this->form->getInput('email'); ?></li>
 				<li><?php echo $this->form->getLabel('attiva'); ?>
 				<?php echo $this->form->getInput('attiva'); ?></li>
-
+                                <?php if (!($this->item->id)) : ?>
+				<li><?php echo $this->form->getLabel('permit_dups'); ?>
+				<?php echo $this->form->getInput('permit_dups'); ?></li>
+                                <?php endif; ?>
 
             </ul>
         </fieldset>

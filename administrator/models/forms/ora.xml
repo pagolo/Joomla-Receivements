@@ -98,6 +98,11 @@
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_ATTIVA" 
             />
 
+       <field name="permit_dups" type="checkbox" value="1" default="0"                
+            label="COM_RECEIVEMENTS_PERMIT_DUPLICATES"
+            description="COM_RECEIVEMENTS_PERMIT_DUPLICATES_DESC" 
+            />
+
 	</fieldset>
 
 </form>

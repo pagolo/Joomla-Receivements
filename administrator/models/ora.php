@@ -128,6 +128,22 @@ class ReceivementsModelOra extends JModelAdmin
 		}
 	}
 
+	public function validate($form, $data)
+	{
+                if ($data['id'] || $data['permit_dups'] == 1) { // if updating or permit duplicates, it is ok
+                        return parent::validate($form, $data);
+                }
+		$db = JFactory::getDbo();
+		$db->setQuery('SELECT COUNT(id) FROM #__receivements_ore WHERE id_docente = '.$db->quote($data['id_docente']).' AND una_tantum = '.$db->quote($data['una_tantum']) );
+		$count = $db->loadResult();
+                if ($count > 0) {
+                        $this->setError(JText::_('COM_RECEIVEMENTS_ALREADY_ONE_HOUR'));
+                        return false;
+                }
+                //echo "<pre>";print_r($data);exit;
+                return parent::validate($form, $data);
+        }
+
         public function setUseEmail(&$pks, $value) {
             $user		= JFactory::getUser();
 	    $table		= $this->getTable();
