@@ -26,7 +26,9 @@ body.white fieldset {
     display:block;
     float:left;
     width:100%;
-}
+    padding-left:0px !important;
+    margin-left:0px !important;
+}}
 .ul_rcv {
     margin-left: 60px !important;
 }
@@ -96,6 +98,22 @@ body.white .button:hover {
 
 #jform_rules-lbl{
     display:none;
+}
+
+#jform_nome-lbl {
+  width:20% !important;
+}
+
+#jform_classe-lbl {
+  width:20% !important;
+}
+
+#jform_email-lbl {
+  width:20% !important;
+}
+
+#jform_parentela-lbl {
+  width:20% !important;
 }
 
 #access-rules a:hover{
