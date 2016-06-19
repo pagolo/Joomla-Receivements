@@ -21,6 +21,7 @@ class ReceivementsViewOraform extends JViewLegacy {
     protected $item;
     protected $form;
     protected $params;
+    protected $options;
 
     /**
      * Display the view
@@ -32,6 +33,7 @@ class ReceivementsViewOraform extends JViewLegacy {
 
         $this->state = $this->get('State');
         $this->item = $this->get('Data');
+        $this->options = $this->get('Options');
 
         $this->params = $app->getParams('com_receivements');
         $this->form		= $this->get('Form');
@@ -41,7 +43,12 @@ class ReceivementsViewOraform extends JViewLegacy {
             throw new Exception(implode("\n", $errors));
         }
 
-        
+        $id = JFactory::getApplication()->getUserState('com_receivements.edit.ora.id');        
+        if ($app->input->get->get('layout', '', 'string') == 'create' && $id > 0) {
+            echo 'Attendere...';
+            echo '<script type="text/javascript">window.parent.location.href="'.JUri::base().'?option=com_receivements&task=oraform.edit&id='.$id.'"</script>';
+            return;
+        }
 
         $this->_prepareDocument();
 

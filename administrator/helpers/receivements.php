@@ -193,6 +193,12 @@ class ReceivementsHelper {
     }
 
     public static function insertField($value, $table, $field) {
+    
+        $perm = ReceivementsHelper::getActions();
+        
+        if (!($perm->core.create == true))
+        
+                return false;
 
 	$db = JFactory::getDbo();
 

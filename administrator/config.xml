@@ -2,15 +2,23 @@
 <config>
     <fieldset label="COM_RECEIVEMENTS" name="receivements">
                 <field 
-                        name="forced_login" type="checkbox" value="1" default="0"                
+                        name="forced_login" type="radio" value="1" default="0"
+                        class="btn-group btn-group-yesno"                
                         label="COM_RECEIVEMENTS_FORCED_LOGIN_LBL"
                         description="COM_RECEIVEMENTS_FORCED_LOGIN_DESC" 
-                />
+                >
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+                </field>
                 <field 
-                        name="verify_email" type="checkbox" value="1" default="1"                
+                        name="verify_email" type="radio" value="1" default="1"                
+                        class="btn-group btn-group-yesno"                
                         label="COM_RECEIVEMENTS_EMAIL_VERIFICATION"
                         description="COM_RECEIVEMENTS_CHECK_EMAIL_EXISTS" 
-                />
+                >
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+                </field>
                 <field
                         name="parents_group"
                         type="text"

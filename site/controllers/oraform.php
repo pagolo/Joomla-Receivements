@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 
 require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'controller.php';
+require_once JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'receivements.php';
 
 /**
  * Ora controller class.
@@ -49,13 +50,34 @@ class ReceivementsControllerOraForm extends ReceivementsController {
         $this->setRedirect(JRoute::_('index.php?option=com_receivements&view=oraform&layout=edit&id='.$editId, false));
     }
 
-    /**
-     * Method to save a user's profile data.
-     *
-     * @return	void
-     * @since	1.6
-     */
-    public function save() {
+   public function create() {
+        // Check for request forgeries.
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+        // Initialise variables.
+        $app = JFactory::getApplication();
+        $model = $this->getModel('OraForm', 'ReceivementsModel');
+        
+        $data = array();
+        $data['id'] = '';
+        $data['id_docente'] = JFactory::getUser()->id;
+        $data['una_tantum'] = $app->input->get('receivement', 0, 'int');
+        $recv = ReceivementsAjaxHelper::changeReceivement($data['una_tantum']);
+        $data['inizio'] = $recv['inizio'];
+        $data['fine'] = $recv['fine'];
+        $data['giorno'] = '';
+        $data['sede'] = $recv['sede'];
+        $data['max_app'] = 40;
+        $teacher = ReceivementsAjaxHelper::changeTeacher($data['id_docente']);
+        $data['classi'] = $teacher['classi'];
+        $data['cattedra'] = $teacher['cattedra'];
+        $data['email'] = 1;
+        $data['attiva'] = 1;
+        $id = $model->save($data);
+        $this->setRedirect(JRoute::_('index.php?option=com_receivements&tmpl=component&view=oraform&layout=create&id=' . $id, false));
+   }
+
+   public function save() {
         // Check for request forgeries.
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 

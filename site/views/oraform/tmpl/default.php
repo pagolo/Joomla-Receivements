@@ -30,6 +30,10 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
     <?php else: ?>
         <h1><?php echo JText::_('COM_RECEIVEMENTS_CREATE_RECEIVEMENT_HOUR')?></h1>
     <?php endif; ?>
+    
+<?php if (!(empty($this->options))) : ?>
+    <p><em>&nbsp;&nbsp;&nbsp;<a href="<?php echo JRoute::_('index.php?option=com_receivements&tmpl=component&view=oraform&layout=create', false, 2); ?>" class="modal" rel="{handler: 'iframe', size: {x: 500, y: 340}}" style="border:none" title="<?php echo JText::_('COM_RECEIVEMENTS_ADD_GENERAL_TITLE')?>"><?php echo JText::_('COM_RECEIVEMENTS_ADD_GENERAL')?></a></em></p>
+<?php endif; ?>
 
     <form id="form-ora" action="" method="post" class="form-validate">
         <fieldset class='panelform' style='border-width:1px; width:500px; height:110%'>
@@ -84,6 +88,9 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 				<tr>
 				<td colspan = '2' style='text-align:center'><hr />
                                 <button type="submit" class="validate button btn"><span><?php echo JText::_('JSAVE'); ?></span></button>
+<?php if ($this->item->una_tantum > 0) : ?>
+                                <button type="submit" onclick="return delete_button()" class="validate button btn"><span><?php echo JText::_('COM_RECEIVEMENTS_ORE_DELETE'); ?></span></button>
+<?php endif; ?>
                                 <a class="button btn btn-small" href="<?php echo JRoute::_(JURI::base(), false, 2); ?>"><?php echo JText::_('JCANCEL')?></a> 
 				</td>
 				</tr>
@@ -104,4 +111,10 @@ $(document).ready(function(){
   $('#jform_id').attr('onchange', 'document.location.href="<?php echo JURI::base()?>?option=com_receivements&task=oraform.edit&id="+this.value');
   });
 });
+function delete_button() {
+  if (!confirm('<?php echo JText::_('COM_RECEIVEMENTS_REALLY_DELETE_HOUR') ?>')) return false;
+  el = document.getElementsByName('task');
+  el[0].value = "oraform.remove";
+  return true;
+}
 </script>  

@@ -33,10 +33,12 @@ if ($search = $this->state->get('filter.type')) {
 			</select>
 			<br />
 <?php endif; ?>
+<?php if (empty($this->items) || empty($this->items[0]->una_tantum)) : ?>
         		<select name="filter_day" class="inputbox" onchange="this.form.submit();">
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_DAYS');?></option>
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getWeekDayOptions(), 'value', 'text', $this->state->get('filter.giorno'));?>
 			</select>
+<?php endif; ?>
 			<select name="filter_class" class="inputbox" onchange="this.form.submit();">
 				<option value="*"><?php echo JText::_('COM_RECEIVEMENTS_ALL_CLASSES');?></option>
 				<?php echo JHtml::_('select.options', ReceivementsFrontendHelper::getClassesOptions(), 'text', 'text', $class);?>
@@ -64,7 +66,7 @@ if ($search = $this->state->get('filter.type')) {
                         <em><?php echo JText::_('COM_RECEIVEMENTS_PLEASE_LOGIN')?></em>
 <?php endif; ?>
 		<div class="clr"><br /></div>
-	<table class='front-end-list'>
+	<table id="recv_table" class='front-end-list'>
 		<thead>
 			<tr>
 				<th><input type="checkbox" name="toggle" value="" title="<?php echo JText::_('COM_RECEIVEMENTS_SELECT_ALL')?>" onclick="Joomla.checkAll(this)" /></th>
@@ -127,3 +129,24 @@ if ($search = $this->state->get('filter.type')) {
         <?php echo JHtml::_('form.token'); ?>
         </div>
 </form>
+
+<script type="text/javascript">
+  function hide_columns() {
+    if (screen.width > 800) return;
+    var tbl  = document.getElementById('recv_table');
+    var rows = tbl.getElementsByTagName('tr');
+    var  cels = rows[0].getElementsByTagName('th');
+    var do_3 = cels[3].innerHTML == "<?php echo JText::_('COM_RECEIVEMENTS_CLASSES')?>";
+    cels[2].style.display='none';
+    if (do_3) cels[3].style.display='none';
+
+    for (row=1; row<rows.length;row++) {
+      cels = rows[row].getElementsByTagName('td');
+      if (cels.length==1) continue;
+      cels[2].style.display='none';
+      if (do_3) cels[3].style.display='none';
+    }
+  }
+  hide_columns();
+  //window.addEventListener("resize", hide_columns);
+</script>

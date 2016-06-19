@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+        <field name="main" type="checkbox" value="1" default="1"
+                label="COM_RECEIVEMENTS_DELETE_MAIN" 
+                description="COM_RECEIVEMENTS_DELETE_MAIN_DESC"
+                />
+
+        <field name="vacations" type="checkbox" value="1" default="1"
+                label="COM_RECEIVEMENTS_DELETE_VACATIONS" 
+                description="COM_RECEIVEMENTS_DELETE_ONE_TABLE_DESC"
+                />
+
+        <field name="matters" type="checkbox" value="1" default="0"
+                label="COM_RECEIVEMENTS_DELETE_MATTERS" 
+                description="COM_RECEIVEMENTS_DELETE_ONE_TABLE_DESC"
+                />
+
+        <field name="classes" type="checkbox" value="1" default="0"
+                label="COM_RECEIVEMENTS_DELETE_CLASSES" 
+                description="COM_RECEIVEMENTS_DELETE_ONE_TABLE_DESC"
+                />
+
+        <field name="sites" type="checkbox" value="1" default="0"
+                label="COM_RECEIVEMENTS_DELETE_SITES" 
+                description="COM_RECEIVEMENTS_DELETE_ONE_TABLE_DESC"
+                />
+
+        <field name="parents" type="checkbox" value="1" default="0"
+                label="COM_RECEIVEMENTS_DELETE_PARENTS" 
+                description="COM_RECEIVEMENTS_DELETE_ONE_TABLE_DESC"
+                />
+
+	</fieldset>
+
+</form>

@@ -68,6 +68,11 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                 $y=$tmp;
         }
         protected function saveHour($userid, $classi, $giorno, $inizio, $fine, $materia_id, $sede_id, $update, $recv, $max_app) {
+                // check for authorised user
+                $perm = ReceivementsHelper::getActions();
+                if (!($perm->core.create == true))
+                        return false;
+
                 // TODO gestire eventuali errori
                 $hour_id = ReceivementsHelper::idFromName($userid, '#__receivements_ore', 'id_docente', 'una_tantum', $recv);
                 $db = $this->getDBO();
@@ -226,7 +231,7 @@ class ReceivementsModelImportaDocenti extends JModelAdmin
                                 $_giorno = $this->x('DAY');
                                 $giorno = $row->$_giorno;
                                 for ($ii = 0, $giorno_finale = -1; $ii < 6; $ii++) {
-                                        if ($giorno == JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_'.$ii)) {
+                                        if (strtolower($giorno) == strtolower(JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_'.$ii))) {
                                                 $giorno_finale = $ii;
                                                 break;
                                         }

@@ -13,6 +13,9 @@ body.white fieldset {
 .center {
     text-align: center;
 }
+.right {
+    text-align: right;
+}
 .select_rcv fieldset {
     display: inline-block;
     border: solid 1px #dddddd !important;
@@ -28,10 +31,12 @@ body.white fieldset {
     width:100%;
     padding-left:0px !important;
     margin-left:0px !important;
-}}
+}
+/*
 .ul_rcv {
     margin-left: 60px !important;
 }
+*/
 .my_field {
     display: inline-block;
     height: 0.9em;

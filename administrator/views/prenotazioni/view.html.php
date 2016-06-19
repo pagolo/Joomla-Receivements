@@ -65,6 +65,12 @@ class ReceivementsViewPrenotazioni extends JViewLegacy {
         }
 
         if ($canDo->get('core.admin')) {
+            $cleanup =
+            '<a class="toolbar btn btn-small button modal" rel="{handler: \'iframe\', size: {x: 512, y: 512}, onClose: function(){window.parent.document.location.reload(true)}}" '.
+            ' href="index.php?option=com_receivements&amp;tmpl=component&amp;view=manutenzione">'.
+            '<span title="'.JText::_('COM_RECEIVEMENTS_TEACHERS_IMPORT').'"></span>'.JText::_('COM_RECEIVEMENTS_INITIAL_CLEANUP').'</a>';      
+            $bar =& JToolBar::getInstance();
+            $bar->appendButton('Custom', $cleanup);
             JToolBarHelper::preferences('com_receivements');
         }
     }

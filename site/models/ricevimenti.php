@@ -74,6 +74,7 @@ class ReceivementsModelRicevimenti extends JModelList
                 $db = $this->getDBO();
                 $booking_date = ReceivementsFrontendHelper::getBookingDate($search);
                 $app->setUserState('com_receivements.booking.date', $booking_date);
+                $this->setState('filter.giorno', '*');
         }
     }
 

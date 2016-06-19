@@ -42,7 +42,7 @@ class JFormFieldReceivements extends JFormField
 		// Start the checkbox field output.
 		$html[] = '<fieldset id="' . $this->id . '" ' . $class . ' >';
                 $html[] = '<legend>' . JText::_($this->element['label']) . '</legend>';
-		$html[] = '<ul ' . $class . '>';
+//		$html[] = '<ul ' . $class . '>';
 		$ids = $app->getUserState('com_receivements.init.prenota.id');
 		$re = '^(' . str_replace('.', '|', $ids) . ')$';
 		$db = JFactory::getDBO();
@@ -64,8 +64,8 @@ class JFormFieldReceivements extends JFormField
                         if ($_item->una_tantum) $this->item->mydate = $booking_date;
         		else { $options = (array) $this->getOptions(); if (empty($options)) continue;}
         		$count++;
-                        if ($_item->una_tantum) $html[] = '<li><div style="float:left;width:60%;height:1em">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . ReceivementsFrontendHelper::convertDateFrom($booking_date, 'DATE_FORMAT_LC') . '</div><div>'; 
-		        else $html[] = '<li><div style="float:left;width:60%;height:1em">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . JText::_('COM_RECEIVEMENTS_ORE_GIORNO_OPTION_' . $_item->giorno) . ' ' . substr($_item->inizio,0,5) . '/' . substr($_item->fine,0,5) . '</div><div>';
+                        if ($_item->una_tantum) $html[] = '<div id="doc_'.$i.'" style="float:left;width:60%;height:1em">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . ReceivementsFrontendHelper::convertDateFrom($booking_date, 'DATE_FORMAT_LC') . '</div><div>'; 
+		        else $html[] = '<div id="doc_'.$i.'" style="float:left;width:60%;height:1em">' . JText::_('COM_RECEIVEMENTS_TEACHER') . ': ' . $_item->name . ', ' . JText::_('COM_RECEIVEMENTS_ORE_GIORNO_ABBR_OPTION_' . $_item->giorno) . ' ' . substr($_item->inizio,0,5) . '/' . substr($_item->fine,0,5) . '</div><div>';
                         if ($_item->una_tantum) $html[] = $this->getUnaTantum($i);
 			else $html[] = JHtml::_('select.genericlist', $options, 'jform[ricevimenti_'.$i.']', '', 'value', 'text', 'jform_ricevimenti_'.$i);
 			$html[] = '<input type="hidden" name="jform[ricevimenti_user_'.$i.']" value="'.$_item->id_docente.'" id="jform_ricevimenti_user_'.$i.'" />';
@@ -73,9 +73,9 @@ class JFormFieldReceivements extends JFormField
 			$html[] = '<input type="hidden" name="jform[ricevimenti_email_'.$i.']" value="'.($_item->use_email? $_item->email : '').'" id="jform_ricevimenti_email_'.$i.'" />';
 			$html[] = '<input type="hidden" name="jform[ricevimenti_ora_'.$i.']" value="'.$_item->id.'" id="jform_ricevimenti_ora_'.$i.'" />';
 			$html[] = '<input type="hidden" name="jform[ricevimenti_una_'.$i.']" value="'.$_item->una_tantum.'" id="jform_ricevimenti_una_'.$i.'" />';
-			$html[] = '</div></li>';
+			$html[] = '</div><br />';
 		}
-		$html[] = '</ul>';
+//		$html[] = '</ul>';
 		$html[] = '<input type="hidden" name="jform[ricevimenti_count]" value="'.$count.'" id="jform_ricevimenti_count" />';
 
 		$html[] = '</fieldset>';

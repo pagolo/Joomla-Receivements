@@ -74,13 +74,13 @@
 		<field
 		        name="sede"
 		        type="sql"
-		        query="SELECT id AS value, sede FROM #__receivements_sedi ORDER BY id"/>
+		        query="SELECT id AS value, sede FROM #__receivements_sedi ORDER BY id"
             label="COM_RECEIVEMENTS_FORM_LBL_ORA_SEDE"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_SEDE" 
             /> 
 
        <field name="email" type="checkbox" value="1" default="1"                
-            label="COM_RECEIVEMENTS_FORM_LBL_ORA_EMAIL"
+            label="COM_RECEIVEMENTS_FORM_LBL_ORA_EMAIL_0"
             description="COM_RECEIVEMENTS_FORM_DESC_ORA_EMAIL" 
             />
 

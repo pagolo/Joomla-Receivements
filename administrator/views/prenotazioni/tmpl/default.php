@@ -9,6 +9,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
+JHtml::_('behavior.modal');
 JHtml::_('behavior.tooltip');
 JHTML::_('behavior.formvalidation');
 JHTML::_('script', 'system/multiselect.js', false, true);

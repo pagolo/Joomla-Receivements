@@ -30,7 +30,7 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
         <fieldset class="select_rcv">
                 <legend><?php echo JText::_('COM_RECEIVEMENTS_PERSONAL_DATA')?></legend>
                 <ul class="ul_rcv">
-                        <li>
+                        <li>                                
                                 <?php echo $this->form->getLabel('nome'); ?>
                                 <?php echo $this->form->getInput('nome'); ?>
                         </li>
@@ -66,11 +66,17 @@ $doc->addScript(JUri::base() . '/components/com_receivements/assets/js/form.js')
 </div>
 
 
-<?php if (ReceivementsFrontendHelper::getForcedLogin()) : ?>
 
 <script type="text/javascript">
 getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
 $(document).ready(function(){
+  var count = $("#jform_ricevimenti_count").val();
+  if (screen.width <= 800) {
+        for (var i=0; i < count; i++) {
+                $("#doc_"+i).prop("style","float:left;width:100%;height:1em;white-space: nowrap");
+        }
+  }
+<?php if (ReceivementsFrontendHelper::getForcedLogin()) : ?>
   $("#jform_classe").prop("readonly", "readonly");
   $("#jform_nome").change(function(){
         var student = $("#jform_nome").val();
@@ -80,8 +86,8 @@ $(document).ready(function(){
                 $("#jform_parentela").val(data.parentela == 'COM_RECEIVEMENTS_PARENT' ? '*' : data.parentela);
         }, "json" );
   });
+<?php endif; ?>
 });
 });
 </script>
 
-<?php endif; ?>

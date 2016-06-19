@@ -52,6 +52,13 @@ class ReceivementsModelOraForm extends JModelForm
 
         }
         
+        public function getOptions() {
+		$db = JFactory::getDbo();
+		
+		$db->setQuery('SELECT g.id AS value, CONCAT(g.titolo,\' (\',DATE_FORMAT(g.data,\'%d/%m/%Y\'),\')\') AS text FROM #__receivements_generali g LEFT JOIN #__receivements_ore o ON (g.id = o.una_tantum AND o.id_docente = '.$db->quote(JFactory::getUser()->id).') WHERE o.id IS NULL AND g.attiva = 1 AND g.data > CURDATE() + INTERVAL '.ReceivementsFrontendHelper::getPreBooking().' DAY ORDER BY data ASC');
+
+		return ($db->loadObjectList());
+        }
 
 	/**
 	 * Method to get an ojbect.

@@ -15,7 +15,7 @@
                 <field name="nome" type="text" class="inputbox"
                         label="COM_RECEIVEMENTS_FORM_LBL_PRENOTA_NOME"
                         description="COM_RECEIVEMENTS_FORM_DESC_PRENOTA_NOME" 
-                        required="true" 
+                        required="true"
                         /> 
 
                 <field
