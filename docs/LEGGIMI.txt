@@ -6,6 +6,10 @@ data     25/02/2016
 autore   P. Bozzo
 email    pagolo.bozzo CHIOCCIOLA gmail.com
 
+NOTA
+----
+Per le novità della versione 2.0.0 si veda l'apposito file LEGGIMI-2.txt.
+
 CARATTERISTICHE
 ---------------
 Software per gestire, tramite Joomla, i colloqui dei genitori con i docenti in

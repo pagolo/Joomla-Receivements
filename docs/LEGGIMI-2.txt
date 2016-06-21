@@ -1,0 +1,86 @@
+NOVITA' NELLA VERSIONE 2.0.0 DI RICEVIMENTI PER JOOMLA
+------------------------------------------------------
+21/06/2016
+
+NOTA
+----
+Il presente file riguarda solo le novità, per le altre funzioni consultare
+il file LEGGIMI.txt della versione 1.2.0
+
+NOVITA' INTRODOTTE
+------------------
+- Gestione dei "ricevimenti generali" o "udienze generali" con la possibilità
+di indicare un giorno unico di ricevimento e di specificare quali docenti
+sono disponibili. Al limite questa funzione può essere anche utilizzata per
+un unico docente che voglia ricevere un singolo giorno al di fuori dell'orario
+settimanale.
+- Layout delle pagine utilizzate per prenotare adattabile anche ai dispositivi
+mobili, in particolare agli smartphone ("responsive layout"). Questa funzione
+è utile soprattutto con determinati template, per es. FAP.
+- Pulizia dei dati in occasione di un nuovo anno scolastico. Questa funzione è
+utilizzabile solo dall'amministratore e va usata *solo* nel caso di un nuovo
+anno scolastico. Prevede la possibilità di "troncare" le tabelle mysql che sono
+utilizzate dal componente, vale a dire cancellarle e ricostruirle vuote. I dati
+preesistenti vengono così totalmente distrutti; nel caso in cui l'amministratore
+voglia conservarne copia, può utilizzare un tool (per es. phpMyAdmin) che
+permetta di esportare le tabelle MySQL.
+
+RICEVIMENTI GENERALI 
+---------------------
+Nell'interfaccia amministrativa è disponibile una nuova scheda denominata
+appunto "Ricevimenti generali". Facendo clic su "Nuovo", l'amministratore
+può fissare un giorno per il ricevimento generale, dandogli un nome, per es.
+"Ricevimento novembre biennio". In questo contesto si fissano anche l'ora di
+inizio e di fine del ricevimento, la sede prevista e se il ricevimento è
+attivo, cioè visibile a chi vuole prenotare. A questo modo un ricevimento
+può essere attivato solo con poche settimane di anticipo.
+Una volta creato il ricevimento generale, l'amministratore deve inserire
+nell'evento le ore dei docenti: questo permette di scegliere quali docenti
+ricevono in quel giorno. Questa operazione può essere svolta in tre modi:
+1) *Inserimento manuale*. Andando nella scheda "ore", l'amministratore può
+creare una nuova ora di ricevimento, specificando con il nuovo menù a tendina,
+a quale ricevimento (settimanale o un ricevimento generale) si applica. Questo
+metodo può risultare molto oneroso per l'amministratore in termini di tempo,
+perché i docenti vanno inseriti uno ad uno.
+2) *Importazione docenti*. Utilizzando il bottone "Importa" della scheda "ore",
+l'amministratore può importare da un file csv la lista dei docenti da inserire.
+Il file deve seguire le regole fissate per l'orario settimanale, l'unica
+differenza consiste nella scelta del ricevimento (generale) ed ovviamente
+nel fissare un numero più elevato di colloqui per ogni docente, ma queste due
+cose si stabiliscono attraverso l'interfaccia non da file. Come esempio,
+si può usare il file "docenti-no-ore.csv", anche perché i dati delle ore
+in questo caso vengono presi direttamente dai dati inseriti in sede di creazione
+del ricevimento generale. Questo metodo è più pratico del primo ma richiede una
+certa attenzione nel creare i vari file csv e nell'inserire gli utenti giusti.
+3) *Inserimento manuale da parte del docente*. In questo caso ad ogni docente
+viene chiesto di inserire la propria ora di ricevimento generale. Il docente,
+che già deve avere una voce di menù "ora di ricevimento" nel front-end di 
+Joomla!, utilizza questa funzione a cui è stato aggiunto un link "Aggiungi
+ora udienze generali". Tramite il link si accede alla lista delle udienze 
+generali disponibili (per cui un genitore sia ancora in tempo per prenotare)
+e potrà sceglierne una basandosi sul nome e sulla data. Fatto questo al docente
+apparirà la solita pagina di editing dell'ora relativa al ricevimento generale,
+qui eventualmente egli potrà modificare le ore di inizio e fine ricevimento e
+il numero massimo di prenotazioni accettate.
+
+Le altre novità che riguardano i ricevimenti generali dovrebbero essere
+abbastanza intuitive e in genere sono basate su un menù a tendina che permette
+di scegliere il ricevimento settimanale o un ricevimento generale. Per quanto
+riguarda le assenze dei docenti e l'anticipo obbligatorio di prenotazione si
+utilizza lo stesso identico sistema dei colloqui settimanali.
+
+PULIZIA DI INIZIO ANNO SCOLASTICO
+---------------------------------
+Nella pagina di amministrazione delle prenotazioni è disponibile un nuovo
+bottone: "Pulizia di inizio anno". Il clic sul tasto apre una finestra che
+permette di selezionare i dati da cancellare. Si ricorda che vengono cancellati
+tutti i dati esistenti a quel momento nel database, quindi si raccomanda di
+agire con cautela e di usare la funzione solo ad inizio anno scolastico, in un
+momento in cui non è utilizzato il sistema delle prenotazioni.
+
+------------
+
+Ringrazio tutti coloro che hanno contribuito e che tuttora contribuiscono alla
+crescita di questo software e che sono riportati nel file LEGGIMI.txt.
+Un ringraziamento particolare va a Roberto Bisceglia, sempre attento e
+disponibile ai consigli e ai test.
