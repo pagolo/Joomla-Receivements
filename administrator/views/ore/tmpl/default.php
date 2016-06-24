@@ -32,7 +32,7 @@ require_once JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'co
         <div class="filter-search fltlft">
             <label class="filter-search-lbl" for="filter_type"><?php echo JText::_('COM_RECEIVEMENTS_RECEIVEMENT'); ?></label>
 			<select name="filter_type" id="filter_type" class="inputbox" onchange="this.form.submit();">
-				<option value="-1"><?php echo JText::_('JALL');?></option>
+				<option value="-1"><?php echo JText::_('COM_RECEIVEMENTS_ALLM');?></option>
 				<option value="0" <?php if ($this->state->get('filter.type')==0) echo 'selected="selected"'  ?>><?php echo JText::_('COM_RECEIVEMENTS_WEEKLY');?></option>
 				<?php echo JHtml::_('select.options', $this->options, 'value', 'text', $this->state->get('filter.type'));?>
 			</select>

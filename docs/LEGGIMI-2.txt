@@ -47,9 +47,10 @@ l'amministratore può importare da un file csv la lista dei docenti da inserire.
 Il file deve seguire le regole fissate per l'orario settimanale, l'unica
 differenza consiste nella scelta del ricevimento (generale) ed ovviamente
 nel fissare un numero più elevato di colloqui per ogni docente, ma queste due
-cose si stabiliscono attraverso l'interfaccia non da file. Come esempio,
-si può usare il file "docenti-no-ore.csv", anche perché i dati delle ore
-in questo caso vengono presi direttamente dai dati inseriti in sede di creazione
+cose si stabiliscono attraverso l'interfaccia non da file. Per costruire il
+file si può fare riferimento al file che si è usato per il ricevimento
+settimanale ma ci si può ispirare anche al file "docenti-no-ore.csv", perché i 
+dati delle ore vengono presi direttamente dai dati inseriti in sede di creazione
 del ricevimento generale. Questo metodo è più pratico del primo ma richiede una
 certa attenzione nel creare i vari file csv e nell'inserire gli utenti giusti.
 3) *Inserimento manuale da parte del docente*. In questo caso ad ogni docente
